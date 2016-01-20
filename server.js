@@ -8,7 +8,7 @@ app.get('/hello', function(req, res){
 });
 
 app.get('/', function(req, res){
-    res.send('THIS PAGE IS UNDER CONSTRUCTION');
+    res.send('THIS PAGE IS UNDER CONSTRUCTION UPDATES ARE COMING SOON');
 });
 
 app.listen(port, ipaddress);
