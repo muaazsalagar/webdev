@@ -1,6 +1,6 @@
 
 
-This is project is by Muaaz Salagar for the course work of Web Development (CS 5610)
+This project is being developed by Muaaz Salagar for the course work of Web Development (CS 5610)
 
 Under guidance of Prof. Jose Annunziato
 
