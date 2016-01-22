@@ -1,3 +1,9 @@
-The OpenShift `nodejs` cartridge documentation can be found at:
 
-http://openshift.github.io/documentation/oo_cartridge_guide.html#nodejs
+
+This is project is by Muaaz Salagar for the course work of Web Development (CS 5610)
+
+Under guidance of Prof. Jose Annunziato
+
+Checkout the new changes here: http://webdevelopment-salagarmuaaz.rhcloud.com
+
+Checkout portfolio: www.muaazsalagar.com
