@@ -9,7 +9,7 @@ $('#registerButton').click(function() {
 });
 
 
-$('#loginButton').click(function() {
+$('#loginbutton').click(function() {
     window.location.href = 'profile.html';
     return false;
 });
