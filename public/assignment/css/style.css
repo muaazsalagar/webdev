@@ -1,0 +1,29 @@
+.control-label-left
+{
+
+    padding-top: 7px;
+    margin-bottom: 0;
+    text-align: left;
+
+}
+
+
+.control-label-right
+{
+
+    padding-top: 7px;
+    margin-bottom: 0;
+    text-align: right;
+
+}
+
+.large-glyphicons>span
+{
+    font-size: 2em;
+}
+
+
+.hide-icon
+{
+    visibility: hidden;
+}
