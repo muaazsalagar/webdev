@@ -20,6 +20,28 @@ $('#formFields').click(function() {
 });
 
 
+$('#profile').click(function() {
+    window.location.href = 'profile.html';
+    return false;
+});
+
+
+$('#redirectToFields1').click(function() {
+    window.location.href = 'form-fields.html';
+    return false;
+});
+
+$('#redirectToFields2').click(function() {
+    window.location.href = 'form-fields.html';
+    return false;
+});
+
+$('#redirectToFields3').click(function() {
+    window.location.href = 'form-fields.html';
+    return false;
+});
+
+
 
 
 
