@@ -6,8 +6,6 @@
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
-    <script src="js/app.js"> </script>
 
 </head>
 <body>
@@ -40,6 +38,10 @@
             Add
         </button> </td>
 
+        <td><button ng-click= "updateMovie(movie)"  class="btn btn-info">
+            Update
+        </button> </td>
+
 
 
 
@@ -52,9 +54,9 @@
         <td>{{movie.title}}</td>
         <td>{{movie.director}}</td>
         <td>
-            <button ng-click="deleteMovie($scope.movie)" class="btn btn-danger">Delete</button>
+            <button ng-click="deleteMovie(movie)" class="btn btn-danger">Delete</button>
         </td>
-        <td><button ng-click= "selectMovie($scope.movie)"  class="btn btn-info">
+        <td><button ng-click= "selectMovie(movie)"  class="btn btn-info">
             Select
         </button> </td>
 
@@ -68,4 +70,9 @@
 
 
 </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+<script src="js/app.js"> </script>
+
+
 </html>

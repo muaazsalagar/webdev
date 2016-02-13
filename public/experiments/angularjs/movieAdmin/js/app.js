@@ -8,8 +8,7 @@
 (function ()
 {
     // module is as some programs built hierarchically
-    angular.module("MovieAdminApp",[])
-        .controller("MovieController", MovieController);
+    angular.module("MovieAdminApp",[]).controller("MovieController", MovieController);
 
 
     function MovieController($scope)
@@ -27,10 +26,10 @@
 
         // this is bets practice guidline by john papa
 
-        $scope.addMovie=addMovie();
-        $scope.deleteMovie=deleteMovie(movie);
-        $scope.selectMovie=selectMovie(movie);
-        $scope.updateMovie=updateMovie(movie);
+        $scope.addMovie=addMovie;
+        $scope.deleteMovie=deleteMovie;
+        $scope.selectMovie=selectMovie;
+        $scope.updateMovie=updateMovie;
 
 
 
@@ -39,37 +38,43 @@
             console.log("adding new movie ");
 
 
-            var newMovie={
+            var newMovie = {
                 id:movie.id,
                 title:movie.title,
                 director:movie.director
-            }
+            };
             console.log("New Movie adding done")
             $scope.movies.push(newMovie)
+            // to clear the adding tag for
+            $scope.movie={};
         }
         
         function deleteMovie(movie) {
-            console.log("Delete Clicked for index"+index);
-            var index=$scope.movies.indexOf(movie);
+           //
+
+            var indexOfSelected=$scope.movies.indexOf(movie);
+            console.log("Delete Clicked for index"+indexOfSelected);
+
             // splice gives more info about data like its an array so no splice to make it object oriented we can directly pass
             // as instance not index instance
            // $scope.movies.splice(index,1); so we get index from intsance
             // this actualy should not be in controller it should be in db directly as it DB opertation in mongo! so we will learn that
 
 
-            $scope.movies.splice(movie);
+            $scope.movies.splice(movie,1);
         }
 
         function selectMovie(movie)
         {
             // bind the selected instance of movie to form
-            $scope.movie=movie;
+
 
             $scope.movie={
                 id:movie.id,
                 title:movie.title,
-                director:movie.title
-            }
+                director:movie.director
+            };
+            $scope.movie=movie;
 
 
         }
@@ -78,6 +83,19 @@
         function updateMovie(movie)
         {
            var index=$scope.movies.indexOf(movie);
+            console.log("the index of update selected is: "+index)
+
+           var updatedMovie = {
+               id:movie.id,
+               title:movie.title,
+               director:movie.director
+           };
+
+           $scope.movies[index]=updatedMovie;
+            $scope.movie={};
+
+
+
 
         }
     }
