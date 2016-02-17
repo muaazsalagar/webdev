@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app="WhiteBoardApp">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular-route.js"></script>
+    <script src="app.js"></script>
+    <title>Ng Route Location</title>
+</head>
+<body>
+<div class="container">
+    <h1>Ng Route Location</h1>
+
+    <nav ng-controller="NavController">
+        <a href="#/home"  class="btn" ng-class="{'btn-primary' : $location.url() == '/'}">Home</a>
+        <a href="#/profile" class="btn" ng-class="{'btn-primary' : $location.url() == '/profile'}">Profile</a>
+        <a href="#/admin"   class="btn" ng-class="{'btn-primary' : $location.url() == '/admin'}">Admin</a>
+        <br/>
+        {{$location.url()}}
+    </nav>
+    <div ng-view>
+    </div>
+
+
+
+
+
+</div>
+</body>
+</html>
