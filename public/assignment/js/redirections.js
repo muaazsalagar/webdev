@@ -4,13 +4,13 @@
 
 
 $('#registerButton').click(function() {
-    window.location.href = 'profile.html';
+    window.location.href = 'profile.view.html';
     return false;
 });
 
 
 $('#loginbutton').click(function() {
-    window.location.href = 'profile.html';
+    window.location.href = 'profile.view.html';
     return false;
 });
 
@@ -21,7 +21,7 @@ $('#formFields').click(function() {
 
 
 $('#profile').click(function() {
-    window.location.href = 'profile.html';
+    window.location.href = 'profile.view.html';
     return false;
 });
 

@@ -7,24 +7,33 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular-route.js"></script>
     <script src="app.js"></script>
-    <title>Ng Route Location</title>
+    <script src="config.js"></script>
+    <script src="home/home.controller.js"></script>
+    <script src="profile/profile.controller.js"></script>
+    <script src="admin/admin.controller.js"></script>
+
+    <title>Ng Route</title>
 </head>
 <body>
 <div class="container">
-    <h1>Ng Route Location</h1>
+    <h1>Ng Route Controllers</h1>
 
-    <nav ng-controller="NavController">
-        <a href="#/home"  class="btn" ng-class="{'btn-primary' : $location.url() == '/'}">Home</a>
-        <a href="#/profile" class="btn" ng-class="{'btn-primary' : $location.url() == '/profile'}">Profile</a>
-        <a href="#/admin"   class="btn" ng-class="{'btn-primary' : $location.url() == '/admin'}">Admin</a>
-        <br/>
-        {{$location.url()}}
-    </nav>
+    <a href="#/home" class="btn btn-primary">Home</a>
+    <a href="#/profile" class="btn btn-success">Profile</a>
+    <a href="#/admin" class="btn btn-danger">Admin</a>
+
     <div ng-view>
     </div>
 
-   
+    <hr/>
 
+
+
+    <h2>HTML</h2>
+
+
+
+    <h2>app.js</h2>
 
 
 </div>

@@ -15,13 +15,13 @@
             // route provider is the service by
             $routeProvider
                 .when("/", {
-                    templateUrl: "home.html"
+                    templateUrl: "home.view.html"
                 })
                 .when("/profile", {
                     templateUrl: "profile.html"
                 })
                 .when("/admin", {
-                    templateUrl: "admin.html"
+                    templateUrl: "admin.view.html"
                 })
                 .otherwise({
                     redirectTo: "/"

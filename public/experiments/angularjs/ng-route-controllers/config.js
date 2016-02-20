@@ -1,29 +1,25 @@
 /**
  * Created by muaazsalagar on 2/17/16.
  */
-
-
 (function(){
     angular
-        .module("WhiteBoardApp", ["ngRoute"])
+        .module("WhiteBoardApp")
         .config(function($routeProvider){
-
-            // route provider is the service by
             $routeProvider
                 .when("/", {
-                    templateUrl: "home.view.html"
+                    templateUrl: "home/home.view.html",
+                    controller: "HomeController"
                 })
                 .when("/profile", {
-                    templateUrl: "profile.html"
+                    templateUrl: "profile/profile.view.html",
+                    controller: "ProfileController"
                 })
                 .when("/admin", {
-                    templateUrl: "admin.view.html"
+                    templateUrl: "admin/admin.view.html",
+                    controller: "AdminController"
                 })
                 .otherwise({
                     redirectTo: "/"
                 });
         });
 })();
-
-
-
