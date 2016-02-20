@@ -19,6 +19,15 @@
 
         })
 
+        //to maintain state of the application after search and results
+
+        .when("/search/:title", {
+            templateUrl:"search/search.view.html",
+            controller:"SearchController"
+
+        })
+
+
         .when ("/details/:imdbID",{
             templateUrl:"details/details.view.html",
             controller:"DetailsController"
