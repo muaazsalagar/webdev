@@ -11,7 +11,7 @@
     function configuration($routeProvider){
         $routeProvider
             .when("/home",{
-                templateUrl:"home.view.html"
+                templateUrl:"/views/home/home.view.html"
             })
             .when("/register", {
                 templateUrl:"/views/users/register.view.html",
@@ -40,11 +40,28 @@
 
             })
 
+            .when("/forms", {
+                templateUrl:"/views/forms/forms.view.htmll",
+                controller:"SearchController"
+
+            })
+
+            .when("/profile", {
+                templateUrl:"/views/users/profile.view.html",
+                controller:"SearchController"
+
+            })
+
+            .when("/admin", {
+                templateUrl:"/views/admin/admin.view.html",
+                controller:"SearchController"
+
+            })
 
 
 
             .otherwise({
-                redirectTo:"home/home.view.html"
+                redirectTo:"/views/home/home.view.html"
             })
     }
 })();
