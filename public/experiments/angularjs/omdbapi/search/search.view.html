@@ -1,18 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Search</title>
-
-
-</head>
-<body>
 <h2>Search</h2>
-<input ng-model="title" value="Star Wars" class="form-control">
+<input ng-model="title"
+       class="form-control"
+       placeholder="Avatar"/>
+
+<button ng-click="search(title)"
+        class="btn btn-primary btn-block">
+    Search
+</button>
+
+<table ng-show="data" class="table table-striped">
+    <thead>
+    <tr>
+        <th>Poster</th>
+        <th>Title</th>
+        <th>IMDB</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr ng-repeat="movie in data.Search">
+
+        <td>
+            <img height="100px" ng-src="{{movie.Poster}}"/></td>
+        <td>
+            <a href="#/details/{{movie.imdbID}}" >
+                {{movie.Title}}
+            </a>
+        </td>
+        <td>{{movie.imdbID}}</td>
+    </tr>
+
+</tbody>
+</table>
 
 
-
-<button ng-click="search(title)" class=""> </button>
-
-</body>
-</html>

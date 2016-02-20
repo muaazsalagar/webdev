@@ -2,35 +2,49 @@
 <html lang="en" ng-app="MovieApp">
 <head>
     <meta charset="UTF-8">
-    <title>Movie Admin</title>
-    <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <script=">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
+
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+    <script src="navigation.controller.js"></script>
+    <script src="search/search.controller.js"> </script>
+    <script src="details/details.controller.js"> </script>
+    <script src="services/movie.service.js"> </script>
+
+
+    <title>Title</title>
 
 </head>
 <body>
 
-
 <div class="container">
-   <h1>Movie Admin</h1> </div>
-
-<nav  ng-controller="navController">
-
-    <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
-
-        </ul>
+    <h1> Movie App</h1>
+    <nav ng-controller="NavController">
+    <ul class="nav nav-pills">
+        <li ng-class="{'active':$location.url()=='/home'}"><a href="#/home">Home</a></li>
+        <li ng-class="{'active':$location.url()=='/search'}"><a href="#/search">Search</a></li>
+    </ul>
+        {{$location.url()}}
     </nav>
 
+    <div ng-view> </div>
+
+    </nav>
+
+    </div>
 
 </body>
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
-<script src="js/app.js"> </script>
+<!-- Scripts -->
 
-<script src="config.js"> </script>
+<!-- App Scripts -->
+
+
 
 
 

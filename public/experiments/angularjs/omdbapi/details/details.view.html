@@ -1,0 +1,16 @@
+<h2>{{movie.Title}}</h2>
+<img ng-src="{{movie.Poster}}"
+ height="100px" class="pull-left"/>
+
+
+<p class=container>
+    {{movie.Plot}}
+</p>
+<h3>Actors</h3>
+
+<ul>
+<li ng-repeat="name in movie.Actors.split(',')">
+    {{name}}
+</li>
+
+</ul>

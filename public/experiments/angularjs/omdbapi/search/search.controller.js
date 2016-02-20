@@ -7,7 +7,7 @@
     .module("MovieApp")
     .controller("SearchController",searchController);
 
-    function searchController($location,$scope, $http, $routeParams)
+    function searchController(MovieService, $location,$scope, $http, $routeParams)
     {
         var title=$routeParams.title;
 
@@ -21,17 +21,21 @@
         // function handler implementation
 
         function search (title){
-            console.log(title);
+            //console.log(title);
 
             // change the url to search with results
             $location.url("/search/"+title);
+            MovieService.findMoviesByTitle(title, render);
 
-            $http.get("http://www.omdbapi.com/?s="+title)
-                .success(render);
+            // previously we were calling from controller
+            // which is bad design controller should not know where to fetch from
+
+            //$http.get("http://www.omdbapi.com/?s="+title)
+            //    .success(render);
         }
 
         function render(response){
-            console.log(response);
+            //console.log(response);
             $scope.data=response;
         }
 
