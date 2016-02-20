@@ -7,7 +7,6 @@
     .module("MovieApp")
     .controller("DetailsController", DetailsController);
 
-
     function DetailsController($routeParams, $http, $scope){
         var imDBID=$routeParams.imdbID;
 
@@ -15,11 +14,6 @@
         .success(renderMovie);
         function renderMovie(response){
             $scope.movie=response;
-
         }
-
     }
-
-
-
 })();

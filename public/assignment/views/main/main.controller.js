@@ -5,12 +5,11 @@
 (function () {
     angular
         .module("FormBuilderApp")
-        .controller("SidebarController",SidebarController);
+        .controller("MainController",MainController);
 
-    function SidebarController($location,$scope){
+    function MainController($location,$scope){
 
         $scope.$location=$location;
-
 
     }
 }) ();

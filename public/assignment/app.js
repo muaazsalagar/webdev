@@ -4,5 +4,5 @@
 
 (function () {
     angular
-        .module("MovieApp", ["ngRoute"]);
+        .module("FormBuilderApp", ["ngRoute"]);
 })();
