@@ -8,7 +8,7 @@
     .module("MovieApp")
     .controller("SearchController", searchController);
 
-    function searchController($scope,$http)
+    function searchController($scope)
     {
         $scope.search=search;
         $scope.title="Star Wars";
@@ -22,5 +22,5 @@
 
 
 
-})
+})();
 

@@ -1,0 +1,32 @@
+<h2>Search</h2>
+<input ng-model="title"
+       class="form-control"
+       placeholder="Avatar"/>
+
+<button ng-click="search(title)"
+        class="btn btn-primary btn-block">
+    Search
+</button>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Poster</th>
+        <th>Title</th>
+        <th>IMDB</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr ng-repeat="movie in data.Search">
+
+        <td>
+            <img height="100px" ng-src="{{movie.Poster}}"/></td>
+        <td>{{movie.Title}}</td>
+        <td>{{movie.imdbID}}</td>
+    </tr>
+
+</tbody>
+</table>
+
+

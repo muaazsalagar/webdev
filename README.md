@@ -22,7 +22,6 @@ Assignment List:
 
 
 
-
 Project:
 Using Node.js, Angular JS, Mongo DB and Express JS for Event booking platform featuring
 Mobile first design, review system for users and hosts, Admin panel and Bidding system
