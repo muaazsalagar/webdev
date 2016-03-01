@@ -21,6 +21,7 @@ function MovieService($http) {
         $http.get("http://www.omdbapi.com/?s="+title)
             .success(callback);
 
+
     }
 
     function findMovieByImdbId(imdbId)

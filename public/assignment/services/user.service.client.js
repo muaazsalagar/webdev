@@ -27,7 +27,10 @@
         var api = {
             // declaration of methods
             findMoviesByTitle: findMoviesByTitle,
-            findMovieByImdbId: findMovieByImdbId
+            findUserByCredentials: findUserByCredentials,
+
+
+
 
         };
 
@@ -41,8 +44,9 @@
 
         }
 
-        function findMovieByImdbId(imdbId)
+        function findUserByCredentials(username, password, callback)
         {
+
 
         }
     }
