@@ -22,25 +22,17 @@
             .when("/profile", {
                 templateUrl:"views/users/profile.view.html",
                 controller:"ProfileController"
-
             })
             .when("/admin", {
-                templateUrl:"/views/users/admin.view.html",
+                templateUrl:"views/users/admin.view.html",
                 controller:"RegisterController"
-
             })
 
             .when("/forms", {
                 templateUrl:"views/forms/forms.view.html",
-                controller:"RegisterController"
-
+                controller:"FormController"
             })
 
-            .when("/admin", {
-                templateUrl:"views/admin/admin.view.html",
-                controller:"RegisterController"
-
-            })
             .otherwise({
                 redirectTo:"views/home/home.view.html"
             });

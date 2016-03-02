@@ -13,8 +13,6 @@
 
     <script src="config.js"></script>
 
-
-
     <script src="views/header/header.controller.js"></script>
     <script src="views/home/home.controller.js"></script>
     <script src="views/main/main.controller.js"></script>
@@ -23,23 +21,20 @@
     <script src="views/users/profile.controller.js"></script>
     <script src="views/users/login.controller.js"></script>
 
+    <script src="views/forms/forms.controller.js"></script>
+    <script src="services/forms.service.client.js"></script>
     <script src="services/user.service.client.js"></script>
-
 
 
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
-
     <title>Form Builder App</title>
 
 </head>
 <body ng-controller="MainController">
 
 <div ng-include src= "'views/header/header.view.html'"></div>
-
 <div ng-include src = "'views/sidebar/sidebar.view.html'"></div>
-
-
 
 <div ng-view>
 

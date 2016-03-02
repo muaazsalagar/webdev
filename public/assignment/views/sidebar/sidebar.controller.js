@@ -11,7 +11,5 @@
 
         $scope.$location=$location;
 
-
-
     }
 }) ();
