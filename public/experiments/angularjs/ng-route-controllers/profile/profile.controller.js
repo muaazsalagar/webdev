@@ -4,8 +4,8 @@
 (function(){
     angular
         .module("WhiteBoardApp")
-        .controller("ProfileController", ProfileController);
-    function ProfileController($scope) {
-        $scope.profileHello = "Hello from ProfileController"
+        .controller("ProfileControllerWhiteBoard", ProfileControllerWhiteBoard);
+    function ProfileControllerWhiteBoard($scope) {
+        $scope.profileHello = "Hello from ProfileControllerWhiteBoard"
     }
 })();

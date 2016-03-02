@@ -12,7 +12,7 @@
                 })
                 .when("/profile", {
                     templateUrl: "profile/profile.view.html",
-                    controller: "ProfileController"
+                    controller: "ProfileControllerWhiteBoard"
                 })
                 .when("/admin", {
                     templateUrl: "admin/admin.view.html",
