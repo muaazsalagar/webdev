@@ -13,7 +13,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li ng-class="{'active':$location.url()=='/register'}" ><a href="#/register">Register</a></li>
                 <li ng-class="{'active':$location.url()=='/login'}" ><a href="#/login">Login</a></li>
-                <li ><a href="#">Logout</a></li>
+                <li> <a ng-click="logout()">  Logout </a></li>
                 <li ng-class="{'active':$location.url()=='/profile'}" ><a href="#/profile">Username</a></li>
                 <li ng-class="{'active':$location.url()=='/admin'}"><a href="#/admin">Admin</a></li>
 
