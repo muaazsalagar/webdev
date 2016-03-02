@@ -9,7 +9,7 @@
 
     function HeaderController($location,$scope){
 
-        $scope.$location=$location;
+        //    $scope.$location=$location;
 
 
     }

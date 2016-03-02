@@ -13,20 +13,21 @@
         $scope.$location=$location;
         //console.log("In Register conyroller");
 
-        function register(username, password, vpassword, email){
+        function register(username, password, vpassword, emailId){
             console.log("Register Called");
 
             var user={
                 "username":username,
                 "password":password,
-                "roles": ["student"]
+                "roles": ["student"],
+                "emailId":emailId
             };
 
             console.log(user);
             UserService.createUser(user, function(response) {
 
                 //console.log("response from service"+response.username);
-                $rootScope.user=response;
+                UserService.setCurrentUser(user);
                 $location.url("profile");
             });
 

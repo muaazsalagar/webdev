@@ -12,21 +12,22 @@
 
         //$scope.$location=$location;
 
-        $scope.username=$rootScope.user.username;
-        $scope.firstName=$rootScope.user.firstName;
-        $scope.lastName=$rootScope.user.lastName;
-        $scope.emailId=$rootScope.user.emailId;
+        $scope.username=$rootScope.currentUser.username;
+        $scope.firstName=$rootScope.currentUser.firstName;
+        $scope.lastName=$rootScope.currentUser.lastName;
+        $scope.emailId=$rootScope.currentUser.emailId;
 
 
         console.log("In Profile Controller");
 
-        function update(userName,password,firstName, lastName, emailId){
-            var userLoggedIn=$rootScope.user;
+        function update(username,password,firstName, lastName, emailId){
+            var userLoggedIn=$rootScope.currentUser;
             var LoggedInUserId=userLoggedIn._id;
-
+            console.log("User Logged in ID:  ");
+            console.log(userLoggedIn);
 
             var user={
-                "username":userName,
+                "username":username,
                 "password":password,
                 "firstName":firstName,
                 "lastName":lastName,
@@ -36,9 +37,9 @@
 
             UserService.updateUser(LoggedInUserId,user, function (response) {
 
-                $rootScope.user=response;
 
-                console.log("Response From Service for Updated User");
+                UserService.setCurrentUser(response);
+                console.log("Response From Service:  Updated the User");
                 console.log(response);
 
 

@@ -6,7 +6,7 @@
         .module("FormBuilderApp")
         .factory("UserService", UserService);
 
-    function UserService($http) {
+    function UserService($http, $rootScope) {
         var users=[];
         users=[
             {	"_id":123, "firstName":"Alice","lastName":"Wonderland",
@@ -29,7 +29,9 @@
 
             findUserByCredentials: findUserByCredentials,
             createUser:createUser,
-            updateUser:updateUser
+            updateUser:updateUser,
+            setCurrentUser:setCurrentUser,
+            getCurrentUser:getCurrentUser
 
         };
 
@@ -44,8 +46,10 @@
                 if(users[i].username==username && users[i].password==password){
                     //console.log("Login User Found From API called");
                     //$rootScope.user=auser;
-                    userIndex = i;
                     //callback(users[i]);
+
+                    userIndex = i;
+
 
                     break;
 
@@ -71,21 +75,34 @@
             // logic to update based on userId
             // FindById and then update the user
             var updatedUser;
-            for (auser in users){
-                if(userId==auser._id)
+
+            for (var i=0;i< users.length;i++){
+                if(userId==users[i]._id)
                 {
 
                     console.log("Match found");
-                    auser.firstName=user.firstName;
-                    auser.lastName=user.lastName;
-                    auser.password=user.password;
-                    auser.emailId=user.emailId;
-                    updatedUser=auser;
+                    users[i].username=user.username;
+                    users[i].firstName=user.firstName;
+                    users[i].lastName=user.lastName;
+                    users[i].password=user.password;
+                    users[i].emailId=user.emailId;
+
+                    updatedUser=users[i];
                     break;
                 }
             }
 
             callback(updatedUser);
         }
+
+        function setCurrentUser (user) {
+            $rootScope.currentUser = user;
+        }
+
+        function getCurrentUser () {
+            return $rootScope.currentUser;
+        }
+
+
     }
 })();
