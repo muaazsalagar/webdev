@@ -7,7 +7,7 @@
         .module("FormBuilderApp")
         .controller("HeaderController",HeaderController);
 
-    function HeaderController($location,$scope, UserService){
+    function HeaderController($location,$scope, UserService, $rootScope){
 
             $scope.$location=$location;
             $scope.logout=logout;
