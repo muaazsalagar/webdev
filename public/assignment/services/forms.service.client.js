@@ -37,7 +37,7 @@
             };
 
             forms.push(newForm);
-            callback(forms);
+            callback(newForm);
 
         }
 
@@ -63,7 +63,7 @@
             {
                 if(forms[i]._id==formId)
                 {
-                    forms.splice(forms[i],1);
+                    forms.splice(i,1);
                 }
             }
 
@@ -81,6 +81,7 @@
                     forms[i].title=newForm.title;
                     forms[i].userId=newForm.userId;
                     break;
+
 
                 }
             }
