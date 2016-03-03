@@ -34,7 +34,7 @@
             })
 
             .otherwise({
-                redirectTo:"views/home/home.view.html"
+                redirectTo:"/home"
             });
     }
 })();
