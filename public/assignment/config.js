@@ -24,8 +24,8 @@
                 controller:"ProfileController"
             })
             .when("/admin", {
-                templateUrl:"views/users/admin.view.html",
-                controller:"RegisterController"
+                templateUrl:"views/admin/admin.view.html",
+                controller:"AdminController"
             })
 
             .when("/forms", {

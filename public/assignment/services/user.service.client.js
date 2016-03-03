@@ -10,7 +10,7 @@
         var users=[];
         users=[
             {	"_id":123, "firstName":"Alice","lastName":"Wonderland",
-                "username":"alice",  "password":"alice",   "roles": ["student"],"emailId":"asd.com"	},
+                "username":"alice",  "password":"alice",   "roles": ["student", "admin"],"emailId":"asd.com"	},
             {	"_id":234, "firstName":"Bob", "lastName":"Hope",
                 "username":"bob","password":"bob", "roles": ["admin"]	,"emailId":""},
             {	"_id":345, "firstName":"Charlie", "lastName":"Brown",
@@ -20,7 +20,10 @@
             {	"_id":567, "firstName":"Edward", "lastName":"Norton",
                 "username":"ed","password":"ed","roles": ["student"]	,"emailId":""},
             {	"_id":1, "firstName":"m", "lastName":"m",
-                "username":"m", "password":"m", "roles": ["student"],"emailId":""}
+                "username":"m", "password":"m", "roles": ["admin"],"emailId":""},
+            {	"_id":2, "firstName":"m", "lastName":"m",
+                "username":"asd", "password":"asd", "roles": ["student"],"emailId":""}
+
         ];
 
 
