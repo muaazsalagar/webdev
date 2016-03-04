@@ -9,7 +9,7 @@
         .factory("LocationService", LocationService);
 
 
-    function LocationService(http,$rootScope){
+    function LocationService($http,$rootScope){
 
         var forms=[];
 
@@ -23,14 +23,17 @@
         var api = {
             // declaration of methods by following standards of john papas
 
-            getLongLatFromAddres:getLongLatFromAddres
+            getLongLatFromAddress:getLongLatFromAddress
 
         };
 
         return api;
 
-        function getLongLatFromAddress(address){
+        function getLongLatFromAddress(address, callback){
 
+            $http.get("https://maps.googleapis.com/maps/api/geocode/json?address="
+                +address+"&key=")
+                .success(callback);
 
 
 

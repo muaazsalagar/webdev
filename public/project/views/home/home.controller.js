@@ -7,7 +7,7 @@
     .module("FormBuilderApp")
     .controller("HomeController", HomeController);
 
-    function HomeController($location,$scope, UserService, $rootScope){
+    function HomeController($location,$scope, LocationService, $rootScope, $http){
 
         console.log("In HomeController");
         $scope.result1 = '';
@@ -20,6 +20,11 @@
 
             console.log("Address to be located is: "+address);
 
+            LocationService.getLongLatFromAddress(address, function(callback){
+                console.log("From Maps ");
+                console.log(callback);
+
+            });
 
         }
 
