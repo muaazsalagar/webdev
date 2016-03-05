@@ -28,6 +28,8 @@
     <script src="services/forms.service.client.js"></script>
     <script src="services/user.service.client.js"></script>
     <script src="services/location.service.client.js"></script>
+    <script src="views/search/searchPropertyController.js"></script>
+
 
 
     <script src="js/ngAutocomplete.js"> </script>
@@ -40,7 +42,7 @@
 <body ng-controller="MainController">
 
 <div ng-include src= "'views/header/header.view.html'"></div>
-<div ng-include src = "'views/sidebar/sidebar.view.html'"></div>
+<div ng-show="$$location.url()=='/admin'" ng-include src = "'views/sidebar/sidebar.view.html'"></div>
 
 <div ng-view>
 

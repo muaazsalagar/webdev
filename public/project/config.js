@@ -34,6 +34,12 @@
                 controller:"FormController"
             })
 
+            .when("/search/:propertyAddress", {
+                templateUrl:"views/search/search.property.view.html",
+                controller:"PropertySearch"
+
+            })
+
             .otherwise({
                 redirectTo:"/home"
             });

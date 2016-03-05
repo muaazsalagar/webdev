@@ -32,7 +32,7 @@
         function getLongLatFromAddress(address, callback){
 
             $http.get("https://maps.googleapis.com/maps/api/geocode/json?address="
-                +address+"&key=")
+                +address+"&key=AIzaSyAVnQMP63GMSCBPBgY2nqzXFhyCmsyCl1Q")
                 .success(callback);
 
 

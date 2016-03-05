@@ -21,8 +21,10 @@
             console.log("Address to be located is: "+address);
 
             LocationService.getLongLatFromAddress(address, function(callback){
-                console.log("From Maps ");
-                console.log(callback);
+               // console.log("From Maps ");
+               // console.log(callback);
+
+                $location.url("/search/"+address);
 
             });
 
