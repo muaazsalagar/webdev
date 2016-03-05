@@ -71,18 +71,35 @@
         </div>
 
 
-        <div class="col-md-6">
+        <div class="col-md-6 container">
             <h3> Best places in your City</h3>
             <!-- For map stuff-->
 
-            <div my-map=""></div>
+            <style type="text/css">
+                html, body {
+
+                }
+                .map2 {
+
+                    width: 700px;
+                    height: 450px;
+                }
+            </style>
+
+
+            <div id="map1"  class="map2"></div>
             <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
                 <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
             </div>
 
 
 
-
         </div>
     </div>
 </div>
+
+
+
+
+
+

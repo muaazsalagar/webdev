@@ -1,26 +1,32 @@
-<!-- For Date input and guests-->
-<form class="navbar-form navbar-left" role="search">
-    <div class="form-group">
-        <input type="date" class="form-control" placeholder="From Date">
-        <input type="date" class="form-control" placeholder="Till Date">
-
-        <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                Event Type
-                <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <li><a href="#">Birthday</a></li>
-                <li><a href="#">Marriage</a></li>
-                <li><a href="#">Hangout</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Feeling Lucky</a></li>
-            </ul>
-        </div>
-
-    </div>
-
-    <button type="submit" class="btn btn-default">Search</button>
-</form>
-
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #map {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+    var map;
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: -34.397, lng: 150.644},
+            zoom: 8
+        });
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"
+        async defer></script>
+</body>
+</html>

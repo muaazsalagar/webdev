@@ -7,80 +7,116 @@
         .module("FormBuilderApp")
         .controller("PropertySearch",PropertySearch);
 
-    function PropertySearch($location,$scope, UserService, $rootScope, $routeParams){
+    function PropertySearch($location,$scope, UserService, $rootScope, $routeParams, LocationService,PropertyService){
 
         //$scope.propertySearch=propertySearch;
         $scope.$location=$location;
+
         var propertyAddress=$routeParams.propertyAddress;
         console.log("propertyAddress "+ propertyAddress);
 
-        var link = function(scope, element, attrs) {
-            var map, infoWindow;
-            var markers = [];
+        /*
+        need wait operation
+         LocationService.getCityFromAddress(propertyAddress,function(callback) {
 
-            // map config
-            var mapOptions = {
-                center: new google.maps.LatLng(50, 2),
-                zoom: 4,
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                scrollwheel: false
-            };
+         console.log(callback);
+         $scope.AddressFetched=callback;
 
-            // init the map
-            function initMap() {
-                if (map === void 0) {
-                    map = new google.maps.Map(element[0], mapOptions);
-                }
-            }
 
-            // place a marker
-            function setMarker(map, position, title, content) {
-                var marker;
-                var markerOptions = {
-                    position: position,
-                    map: map,
-                    title: title,
-                    icon: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png'
+         var city=callback.results[0].address_components[3].short_name;
+
+
+         console.log("CITY FETCHED FROM ADDRESS: ");
+         console.log(city);
+         $scope.cityFetched=city;
+         });
+
+         */
+
+        //Data for page
+        console.log("Call to get Listing has city: ");
+
+        console.log($scope.cityFetched);
+
+        var propertiesOnMap=[];
+        var propertiesInCity=[];
+
+        PropertyService.getPropertiesInCity( "boston",function (callback){
+
+            console.log("Properties in city");
+            console.log(callback);
+            propertiesInCity=callback;
+
+
+        });
+
+        function convertPropertyToMapDisplay(){
+            for (var i=0;i<propertiesInCity.length;i++)
+            {
+                var apropertyFectched=propertiesInCity[i];
+                var propertyonmap={
+                    "city" : apropertyFectched.address.city,
+                    "desc" : apropertyFectched.desc,
+                    "lat" : apropertyFectched.address.lat,
+                    "long" : apropertyFectched.address.long,
+                    "cost":apropertyFectched.cost
                 };
 
-                marker = new google.maps.Marker(markerOptions);
-                markers.push(marker); // add marker to array
+                propertiesOnMap.push(propertyonmap);
 
-                google.maps.event.addListener(marker, 'click', function () {
-                    // close window if not undefined
-                    if (infoWindow !== void 0) {
-                        infoWindow.close();
-                    }
-                    // create new window
-                    var infoWindowOptions = {
-                        content: content
-                    };
-                    infoWindow = new google.maps.InfoWindow(infoWindowOptions);
-                    infoWindow.open(map, marker);
-                });
+
             }
+        }
 
-            // show the map and place some markers
-            initMap();
+        // get the map points
 
-            setMarker(map, new google.maps.LatLng(51.508515, -0.125487), 'London', 'Just some content');
-            setMarker(map, new google.maps.LatLng(52.370216, 4.895168), 'Amsterdam', 'More content');
-            setMarker(map, new google.maps.LatLng(48.856614, 2.352222), 'Paris', 'Text here');
+        convertPropertyToMapDisplay();
 
 
 
-        };
+        var mapOptions = {
+            zoom: 8,
+            center: new google.maps.LatLng(42.5, -71.0000),
+            mapTypeId: google.maps.MapTypeId.TERRAIN
+        }
 
-        return {
-            restrict: 'A',
-            template: '<div id="gmaps"></div>',
-            replace: true,
-            link: link
-        };
+        $scope.map = new google.maps.Map(document.getElementById('map1'), mapOptions);
+
+        $scope.markers = [];
+
+        var infoWindow = new google.maps.InfoWindow();
+
+        var createMarker = function (info){
+
+            var marker = new google.maps.Marker({
+                map: $scope.map,
+                position: new google.maps.LatLng(info.lat, info.long),
+                title: info.desc
+            });
+            marker.content = '<div class="infoWindowContent">' + info.cost + '</div>';
+
+            google.maps.event.addListener(marker, 'click', function(){
+                infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content);
+                // add carousal to content appropriately by calling services for location data
+
+                infoWindow.open($scope.map, marker);
+            });
+
+            $scope.markers.push(marker);
+
+        }
 
 
+        // create Markers:
 
+        for (i = 0; i < propertiesOnMap.length; i++){
+            createMarker(propertiesOnMap[i]);
+        }
 
+        $scope.openInfoWindow = function(e, selectedMarker){
+            e.preventDefault();
+            google.maps.event.trigger(selectedMarker, 'click');
+        }
 
     }
 })();
