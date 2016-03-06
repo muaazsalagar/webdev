@@ -15,8 +15,9 @@
         var propertyAddress=$routeParams.propertyAddress;
         console.log("propertyAddress "+ propertyAddress);
 
+
+        //need wait operation
         /*
-        need wait operation
          LocationService.getCityFromAddress(propertyAddress,function(callback) {
 
          console.log(callback);
@@ -31,24 +32,49 @@
          $scope.cityFetched=city;
          });
 
-         */
+        */
+
+        var propertiesOnMap=[];
+        var propertiesInCity=[];
+        var mapCenter=[];
+
+
+        LocationService.getCityFromAddress(propertyAddress).then(function(response){
+
+             //$scope.cityFetched=response.results[0].address_components[3].short_name;
+
+            $scope.cityFetched=LocationService.getCityFormGooleResponse(response);
+
+
+            console.log("Google Returned");
+            console.log(response);
+
+            PropertyService.getPropertiesInCity( $scope.cityFetched,function (callback){
+
+                console.log("The Fetched City is: " + $scope.cityFetched);
+                console.log("Properties in city");
+                console.log(callback);
+                propertiesInCity=callback;
+
+
+                convertPropertyToMapDisplay();
+
+
+
+
+
+
+            });
+
+
+        });
 
         //Data for page
         console.log("Call to get Listing has city: ");
 
         console.log($scope.cityFetched);
 
-        var propertiesOnMap=[];
-        var propertiesInCity=[];
 
-        PropertyService.getPropertiesInCity( "boston",function (callback){
-
-            console.log("Properties in city");
-            console.log(callback);
-            propertiesInCity=callback;
-
-
-        });
 
         function convertPropertyToMapDisplay(){
             for (var i=0;i<propertiesInCity.length;i++)
@@ -64,19 +90,32 @@
 
                 propertiesOnMap.push(propertyonmap);
 
+                if(propertiesOnMap[0]);
+                {
+                    mapCenter[0]=propertiesOnMap[0].lat;
+                    mapCenter[1]=propertiesOnMap[0].long;
+
+                }
+
+
+                mapReady();
+
 
             }
         }
 
         // get the map points
 
-        convertPropertyToMapDisplay();
 
+
+        function mapReady()
+        {
+            console.log(mapCenter[0],mapCenter[1]);
 
 
         var mapOptions = {
             zoom: 8,
-            center: new google.maps.LatLng(42.5, -71.0000),
+            center: new google.maps.LatLng(mapCenter[0], mapCenter[1]),
             mapTypeId: google.maps.MapTypeId.TERRAIN
         }
 
@@ -117,6 +156,11 @@
             e.preventDefault();
             google.maps.event.trigger(selectedMarker, 'click');
         }
+
+
+
+        }
+
 
     }
 })();

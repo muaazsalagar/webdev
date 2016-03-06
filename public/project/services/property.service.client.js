@@ -44,13 +44,36 @@
 
             },
             {
-                "address":{"addressLine1":"","addressLine2":"","city":"new york","state":"NY","zipCode":"","lat": "42","long":"-71.2"},
+                "desc":"Awesome party in NYC",
+                "address":{"addressLine1":"","addressLine2":"","city":"new york","state":"NY","zipCode":"","lat": "40","long":"-74.2"},
                 "capacity":"10",
                 "eventAvailable":["party","marriage","birthday"],
                 "facilities":["party","marriage","birthday"],
                 "cost":3000
 
+            },
+
+            {   "desc":"party In LA",
+                "address":{"addressLine1":"","addressLine2":"","city":"Los Angeles","state":"NEVADA","zipCode":"","lat": "34","long":"-118"},
+                "capacity":"10",
+                "eventAvailable":["party","marriage","birthday"],
+                "facilities":["party","marriage","birthday"],
+                "cost":3000
+
+            },
+
+            {   "desc":"Awesome LA Parties",
+                "address":{"addressLine1":"","addressLine2":"","city":"Los Angeles","state":"NEVADA","zipCode":"","lat": "34","long":"-117"},
+                "capacity":"10",
+                "eventAvailable":["party","marriage","birthday"],
+                "facilities":["party","marriage","birthday"],
+                "cost":4000
+
             }
+
+
+
+
 
 
         ];
@@ -78,8 +101,8 @@
                 if(propertyCity.toUpperCase()===city.toUpperCase())
                 {
                     propertiesInCity.push(property);
-                    console.log("Cheking for city ");
-                    console.log(propertyCity);
+                    //console.log("Cheking for city ");
+                    //console.log(propertyCity);
 
                 }
             }
