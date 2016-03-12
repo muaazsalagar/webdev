@@ -34,3 +34,19 @@
     padding-top: 10px;
 }
 
+
+#slides_control>
+div{
+    height: 170px;
+}
+img{
+    margin:auto;
+    width: 260px;
+}
+#slides_control {
+    position:absolute;
+    width: 260px;
+    left:50%;
+    top:20px;
+    margin-left:-200px;
+}
