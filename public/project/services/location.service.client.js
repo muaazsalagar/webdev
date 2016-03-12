@@ -68,7 +68,6 @@
                     return addressComponent.short_name;
                 }
 
-
             }
             return "No City Matched";
         }
