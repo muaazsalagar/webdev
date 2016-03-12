@@ -105,7 +105,6 @@
         // get the map points
 
 
-
         function mapReady()
         {
             console.log(mapCenter[0],mapCenter[1]);
