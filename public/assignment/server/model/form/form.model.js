@@ -9,16 +9,27 @@
 "use strict"
 
 var mock =require("./form.mock.json");
+var uuid = require('node-uuid');
 module.exports= function () {
 
     var api={
 
+        // form
         createForm:createForm,
         findAllForms:findAllForms,
         findFormByID:findFormByID,
         updateFormByID:updateFormByID,
         deleteFormByID:deleteFormByID,
-        findFormByTitle:findFormByTitle
+        findFormByTitle:findFormByTitle,
+        findFormForUser:findFormForUser,
+
+        // forms
+        getFormFieldsByFormID:getFormFieldsByFormID,
+        getFieldFromFieldIdAndFormId:getFieldFromFieldIdAndFormId,
+        updateFieldFromFieldIdAndFieldObject:updateFieldFromFieldIdAndFieldObject,
+        deleteFieldFromFieldIdAndFormId:deleteFieldFromFieldIdAndFormId,
+        createField:createField
+
 
 
 
@@ -102,3 +113,114 @@ function findFormByTitle(formName)
 }
 
 
+function findFormForUser(userId)
+{
+    var formsbyUser=[];
+    for (var i in mock)
+    {
+        if(mock[i].userId==userId)
+        {
+            formsbyUser.push(mock[i]);
+
+        }
+    }
+    return formsbyUser;
+}
+
+
+function getFormFieldsByFormID (formId)
+{
+    formId=parseInt(formId);
+    var fieldsForForm=[];
+    for(var i in mock)
+    {
+        if(mock[i]._id==formId)
+        {
+            fieldsForForm=mock[i].fields;
+        }
+
+    }
+    return fieldsForForm;
+
+}
+
+
+function getFieldFromFieldIdAndFormId(formId, fieldId)
+{
+    for (var i in mock)
+    {
+       if(mock[i]._id==formId) {
+
+           var fields=mock[i].fields;
+           for (var j in fields) {
+               if (fields[j]._id==fieldId) {
+
+                   return fields[j];
+               }
+           }
+       }
+    }
+
+    return null;
+
+}
+
+
+
+function deleteFieldFromFieldIdAndFormId(formId, fieldId)
+{
+    for (var i in mock)
+    {
+        if(mock[i]._id==formId) {
+
+            var fields=mock[i].fields;
+            for (var j in fields) {
+                if (fields[j]._id==fieldId) {
+
+                    // assign to mock or splice usage for fields directly;
+                    fields.splice(j,1);
+                    mock[i].fields=fields;
+                    return;
+
+                }
+            }
+        }
+    }
+
+    return null;
+
+}
+
+function updateFieldFromFieldIdAndFieldObject(formId, fieldId, field)
+{
+    for (var i in mock)
+    {
+        if(mock[i]._id===formId) {
+
+            var fields=mock[i].fields;
+            for (var j in fields) {
+                if (fields[j]._id===fieldId) {
+
+                    // assign to mock or splice usage for fields directly;
+                    fields[j]=field;
+                    mock[i].fields=fields;
+                    return;
+
+                }
+            }
+        }
+    }
+    return null;
+}
+
+function createField(formId, formField)
+{
+    for(var i in mock)
+    {
+        if (mock[i]._id===formId)
+        {
+            mock[i].fields.push(formField);
+            break;
+        }
+    }
+}
