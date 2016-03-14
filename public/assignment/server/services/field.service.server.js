@@ -31,6 +31,38 @@ module.exports=function(app)
         res.json();
     }
 
+    function deleteFieldFromFieldIdAndFormId(req, res)
+    {
+        var formId=req.param.formId;
+        var fieldId=req.param.fieldId;
+
+        FormModel.deleteFieldFromFieldIdAndFormId(formId,fieldId);
+        console.log("delete Field Success");
+        res.sendStatus(200);
+
+    }
+
+    function updateFieldFromFieldIdAndFormId(req, res)
+    {
+        var formId=req.param.formId;
+        var fieldId=req.param.fieldId;
+
+        FormModel.updateFieldFromFieldIdAndFormId(formId,fieldId);
+        console.log("Update Field Success");
+        res.sendStatus(200);
+
+    }
+
+    function createField(req, res)
+    {
+        var uuid =uuid.v4();
+        var formField=req.body;
+        formField._id=uuid;
+        var formId=req.param.formId;
+        FormModel.createField(formId,formField);
+        res.json(FormModel.getFormFieldsByFormID(formId));
+
+    }
 
 
 };

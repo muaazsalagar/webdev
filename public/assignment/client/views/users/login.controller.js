@@ -11,18 +11,16 @@
 
         $scope.login=login;
         $scope.$location=$location;
-        //console.log("In Register conyroller");
+        //console.log("In Register controller");
 
         function login(username, password){
             console.log("Login Called");
 
-            UserService.findUserByCredentials(username, password, function(response) {
+            UserService.findUserByCredentials(username,password).then(function(response){
 
-                //console.log("response from service"+response.username);
-                //$rootScope.user=response;
                 var userChecked=response;
-                //console.log("Respomse from Login service:");
-                //console.log(response);
+                console.log("response from findUserByCredentials service:");
+                console.log(response);
 
                 if(userChecked)
                 {

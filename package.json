@@ -23,7 +23,9 @@
     "npm": ">= 1.0.0"
   },
   "dependencies": {
+    "body-parser": "^1.15.0",
     "express": "^3.4.8",
+    "multer": "^1.1.0",
     "node-uuid": "^1.4.7"
   },
   "devDependencies": {},

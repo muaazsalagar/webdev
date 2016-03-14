@@ -105,7 +105,7 @@ function findUserByCredentials(credentials)
 {
     for (var i in mock)
     {
-        if(mock[i].username==credentials.username && credentials.password)
+        if(mock[i].username===credentials.username && credentials.password===password)
         {
             return mock[i];
 

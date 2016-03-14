@@ -7,8 +7,6 @@ module.exports=function(app)
 {
   var UserModel =require("./../model/user/user.model.js")();
 
-    //creates a new user embedded in the body of the request, and responds with an array of all users
-    app.post("/api/assignment/user", createUser);
 
     //responds with an array of all users
     app.get("/api/assignment/user",findAllUsers);
@@ -16,16 +14,19 @@ module.exports=function(app)
     //responds with a single user whose id property is equal to the id path parameter
     app.get("/api/assignment/user/:id",findUserByID );
 
-
     //responds with a single user whose username property is equal to the username path parameter
     app.get("/api/assignment/user?username=username",findUserByUsername);
 
 
-   // responds with a single user whose username property is equal to the username
+    // responds with a single user whose username property is equal to the username
     // path parameter and its password is equal to the password path parameter
 
     app.get("/api/assignment/user?username=:username&password=:password",findUserByCredentials);
 
+
+
+    //creates a new user embedded in the body of the request, and responds with an array of all users
+    app.post("/api/assignment/user", createUser);
 
     //updates an existing user whose id property is equal to the id path parameter.
     // The new properties are set to the values in the user object embedded in the HTTP request. Responds with an array of all users
@@ -48,8 +49,21 @@ module.exports=function(app)
 
     function findAllUsers(req, res)
     {
+        var response;
+        if(req.query.userId)
+        {
+            response=UserModel.find(req.query.userId);
 
-        res.json(UserModel.findAllUsers());
+        }
+        else
+        {
+            response=UserModel.findAllUsers();
+        }
+
+
+        //res.json(UserModel.findAllUsers());
+        res.json(response);
+
     }
 
 
@@ -63,7 +77,7 @@ module.exports=function(app)
 
     function findUserByUsername(req, res)
     {
-       var username= req.param.username;
+       var username= req.query.username;
 
         var userSearched=UserModel.findUserByUsername(username);
 
@@ -77,7 +91,7 @@ module.exports=function(app)
         var username=req.params.username;
         var password=req.params.password;
         var credentials ={ "username":username, "password": password};
-
+        console.log("The user is :"+username);
         var searchedUser=UserModel.findUserByCredentials(credentials);
         res.json(searchedUser);
     }
@@ -100,9 +114,6 @@ module.exports=function(app)
         var afterDeleteList=UserModel.deleteUserByID(userId);
         res.json(afterDeleteList);
     }
-
-
-
 
 
 

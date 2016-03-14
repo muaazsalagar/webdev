@@ -16,8 +16,6 @@ module.exports=function(app)
     app.get("/api/assignment/form/:formId",findFormByID );
 
 
-    //responds with a single form whose formname property is equal to the formname path parameter
-    app.get("/api/assignment/form?formname=formname",findFormByFormname);
 
     //updates an existing form whose id property is equal to the id path parameter.
     // The new properties are set to the values in the form object embedded in the HTTP request. Responds with an array of all forms
