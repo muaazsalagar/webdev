@@ -7,10 +7,13 @@
         .module("FormBuilderApp")
         .controller("SidebarController",SidebarController);
 
-    function SidebarController($location,$scope, $rootScope){
+    function SidebarController($location, $rootScope){
 
-        $scope.$location=$location;
-        $scope.isAdmin=isAdmin;
+        var vm=this;
+        
+
+        vm.$location=$location;
+        vm.isAdmin=isAdmin;
 
         function isAdmin()
         {

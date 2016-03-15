@@ -3,9 +3,9 @@
  */
 
 "use strict"
-module.exports=function(app)
+module.exports=function(app,UserModel,uuid)
 {
-  var UserModel =require("./../model/user/user.model.js")();
+ // var UserModel =require("./../model/user/user.model.js")();
 
 
     //responds with an array of all users
@@ -15,7 +15,7 @@ module.exports=function(app)
     app.get("/api/assignment/user/:id",findUserByID );
 
     //responds with a single user whose username property is equal to the username path parameter
-    app.get("/api/assignment/user?username=username",findUserByUsername);
+    app.get("/api/assignment/user?username=:username",findUserByUsername);
 
 
     // responds with a single user whose username property is equal to the username
@@ -41,7 +41,9 @@ module.exports=function(app)
     function createUser(req, res)
     {
         var user= req.body;
-        var userCrated=UserModel.createUser(user);
+        user._id=parseInt(uuid.v4());
+
+        var userCreated=UserModel.createUser(user);
 
         res.sendStatus(200);
     }
@@ -50,18 +52,33 @@ module.exports=function(app)
     function findAllUsers(req, res)
     {
         var response;
-        if(req.query.userId)
+        var userId=req.params.userId;
+        var username=req.params.username;
+        var password=req.params.password;
+
+
+        // cheking with params in the request
+        if(username)
         {
-            response=UserModel.find(req.query.userId);
+            response=UserModel.findUserByUsername(username);
 
         }
+        else if(username && password)
+        {
+            var credentials={"username":username,
+                            "password":password};
+            response=UserModel.findUserByCredentials(credentials);
+        }
+
         else
         {
-            response=UserModel.findAllUsers();
+            // else return all users
+            response=UserModel.findAllUsers(req);
         }
 
-
         //res.json(UserModel.findAllUsers());
+
+        // set final response as jason
         res.json(response);
 
     }
@@ -69,7 +86,7 @@ module.exports=function(app)
 
     function findUserByID(req, res)
     {
-        var userId=req.param.userId;
+        var userId=req.params.userId;
         var searchedUser=UserModel.findUserByID(userId);
         res.json(searchedUser);
     }
@@ -114,7 +131,6 @@ module.exports=function(app)
         var afterDeleteList=UserModel.deleteUserByID(userId);
         res.json(afterDeleteList);
     }
-
 
 
 };

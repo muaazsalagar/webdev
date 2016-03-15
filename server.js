@@ -1,11 +1,13 @@
 var express = require('express');
-var app = express();
-app.use(express.static(__dirname + '/public/personalwebsite'));
-app.use(express.static(__dirname + '/public'));
-
 var multer        = require('multer');
 var bodyParser    = require('body-parser');
+var uuid = require('node-uuid');
 
+
+var app = express();
+
+app.use(express.static(__dirname + '/public/personalwebsite'));
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(multer());
@@ -25,7 +27,7 @@ app.get('/', function(req, res){
 
 // for services
 
-require("./public/assignment/server/app.js")(app);
+require("./public/assignment/server/app.js")(app, uuid);
 
 
 app.listen(port, ipaddress, function(){

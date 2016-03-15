@@ -7,10 +7,16 @@
         .module("FormBuilderApp")
         .controller("RegisterController",RegisterController);
 
-    function RegisterController($location,$scope, UserService, $rootScope){
+    function RegisterController($location, UserService, $rootScope){
+        
+        var vm=this;
+        
+        vm.register=register;
+        vm.$location=$location;
+        
+        (function init() {
 
-        $scope.register=register;
-        $scope.$location=$location;
+        })();
         //console.log("In Register conyroller");
 
         function register(username, password, vpassword, emailId){

@@ -6,21 +6,27 @@
         .module("FormBuilderApp")
         .controller("ProfileController",ProfileController);
 
-    function ProfileController($location,$scope, UserService, $rootScope){
+    function ProfileController($location, UserService, $rootScope){
 
-        $scope.update=update;
+        var vm=this;
+        
+        (function init () {
 
-        //$scope.$location=$location;
+        })();
+        
+        vm.update=update;
+
+        //vm.$location=$location;
 
 
         UserService.findUserByCredentials($rootScope.currentUser._id).then(function (response) {
 
             console.log("current User set is: ");
             console.log($rootScope.currentUser._id)
-            $scope.username=$rootScope.currentUser.username;
-            $scope.firstName=$rootScope.currentUser.firstName;
-            $scope.lastName=$rootScope.currentUser.lastName;
-            $scope.emailId=$rootScope.currentUser.emailId;
+            vm.username=$rootScope.currentUser.username;
+            vm.firstName=$rootScope.currentUser.firstName;
+            vm.lastName=$rootScope.currentUser.lastName;
+            vm.emailId=$rootScope.currentUser.emailId;
 
             console.log("Data Set for Profile");
 

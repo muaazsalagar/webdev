@@ -7,10 +7,17 @@
         .module("FormBuilderApp")
         .controller("LoginController",LoginController);
 
-    function LoginController($location,$scope, UserService, $rootScope){
+    function LoginController($location, UserService, $rootScope){
 
-        $scope.login=login;
-        $scope.$location=$location;
+        var vm=this;
+        
+        vm.login=login;
+        vm.$location=$location;
+
+        (function init () {
+
+        })();
+
         //console.log("In Register controller");
 
         function login(username, password){
