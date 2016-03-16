@@ -24,6 +24,8 @@ module.exports= function () {
 function createUser(user){
 
     mock.push(user);
+    console.log("after creation, users are:")
+    console.log(mock);
 
     return mock;
 
@@ -44,7 +46,7 @@ function  findUserByID(userID)
     {
         if (mock[i]._id==userID)
         {
-
+            console.log("Match Found");
             return mock[i];
         }
     }
@@ -69,13 +71,14 @@ function  deleteUserByID(userID){
 }
 
 
-function  updateUserByID(userID, user){
+function  updateUserByID(userId, user){
 
-    userID= parseInt(userID);
+     userId= parseInt(userId);
     for (var i in mock)
     {
         if(mock[i]._id==userId)
         {
+            console.log("Match Found");
             mock[i]=user;
             return mock;
         }

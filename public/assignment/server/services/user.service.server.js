@@ -45,7 +45,7 @@ module.exports=function(app,UserModel,uuid)
 
         var userCreated=UserModel.createUser(user);
 
-        res.sendStatus(200);
+        res.send(200);
     }
 
 
@@ -53,8 +53,8 @@ module.exports=function(app,UserModel,uuid)
     {
         var response;
         var userId=req.params.userId;
-        var username=req.params.username;
-        var password=req.params.password;
+        var username=req.query.username;
+        var password=req.query.password;
 
 
         // cheking with params in the request
@@ -86,7 +86,8 @@ module.exports=function(app,UserModel,uuid)
 
     function findUserByID(req, res)
     {
-        var userId=req.params.userId;
+        console.log("At server Log:");
+        var userId=req.params.id;
         var searchedUser=UserModel.findUserByID(userId);
         res.json(searchedUser);
     }
@@ -105,8 +106,8 @@ module.exports=function(app,UserModel,uuid)
 
     function findUserByCredentials(req, res)
     {
-        var username=req.params.username;
-        var password=req.params.password;
+        var username=req.query.username;
+        var password=req.query.password;
         var credentials ={ "username":username, "password": password};
         console.log("The user is :"+username);
         var searchedUser=UserModel.findUserByCredentials(credentials);
@@ -116,11 +117,10 @@ module.exports=function(app,UserModel,uuid)
 
     function updateUserByID(req, res)
     {
-        var userID=req.param.userId;
-        var user=req.param.user;
-        var updatedUser=UserModel.updateUserByID(userID,user);
-
-        res.sendStatus(200);
+        var userID=req.params.id;
+        var user=req.body;
+        var response=UserModel.updateUserByID(userID,user);
+        res.json(response);
     }
 
 

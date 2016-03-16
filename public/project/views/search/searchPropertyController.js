@@ -162,6 +162,9 @@
                     // add carousal to content appropriately by calling services for location data
 
                     infoWindow.open($scope.map, marker);
+
+                    $("#slides_control").find("h4").html("Slide 123");
+
                 });
 
                 $scope.markers.push(marker);

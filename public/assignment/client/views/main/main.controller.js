@@ -7,9 +7,15 @@
         .module("FormBuilderApp")
         .controller("MainController",MainController);
 
-    function MainController($location,$scope){
+    function MainController($location){
 
-        $scope.$location=$location;
+        var vm=this;
+        function init()
+        {
+
+        }
+        init();
+        vm.$location=$location;
 
     }
 }) ();

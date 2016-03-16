@@ -31,8 +31,9 @@
 
                 if(userChecked)
                 {
-                    $location.url("profile");
                     UserService.setCurrentUser(response);
+                    $location.url("profile");
+
                 }
                 else
                 {

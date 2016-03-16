@@ -9,17 +9,23 @@
 
     function HeaderController($location, UserService, $rootScope){
 
-            var vm=this;
-            vm.$location=$location;
-            vm.logout=logout;
+        var vm=this;
+        vm.$location=$location;
+        vm.logout=logout;
 
+        function init()
+        {
 
-        function logout(){
+        }
+        init();
 
-                  UserService.setCurrentUser(null);
-                  // changing url to be new home
-                  console.log("User logged out");
-                  $location.url("/home");
+    function logout(){
+
+            UserService.setCurrentUser(null);
+            $rootScope.currentUser=null;
+            // changing url to be new home
+            console.log("User logged out");
+            $location.url("/home");
 
 
         }

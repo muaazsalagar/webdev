@@ -13,7 +13,6 @@
 
 
             createUser:createUser,
-            updateUser:updateUser,
             setCurrentUser:setCurrentUser,
             getCurrentUser:getCurrentUser,
 
@@ -21,7 +20,8 @@
             findUserByCredentials:findUserByCredentials,
             findUserByUsername:findUserByUsername,
             findAllUsers:findAllUsers,
-            updateUser:updateUser,
+            updateUserByID:updateUserByID,
+            findUserByID:findUserByID,
             deleteUserById:deleteUserById
         };
 
@@ -32,8 +32,12 @@
         {
             var deferred=$q.defer();
             var url="/api/assignment/user?username=:username&password=:password";
+            console.log("In the findUserByCredentials method")
             url=url.replace(":username",username);
             url=url.replace(":password",password);
+            console.log(username);
+            console.log(password);
+
             $http.get(url).success(function(response){
                 deferred.resolve(response);
             });
@@ -45,7 +49,7 @@
         {
             var deferred=$q.defer();
             var url="/api/assignment/user";
-            $http.post(url).success(function(response){
+            $http.post(url,user).success(function(response){
                 deferred.resolve(response);
             });
 
@@ -66,7 +70,7 @@
         {
             var deferred=$q.defer();
             var url="/api/assignment/user?username=username";
-            url.replace(":username",username);
+            url=url.replace(":username",username);
             $http.get(url).success(function(response){
                 deferred.resolve(response);
             });
@@ -88,11 +92,15 @@
             return deferred.promise;
         }
 
-        function updateUser(userId)
+        function updateUserByID(userId,user)
         {
             var deferred=$q.defer();
-            var url="updateUser";
-            $http.put(url).success(function(response){
+            var url="/api/assignment/user/:id";
+            url=url.replace(":id",userId);
+            console.log(url);
+            console.log(userId);
+
+            $http.put(url,user).success(function(response){
                 deferred.resolve(response);
             });
 
@@ -108,7 +116,22 @@
             });
 
             return deferred.promise;
+        }
 
+        function findUserByID(userId)
+        {
+            console.log("Client Calling the finduserID to the server");
+            var deferred=$q.defer();
+            var url="/api/assignment/user/:id";
+            url=url.replace(":id",userId);
+            console.log(url);
+            console.log(userId);
+
+            $http.get(url).success(function(response){
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
 
         }
 

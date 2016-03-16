@@ -23,6 +23,7 @@
             console.log("Register Called");
 
             var user={
+                "_id":0,
                 "username":username,
                 "password":password,
                 "roles": ["student"],
@@ -33,8 +34,12 @@
             UserService.createUser(user, function(response) {
 
                 //console.log("response from service"+response.username);
-                UserService.setCurrentUser(user);
-                $location.url("profile");
+                if(response=="OK"){
+                    UserService.setCurrentUser(user);
+                    $location.url("profile");
+
+                }
+
             });
 
         }
