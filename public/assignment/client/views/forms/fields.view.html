@@ -1,11 +1,8 @@
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2" xmlns="http://www.w3.org/1999/html">
+<div class="container-fluid">
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" xmlns="http://www.w3.org/1999/html">
     <h1 class="page-header">Forms</h1>
 
-    <div class="container">
-
-        <div class="row" id="forms-container">
-
-            <ul class="nav nav-pills" id="my-nav">
+            <ul class="nav nav-tabs" id="my-nav">
 
                 <li role="presentation">
                     <a href="#/forms">Forms</a>
@@ -16,7 +13,8 @@
 
             </ul>
 
-            <form action="" id="my-form" field-sortable field-axis="y">
+
+            <form action="" id="my-form" fieldSorting field-axis="y">
 
                 <div class="row" ng-repeat="field in model.fields">
 
@@ -115,7 +113,11 @@
 
                     <div class="col-md-4 text-center">
 
-                        <span class="glyphicon glyphicon-plus hover" ng-click="model.addField()"></span>
+
+                        <button ng-click= "model.addField()" class="btn btn-success">
+                        Add
+                        </button>
+
 
                         <span class="glyphicon glyphicon-remove hover not-visible"></span>
 
@@ -126,6 +128,8 @@
                 </div>
 
             </form>
+
+
 
         </div>
 
@@ -240,8 +244,9 @@
             <button class="btn btn-primary" ng-click="ok()">OK</button>
 
             <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-
         </div>
     </script>
+
+</div>
 
 </div>

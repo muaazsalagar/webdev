@@ -11,7 +11,7 @@ module.exports= function () {
 
         createUser:createUser,
         findAllUsers:findAllUsers,
-        findUserByID:findUserByID,
+        findUserById:findUserById,
         updateUserById:updateUserById,
         deleteUserByID:deleteUserByID,
         findUserByUsername:findUserByUsername,
@@ -38,7 +38,7 @@ function findAllUsers(){
 
 }
 
-function  findUserByID(userID)
+function  findUserById(userID)
 {
     userID=parseInt(userID);
 
