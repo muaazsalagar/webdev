@@ -16,6 +16,8 @@ app.use(multer());
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.OPENSHIFT_NODEJS_PORT || 5000;
 
+require("./public/assignment/server/app.js")(app, uuid);
+
 
 app.get('/hello', function(req, res){
     res.send('hello world');
@@ -27,7 +29,6 @@ app.get('/', function(req, res){
 
 // for services
 
-require("./public/assignment/server/app.js")(app, uuid);
 
 
 app.listen(port, ipaddress, function(){

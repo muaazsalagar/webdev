@@ -2,45 +2,40 @@
  * Created by muaazsalagar on 2/20/16.
  */
 
+
 (function () {
     angular
         .module("FormBuilderApp")
         .controller("LoginController",LoginController);
 
-    function LoginController($location, UserService, $rootScope){
+    function LoginController($location, UserService){
 
+        // Declaring Virtual model
         var vm=this;
-        
         vm.login=login;
-        vm.$location=$location;
-
-        (function init () {
-
-        })();
 
         //console.log("In Register controller");
+
 
         function login(username, password){
             console.log("Login Called");
 
-            UserService.findUserByCredentials(username,password).then(function(response){
+            UserService.findUserByCredentials(username,password).then(isUserVerified);
 
-                var userChecked=response;
-                console.log("response from findUserByCredentials service:");
-                console.log(response);
+        }
 
-                if(userChecked)
-                {
-                    UserService.setCurrentUser(response);
-                    $location.url("profile");
 
-                }
-                else
-                {
-                    console.log("Wrong Password Combination");
-                }
+        function isUserVerified(response){
+            if(response)
+            {
+                UserService.setCurrentUser(response);
+                $location.url("/profile");
 
-            });
+            }
+            else {
+
+                console.log("Not a Valid User!");
+            }
 
         }
 

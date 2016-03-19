@@ -9,7 +9,7 @@
     function UserService($http, $q, $rootScope) {
 
         var api = {
-            // declaration of methods by following standads of john papas
+            // declaration of methods by following standards of  papa john
 
 
             createUser:createUser,
@@ -28,17 +28,15 @@
         return api;
 
 
-        function findUserByCredentials(username, password)
-        {
-            var deferred=$q.defer();
-            var url="/api/assignment/user?username=:username&password=:password";
-            console.log("In the findUserByCredentials method")
-            url=url.replace(":username",username);
-            url=url.replace(":password",password);
-            console.log(username);
-            console.log(password);
+        function findUserByCredentials(username, password) {
 
-            $http.get(url).success(function(response){
+            var deferred = $q.defer();
+
+            var url = "/api/assignment/user?username=:username&password=:password";
+            url = url.replace(":username", username);
+            url = url.replace(":password", password);
+
+            $http.get(url).success (function (response) {
                 deferred.resolve(response);
             });
 

@@ -5,11 +5,16 @@
 "use strict"
 module.exports=function(app,UserModel,uuid)
 {
- // var UserModel =require("./../model/user/user.model.js")();
+    // var UserModel =require("./../model/user/user.model.js")();
+
+
+    //creates a new user embedded in the body of the request, and responds with an array of all users
+    app.post("/api/assignment/user", createUser);
 
 
     //responds with an array of all users
     app.get("/api/assignment/user",findAllUsers);
+
 
     //responds with a single user whose id property is equal to the id path parameter
     app.get("/api/assignment/user/:id",findUserByID );
@@ -25,8 +30,6 @@ module.exports=function(app,UserModel,uuid)
 
 
 
-    //creates a new user embedded in the body of the request, and responds with an array of all users
-    app.post("/api/assignment/user", createUser);
 
     //updates an existing user whose id property is equal to the id path parameter.
     // The new properties are set to the values in the user object embedded in the HTTP request. Responds with an array of all users
@@ -66,7 +69,7 @@ module.exports=function(app,UserModel,uuid)
         else if(username && password)
         {
             var credentials={"username":username,
-                            "password":password};
+                "password":password};
             response=UserModel.findUserByCredentials(credentials);
         }
 
@@ -95,7 +98,7 @@ module.exports=function(app,UserModel,uuid)
 
     function findUserByUsername(req, res)
     {
-       var username= req.query.username;
+        var username= req.query.username;
 
         var userSearched=UserModel.findUserByUsername(username);
 

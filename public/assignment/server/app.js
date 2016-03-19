@@ -7,8 +7,8 @@ module .exports=function(app,uuid)
     var UserModel=require("./model/user/user.model.js")();
     var FormModel=require("./model/form/form.model.js")();
 
-    require("./services/field.service.server.js")(app,uuid);
-    require("./services/user.service.server.js")(app,UserModel,uuid);
-    require("./services/form.service.server.js")(app,FormModel,uuid);
+    var FieldService = require("./services/field.service.server.js")(app,uuid);
+    var UserService = require("./services/user.service.server.js")(app,UserModel,uuid);
+    var FormService = require("./services/form.service.server.js")(app,FormModel,uuid);
 
 };

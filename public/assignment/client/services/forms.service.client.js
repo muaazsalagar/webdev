@@ -1,86 +1,102 @@
 /**
  * Created by muaazsalagar on 2/20/16.
  */
+"use strict";
+
 (function () {
     angular
         .module("FormBuilderApp")
         .factory("FormService", FormService);
 
-    function FormService($http, $rootScope) {
-
+    function FormService($http, $q) {
 
         var api = {
-            // declaration of methods by following standards of john papas
-            createFormForUser:createFormForUser,
-            findAllFormsForUser:findAllFormsForUser,
-            deleteFormById:deleteFormById,
-            updateFormById:updateFormById
+            createFormForUser: createFormForUser,
 
+            findAllFormsForUser: findAllFormsForUser,
+
+            deleteFormById: deleteFormById,
+
+            updateFormById: updateFormById,
+
+            findFormById: findFormById
         };
-
         return api;
 
-        function createFormForUser(userId, formTitle, callback){
-            var newForm;
-            newForm= {
-                "_id": (new Date().getTime()),
-                "title":formTitle,
-                "userId": userId
-            };
+        function createFormForUser(userID, form) {
 
-            forms.push(newForm);
-            callback(newForm);
+            var deferred = $q.defer();
+
+            var url = "/api/assignment/user/:userId/form";
+            url = url.replace(":userId", userID);
+
+            $http.post(url, form).success(function (response) {
+
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
+        }
+
+        function findAllFormsForUser(userID) {
+
+            var deferred = $q.defer();
+
+            var url = "/api/assignment/user/:userId/form";
+            url = url.replace(":userId", userID);
+
+            $http.get(url).success(function (response) {
+
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
+        }
+
+        function deleteFormById(formID) {
+
+            var deferred = $q.defer();
+
+            var url = "/api/assignment/form/:formId";
+            url = url.replace(":formId", formID);
+
+            $http.delete(url).success(function(response) {
+
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
 
         }
 
-        function findAllFormsForUser(userId, callback)
-        {
-            var formsForUser=[];
+        function updateFormById(formID, newForm) {
 
-            for(var i=0;i<forms.length;i++)
-            {
-                if(forms[i].userId==userId)
-                {
-                    formsForUser.push(forms[i]);
-                }
-            }
+            var deferred = $q.defer();
 
-            callback(formsForUser);
+            var url = "/api/assignment/form/:formId";
+            url = url.replace(":formId", formID);
+
+            $http.put(url, newForm).success(function(response) {
+
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
+        }
+        function findFormById(formID) {
+
+            var deferred = $q.defer();
+
+            var url = "/api/assignment/form/:formId";
+            url = url.replace(":formId", formID);
+
+            $http.get(url).success(function(response) {
+
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
 
         }
-
-        function deleteFormById(formId, callback)
-        {
-            for(var i=0;i<forms.length;i++)
-            {
-                if(forms[i]._id==formId)
-                {
-                    forms.splice(i,1);
-                }
-            }
-
-            callback(forms);
-
-        }
-
-        function updateFormById(formId, newForm, callback)
-        {
-            for(var i=0;i<forms.length;i++)
-            {
-                if(forms[i]._id==formId)
-                {
-                    forms[i].id=newForm.id;
-                    forms[i].title=newForm.title;
-                    forms[i].userId=newForm.userId;
-                    break;
-
-
-                }
-            }
-
-            callback(newForm);
-        }
-
-
     }
 })();
