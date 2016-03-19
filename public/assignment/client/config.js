@@ -38,6 +38,13 @@
                 controllerAs:"model"
             })
 
+            .when("/form/:formId/fields", {
+                templateUrl: "client/views/forms/fields.view.html",
+                controller: "FieldsController",
+                controllerAs: "model"
+            })
+
+
             .otherwise({
                 redirectTo:"/home"
             });

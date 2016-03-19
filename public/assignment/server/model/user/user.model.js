@@ -12,7 +12,7 @@ module.exports= function () {
         createUser:createUser,
         findAllUsers:findAllUsers,
         findUserByID:findUserByID,
-        updateUserByID:updateUserByID,
+        updateUserById:updateUserById,
         deleteUserByID:deleteUserByID,
         findUserByUsername:findUserByUsername,
         findUserByCredentials:findUserByCredentials
@@ -71,7 +71,7 @@ function  deleteUserByID(userID){
 }
 
 
-function  updateUserByID(userId, user){
+function  updateUserById(userId, user){
 
      userId= parseInt(userId);
     for (var i in mock)
@@ -107,7 +107,8 @@ function findUserByCredentials(credentials)
 {
     for (var i in mock)
     {
-        if(mock[i].username===credentials.username && credentials.password===password)
+        if(mock[i].username==credentials.username &&
+            mock[i].password==credentials.password)
         {
             return mock[i];
 

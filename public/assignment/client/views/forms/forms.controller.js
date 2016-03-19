@@ -3,12 +3,13 @@
  */
 /**
  */
+
 "use strict";
 
 (function() {
     angular
         .module("FormBuilderApp")
-        .controller("FormsController", FormsController);
+        .controller("FormController", FormsController);
 
     function FormsController($rootScope, FormService, $location) {
 
@@ -26,7 +27,7 @@
         }
         init();
 
-        var UpdatForIndex = -1;
+        var toBeUpdatedIndex = -1;
 
         //Event handler declarations
         vm.addForm = addForm;
@@ -50,11 +51,10 @@
             FormService.updateFormById(form._id, form).then(function (response) {
 
                 if (response === "OK") {
-                    // success for form id
 
                     FormService.findFormById(form._id).then(function(updatedForm) {
 
-                        vm.forms[UpdatForIndex] = updatedForm;
+                        vm.forms[toBeUpdatedIndex] = updatedForm;
                     });
                 }
             });
@@ -86,7 +86,7 @@
                 userId: selectedForm.userId
             };
 
-            UpdatForIndex = $index;
+            toBeUpdatedIndex = $index;
         }
     }
 })();
