@@ -1,8 +1,11 @@
-<div class="container-fluid">
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" xmlns="http://www.w3.org/1999/html">
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2" xmlns="http://www.w3.org/1999/html">
     <h1 class="page-header">Forms</h1>
 
-            <ul class="nav nav-tabs" id="my-nav">
+    <div class="container">
+
+        <div class="row" id="forms-container">
+
+            <ul class="nav nav-pills" id="my-nav">
 
                 <li role="presentation">
                     <a href="#/forms">Forms</a>
@@ -13,8 +16,7 @@
 
             </ul>
 
-
-            <form action="" id="my-form" fieldSorting field-axis="y">
+            <form action="" id="my-form" field-sorting field-axis="y">
 
                 <div class="row" ng-repeat="field in model.fields">
 
@@ -86,8 +88,15 @@
 
                     <div class="col-md-4 text-center">
 
-                        <span class="glyphicon glyphicon-pencil hover" ng-click="model.editField($index)"></span>
-                        <span class="glyphicon glyphicon-remove hover" ng-click="model.removeField($index)"></span>
+
+                        <button ng-click= "model.editField($index)" class="btn btn-success">
+                            Edit
+                        </button>
+
+                        <button ng-click= "model.removeField($index)" class="btn btn-danger">
+                            Delete
+                        </button>
+
                         <span class="glyphicon glyphicon-align-justify hover"></span>
 
                     </div>
@@ -113,14 +122,11 @@
 
                     <div class="col-md-4 text-center">
 
-
-                        <button ng-click= "model.addField()" class="btn btn-success">
-                        Add
+                        <button ng-click="model.addField()" class="btn btn-success">
+                            Add
                         </button>
-
-
-                        <span class="glyphicon glyphicon-remove hover not-visible"></span>
-
+                        <span class="glyphicon glyphicon-align-justify hover"></span>
+                        <span class="glyphicon glyphicon-align-justify hover not-visible"></span>
                         <span class="glyphicon glyphicon-align-justify hover not-visible"></span>
 
                     </div>
@@ -128,8 +134,6 @@
                 </div>
 
             </form>
-
-
 
         </div>
 
@@ -244,9 +248,8 @@
             <button class="btn btn-primary" ng-click="ok()">OK</button>
 
             <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+
         </div>
     </script>
-
-</div>
 
 </div>

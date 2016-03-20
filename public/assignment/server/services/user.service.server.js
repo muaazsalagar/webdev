@@ -30,9 +30,10 @@ module.exports = function(app, userModel, uuid) {
 
         user._id = parseInt(uuid.v4());
 
-        req.session.currentUser = user;
 
-        res.send(userModel.createUser(user));
+        res.json(userModel.createUser(user));
+
+
     }
 
     function findAllusers (req, res) {

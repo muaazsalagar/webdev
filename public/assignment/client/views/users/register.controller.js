@@ -13,6 +13,7 @@
         
         vm.register=register;
         vm.$location=$location;
+
         
         (function init() {
 
@@ -30,13 +31,14 @@
                 "emailId":emailId
             };
 
-            console.log(user);
+
             UserService.createUser(user, function(response) {
 
                 //console.log("response from service"+response.username);
-                if(response=="OK"){
-                    UserService.setCurrentUser(user);
-                    $location.url("profile");
+                if(response){
+                    console.log(response);
+                    UserService.setCurrentUser(response);
+                    $location.url("/profile");
 
                 }
 

@@ -24,7 +24,7 @@ module.exports= function () {
 function createUser(user){
 
     mock.push(user);
-    console.log("after creation, users are:")
+   // console.log("after creation, users are:")
     console.log(mock);
 
     return mock;

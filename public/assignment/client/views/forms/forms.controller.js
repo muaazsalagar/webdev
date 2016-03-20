@@ -1,7 +1,5 @@
 /**
- * Created by muaazsalagar on 2/20/16.
- */
-/**
+ * Created by muaazsalagar on 2/03/16.
  */
 
 "use strict";
@@ -9,7 +7,7 @@
 (function() {
     angular
         .module("FormBuilderApp")
-        .controller("FormController", FormsController);
+        .controller("FormsController", FormsController);
 
     function FormsController($rootScope, FormService, $location) {
 

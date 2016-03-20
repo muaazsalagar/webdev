@@ -46,10 +46,10 @@ table.thick-top-border{
     border: 1px solid #dddddd;
 }
 #my-form span.glyphicon {
-    font-size: 2em;
+    font-size: 1.7em;
 }
 #my-form>.row>div:nth-child(2) {
-    margin-top: 26px;
+    margin-top: 24px;
 }
 
 #forms-n-fields-tbl {

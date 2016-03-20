@@ -34,7 +34,7 @@
 
             .when("/forms", {
                 templateUrl:"client/views/forms/forms.view.html",
-                controller:"FormController" ,
+                controller:"FormsController" ,
                 controllerAs:"model"
             })
 
