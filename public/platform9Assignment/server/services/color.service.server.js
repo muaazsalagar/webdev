@@ -88,10 +88,9 @@ module.exports = function(app, colorModel, uuid) {
 
     function findColorsByColor(req, res) {
         var color = (req.params.color);
-        console.log("at server side");
-        console.log(color);
+
         var result=colorModel.findColorsbyColor(color);
-        console.log(result);
+
 
         res.json(result);
     }

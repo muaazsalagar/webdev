@@ -15,10 +15,10 @@
 
         function init() {
 
+
+
             ColorService.findColorsByColor("red").then(function(response) {
-
                 vm.red_colors = response;
-
 
 
             });
@@ -27,15 +27,14 @@
                 vm.blue_colors = response;
 
 
-
             });
             ColorService.findColorsByColor("green").then(function(response) {
 
                 vm.green_colors = response;
 
-
-
             });
+
+
 
         }
         init();
@@ -49,37 +48,37 @@
         vm.selectColor = selectColor;
 
         //Event handler implementations
-        function addColor(form) {
+        function addColor(color) {
 
             ColorService.createColorForUser(color).then(function(response) {
 
                 vm.colors = response;
 
             });
-            vm.form = {};
+            vm.color = {};
         }
 
-        function updateColor(form) {
+        function updateColor(color) {
 
-            ColorService.updateColorById(form._id, form).then(function (response) {
+            ColorService.updateColorById(color._id, color).then(function (response) {
 
                 if (response === "OK") {
 
-                    ColorService.findColorById(form._id).then(function(updatedColor) {
+                    ColorService.findColorById(color._id).then(function(updatedColor) {
 
-                        vm.forms[toBeUpdatedIndex] = updatedColor;
+                        vm.colors[toBeUpdatedIndex] = updatedColor;
                     });
                 }
             });
 
-            vm.form={};
+            vm.color={};
         }
 
         function deleteColor($index) {
 
-            var formID = vm.forms[$index]._id;
+            var colorID = vm.red_colors[$index]._id;
 
-            ColorService.deleteColorById(formID).then(function(response) {
+            ColorService.deleteColorById(colorID).then(function(response) {
 
                 if(response === "OK") {
                     init();
@@ -89,11 +88,11 @@
 
         function selectColor($index) {
 
-            vm.form={};
+            vm.color={};
 
-            var selectedColor = vm.forms[$index];
+            var selectedColor = vm.red_colors[$index];
 
-            vm.form = {
+            vm.color = {
                 _id: selectedColor._id,
                 title: selectedColor.title,
                 userId: selectedColor.userId
