@@ -1,0 +1,11 @@
+[
+    {"_id": 123, "color": "red"},
+    {"_id": 1, "color": "blue"},
+    {"_id": 2, "color": "green"},
+    {"_id": 3, "color": "red"},
+    {"_id": 4, "color": "red"},
+    {"_id": 5, "color": "blue"},
+    {"_id": 6, "color": "green"},
+    {"_id": 7, "color": "red"}
+
+]

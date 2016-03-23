@@ -1,0 +1,262 @@
+<div class="container-fluid">
+
+    <div class="col-md-12">
+        <h1 class="page-header">Red Coloured</h1>
+
+        <div class="table-responsive table-display" >
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="thead-inverse">
+                <tr>
+                    <th>
+                        <span class="glyphicon glyphicon-triangle-bottom hover"></span>
+                        Id
+                    </th>
+                    <th>
+                        <span class="glyphicon glyphicon-triangle-bottom hover"></span>
+                        Color
+                    </th>
+
+                    <th>
+                        <span class="glyphicon glyphicon-triangle-bottom hover"></span>
+                        Operations
+                    </th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td> Automatic</td>
+                    <td >
+
+                        <div class="form-group">
+                            <label for="sel1">Color</label>
+                            <select class="form-control" id="sel1" ng-model="model.red_selected_color">
+                                <option>Red</option>
+                                <option>Blue</option>
+                                <option>Green</option>
+
+                            </select>
+                        </div>
+
+                    </td>
+                    <td class="col-md-2 right-align-cell">
+
+                        <button ng-click= "model.addColor(model.color)" class="btn btn-success">
+                            Add
+                        </button>
+
+                        <button ng-click="model.updateColor(model.color)" class="btn btn-info">
+                            Update</button>
+
+                    </td>
+                </tr>
+                <tr ng-repeat="color in model.red_colors">
+
+                    <td>
+
+                        {{color._id}}
+
+                    </td>
+
+                    <td>
+
+                       {{color.color}}
+
+                    </td>
+                    <td>
+
+                        <button ng-click= "model.selectColor($index)"  class="btn btn-info">
+                            Select
+                        </button>
+
+                        <button ng-click="model.deleteColor($index)" class="btn btn-danger">
+                            Delete
+                        </button>
+
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+   <!-- Blue-->
+        <h1 class="page-header">Blue Coloured</h1>
+
+        <div class="table-responsive table-display" >
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="thead-inverse">
+                <tr>
+                    <th>
+                        <span class="glyphicon glyphicon-triangle-bottom hover"></span>
+                        Id
+                    </th>
+                    <th>
+                        <span class="glyphicon glyphicon-triangle-bottom hover"></span>
+                        Color
+                    </th>
+
+                    <th>
+                        <span class="glyphicon glyphicon-triangle-bottom hover"></span>
+                        Operations
+                    </th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td> Automatic</td>
+                    <td >
+
+                        <div class="form-group">
+                            <label for="sel1">Color</label>
+                            <select class="form-control" id="sel1" ng-model="model.blue_selected_color">
+                                <option>Red</option>
+                                <option>Blue</option>
+                                <option>Green</option>
+
+                            </select>
+                        </div>
+
+                    </td>
+                    <td class="col-md-2 right-align-cell">
+
+                        <button ng-click= "model.addColor(model.color)" class="btn btn-success">
+                            Add
+                        </button>
+
+                        <button ng-click="model.updateColor(model.color)" class="btn btn-info">
+                            Update</button>
+
+                    </td>
+                </tr>
+                <tr ng-repeat="color in model.blue_colors">
+
+                    <td>
+
+                        {{color._id}}
+
+                    </td>
+
+                    <td>
+
+                        {{color.color}}
+
+                    </td>
+                    <td>
+
+                        <button ng-click= "model.selectColor($index)"  class="btn btn-info">
+                            Select
+                        </button>
+
+                        <button ng-click="model.deleteColor($index)" class="btn btn-danger">
+                            Delete
+                        </button>
+
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <!-- Green-->
+        <h1 class="page-header">Green Coloured</h1>
+
+        <div class="table-responsive table-display" >
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="thead-inverse">
+                <tr>
+                    <th>
+                        <span class="glyphicon glyphicon-triangle-bottom hover"></span>
+                        Id
+                    </th>
+                    <th>
+                        <span class="glyphicon glyphicon-triangle-bottom hover"></span>
+                        Color
+                    </th>
+
+                    <th>
+                        <span class="glyphicon glyphicon-triangle-bottom hover"></span>
+                        Operations
+                    </th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td> Automatic</td>
+                    <td >
+
+                        <div class="form-group">
+                            <label for="sel1">Color</label>
+                            <select class="form-control" id="sel1" ng-model="model.green_selected_color">
+                                <option>Red</option>
+                                <option>Blue</option>
+                                <option>Green</option>
+
+                            </select>
+                        </div>
+
+                    </td>
+                    <td class="col-md-2 right-align-cell">
+
+                        <button ng-click= "model.addColor(model.color)" class="btn btn-success">
+                            Add
+                        </button>
+
+                        <button ng-click="model.updateColor(model.color)" class="btn btn-info">
+                            Update</button>
+
+                    </td>
+                </tr>
+                <tr ng-repeat="color in model.green_colors">
+
+                    <td>
+
+                        {{color._id}}
+
+                    </td>
+
+                    <td>
+
+                        {{color.color}}
+
+                    </td>
+                    <td>
+
+                        <button ng-click= "model.selectColor($index)"  class="btn btn-info">
+                            Select
+                        </button>
+
+                        <button ng-click="model.deleteColor($index)" class="btn btn-danger">
+                            Delete
+                        </button>
+
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+
+
+
+    </div>
+
+</div>
+
+

@@ -1,0 +1,76 @@
+.control-label-left
+{
+
+    padding-top: 7px;
+    margin-bottom: 0;
+    text-align: left;
+
+}
+
+
+.control-label-right
+{
+
+    padding-top: 7px;
+    margin-bottom: 0;
+    text-align: right;
+
+}
+
+.large-glyphicons>span
+{
+    font-size: 2em;
+}
+
+.hide-icon
+{
+    visibility: hidden;
+}
+
+#my-nav>li>a{
+    padding-left: 60px;
+    padding-right: 60px;
+}
+table.thick-top-border{
+    border-top-width: 2px;
+}
+#forms-container{
+    max-width: 700px;
+}
+.right-align-cell{
+    text-align: right;
+}
+#my-form{
+    margin-top: 10px;
+    padding: 10px 0 10px 10px;
+    border: 1px solid #dddddd;
+}
+#my-form span.glyphicon {
+    font-size: 1.7em;
+}
+#my-form>.row>div:nth-child(2) {
+    margin-top: 24px;
+}
+
+.table-display {
+    margin-top: 10px;
+    width: 1000px;
+    margin: auto;
+}
+
+
+.no-bottom-margin {
+    margin-bottom: 0;
+}
+.not-visible{
+    visibility: hidden;
+}
+.nav-tabs{
+    border-bottom:none;
+}
+
+
+.thead-inverse th {
+    color: #fff;
+    background-color: #373a3c;
+}

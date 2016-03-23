@@ -29,7 +29,7 @@
             })
 
             .when("/forms", {
-                templateUrl:"views/forms/forms.view.html",
+                templateUrl:"views/forms/colors.view.html",
                 controller:"FormController"
             })
 
