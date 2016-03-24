@@ -53,17 +53,11 @@
 
             ColorService.updateColorById(color._id, color).then(function (response) {
 
-                console.log("IN updates");
+
 
                 if (response === "OK") {
 
-                    ColorService.findColorById(color._id).then(function(updatedColor) {
-
-                        vm.colors[toBeUpdatedIndex] = updatedColor;
-                        console.log("IN updates");
-                        console.log(toBeUpdatedIndex);
-                        console.log(updatedColor);
-                    });
+                    init();
                 }
             });
 

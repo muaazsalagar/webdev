@@ -48,13 +48,14 @@ module.exports = function() {
 
         for (var i in mock) {
 
-            if(mock[i]._id === colorId) {
+            if (mock[i]._id === colorId) {
 
-                mock[i] = color.color;
+               mock[i]=color;
                 break;
             }
         }
-
+        console.log("After update")
+        console.log(mock);
         return mock;
     }
 
