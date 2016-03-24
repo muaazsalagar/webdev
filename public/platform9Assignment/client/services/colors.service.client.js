@@ -17,7 +17,8 @@
             deleteColorById: deleteColorById,
             updateColorById: updateColorById,
             findColorById: findColorById,
-            findColorsByColor:findColorsByColor
+            findColorsByColor:findColorsByColor,
+            findColorsGrouped:findColorsGrouped
         };
         return api;
 
@@ -80,6 +81,7 @@
 
             return deferred.promise;
         }
+
         function findColorById(colorID) {
 
             var deferred = $q.defer();
@@ -110,6 +112,22 @@
             });
 
             return deferred.promise;
+        }
+
+
+        function findColorsGrouped() {
+
+            var deferred = $q.defer();
+
+            var url = "/api/assignment/sortedcolors";
+
+            $http.get(url).success(function(response) {
+
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
+
         }
 
 

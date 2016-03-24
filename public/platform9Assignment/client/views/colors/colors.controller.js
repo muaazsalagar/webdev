@@ -19,9 +19,15 @@
 
 
             ColorService.findAllcolors().then(function(response) {
+              //  vm.colors = response;
+
+            });
+
+            ColorService.findColorsGrouped().then(function(response) {
                 vm.colors = response;
 
             });
+
 
         }
         init();
@@ -52,8 +58,6 @@
             console.log(color);
 
             ColorService.updateColorById(color._id, color).then(function (response) {
-
-
 
                 if (response === "OK") {
 

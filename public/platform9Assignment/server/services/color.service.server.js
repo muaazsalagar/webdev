@@ -23,6 +23,11 @@ module.exports = function(app, colorModel, uuid) {
     //returns a color object whose id is equal to the colorId path parameter
     app.get("/api/assignment/color/:colorId", findColorById);
 
+    //returns an array of colors belonging based on groups
+    app.get("/api/assignment/sortedcolors", findColorsGrouped);
+
+
+
     //updates a color object whose id is equal to the colorId path parameter so that its properties are the same as
     //the property values of the color object embedded in the request's body
     app.put("/api/assignment/color/:colorId", updateColorById);
@@ -91,5 +96,15 @@ module.exports = function(app, colorModel, uuid) {
 
         res.json(result);
     }
+
+
+    function findColorsGrouped(req, res) {
+
+        var result=colorModel.findColorsGrouped();
+
+
+        res.json(result);
+    }
+
 
 }

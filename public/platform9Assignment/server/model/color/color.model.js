@@ -17,6 +17,7 @@ module.exports = function() {
         findColorByTitle: findColorByTitle,
         findAllColorsByUserId: findAllColorsByUserId,
         findColorsbyColor:findColorsbyColor,
+        findColorsGrouped:findColorsGrouped
 
 
     };
@@ -98,11 +99,6 @@ module.exports = function() {
 
 
 
-
-
-
-
-
     function findColorsbyColor(color) {
         var colors = [];
 
@@ -116,6 +112,31 @@ module.exports = function() {
 
         return colors;
     }
+
+    function findColorsGrouped() {
+        var colors = [];
+        var sortedColors=[];
+
+           colors[0]=findColorsbyColor("Red");
+           colors[1]=findColorsbyColor("Blue");
+           colors[2]=findColorsbyColor("Green");
+
+        for(var i in colors)
+        {
+            var singleColored=colors[i];
+
+            for(var j in singleColored)
+            {
+                sortedColors.push(singleColored[j]);
+            }
+        }
+
+       // sortedColors.push(blue);
+       // sortedColors.push(green);
+
+        return sortedColors;
+    }
+
 
 
 }
