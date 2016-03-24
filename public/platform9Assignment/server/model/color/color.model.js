@@ -44,13 +44,13 @@ module.exports = function() {
         return mock;
     }
 
-    function updateColorById(formId, form) {
+    function updateColorById(colorId, color) {
 
         for (var i in mock) {
 
-            if(mock[i]._id === formId) {
+            if(mock[i]._id === colorId) {
 
-                mock[i].title = form.title;
+                mock[i] = color.color;
                 break;
             }
         }

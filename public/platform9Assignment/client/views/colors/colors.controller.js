@@ -21,21 +21,7 @@
             ColorService.findAllcolors().then(function(response) {
                 vm.colors = response;
 
-
             });
-            ColorService.findColorsByColor("blue").then(function(response) {
-
-                vm.blue_colors = response;
-
-
-            });
-            ColorService.findColorsByColor("green").then(function(response) {
-
-                vm.green_colors = response;
-
-            });
-
-
 
         }
         init();
@@ -57,18 +43,26 @@
 
             });
             vm.color = {};
+            init();
 
         }
 
         function updateColor(color) {
+            console.log("IN updates");
+            console.log(color);
+
             ColorService.updateColorById(color._id, color).then(function (response) {
-                console.log(color);
+
+                console.log("IN updates");
 
                 if (response === "OK") {
 
                     ColorService.findColorById(color._id).then(function(updatedColor) {
 
                         vm.colors[toBeUpdatedIndex] = updatedColor;
+                        console.log("IN updates");
+                        console.log(toBeUpdatedIndex);
+                        console.log(updatedColor);
                     });
                 }
             });
@@ -99,7 +93,7 @@
             vm.color =selectedColor;
 
             toBeUpdatedIndex = $index;
-            init();
+
         }
     }
 })();
