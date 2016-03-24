@@ -1,8 +1,5 @@
 [
     {"_id": 1, "color": "Red"},
-    {"_id": 2, "color": "Green"},
-    {"_id": 3, "color": "Blue"},
-    {"_id": 4, "color": "Red"},
-    {"_id": 7, "color": "Blue"}
+    {"_id": 2, "color": "Blue"}
 
 ]
