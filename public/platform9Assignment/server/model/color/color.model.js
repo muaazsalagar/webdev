@@ -11,25 +11,21 @@ module.exports = function() {
         //Color methods
         createColor: createColor,
         findColorById: findColorById,
-        findAllColors: findAllColors,
+        findAllcolors: findAllcolors,
         updateColorById: updateColorById,
         deleteColorById: deleteColorById,
         findColorByTitle: findColorByTitle,
         findAllColorsByUserId: findAllColorsByUserId,
         findColorsbyColor:findColorsbyColor,
 
-        //Field
-        createFieldForColor: createFieldForColor,
-        findAllFieldsForColor: findAllFieldsForColor,
-        findFieldByFieldIdAndColorId: findFieldByFieldIdAndColorId,
-        updateFieldByFieldIdAndColorId: updateFieldByFieldIdAndColorId,
-        deleteFieldByFieldIdAndColorId: deleteFieldByFieldIdAndColorId
+
     };
     return api;
 
-    function createColor(form) {
+    function createColor(newColor) {
 
-        mock.push(form);
+        mock.push(newColor);
+        return mock;
     }
 
     function findColorById(formId) {
@@ -43,7 +39,7 @@ module.exports = function() {
         return null;
     }
 
-    function findAllColors() {
+    function findAllcolors() {
 
         return mock;
     }
@@ -99,84 +95,11 @@ module.exports = function() {
         return forms;
     }
 
-    function createFieldForColor(formId, field) {
-        for (var i in mock) {
 
-            if (mock[i]._id === formId) {
 
-                if(!mock[i].fields) {
-                    mock[i].fields = [];
-                }
 
-                mock[i].fields.push(field);
-                break;
-            }
-        }
-    }
 
-    function findAllFieldsForColor (formId) {
 
-        for (var i in mock) {
-
-            if (mock[i]._id === formId) {
-
-                return mock[i].fields;
-            }
-        }
-        return null;
-    }
-
-    function findFieldByFieldIdAndColorId(formId, fieldId) {
-        for (var i in mock) {
-
-            if (mock[i]._id === formId) {
-
-                for (var j in mock[i].fields) {
-
-                    if (mock[i].fields[j]._id === fieldId) {
-
-                        return mock[i].fields[j];
-                    }
-                }
-            }
-        }
-        return null;
-    }
-
-    function updateFieldByFieldIdAndColorId(formId, fieldId, field) {
-
-        field._id = fieldId;
-
-        for (var i in mock) {
-
-            if (mock[i]._id === formId) {
-
-                for (var j in mock[i].fields) {
-
-                    if (mock[i].fields[j]._id === fieldId) {
-
-                        mock[i].fields[j] = field;
-                    }
-                }
-            }
-        }
-    }
-    function deleteFieldByFieldIdAndColorId(formId, fieldId) {
-
-        for (var i in mock) {
-
-            if (mock[i]._id === formId) {
-
-                for (var j in mock[i].fields) {
-
-                    if (mock[i].fields[j]._id === fieldId) {
-
-                        mock[i].fields.splice(j,1);
-                    }
-                }
-            }
-        }
-    }
 
 
     function findColorsbyColor(color) {

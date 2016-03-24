@@ -11,25 +11,22 @@
     function ColorService($http, $q) {
 
         var api = {
-            createColorForUser: createColorForUser,
+            createColor: createColor,
 
-            findAllColorsForUser: findAllColorsForUser,
-
+            findAllcolors: findAllcolors,
             deleteColorById: deleteColorById,
-
             updateColorById: updateColorById,
-
             findColorById: findColorById,
             findColorsByColor:findColorsByColor
         };
         return api;
 
-        function createColorForUser(userID, color) {
+        function createColor(color) {
 
             var deferred = $q.defer();
 
-            var url = "/api/assignment/user/:userId/color";
-            url = url.replace(":userId", userID);
+            var url = "/api/assignment/color";
+
 
             $http.post(url, color).success(function (response) {
 
@@ -39,12 +36,11 @@
             return deferred.promise;
         }
 
-        function findAllColorsForUser(userID) {
+        function findAllcolors() {
 
             var deferred = $q.defer();
 
-            var url = "/api/assignment/user/:userId/color";
-            url = url.replace(":userId", userID);
+            var url = "/api/assignment/allcolors";
 
             $http.get(url).success(function (response) {
 

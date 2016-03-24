@@ -1,11 +1,8 @@
 [
-    {"_id": 123, "color": "red"},
-    {"_id": 1, "color": "blue"},
-    {"_id": 2, "color": "green"},
-    {"_id": 3, "color": "red"},
-    {"_id": 4, "color": "red"},
-    {"_id": 5, "color": "blue"},
-    {"_id": 6, "color": "green"},
-    {"_id": 7, "color": "red"}
+    {"_id": 1, "color": "Red"},
+    {"_id": 2, "color": "Green"},
+    {"_id": 3, "color": "Blue"},
+    {"_id": 4, "color": "Red"},
+    {"_id": 7, "color": "Blue"}
 
 ]

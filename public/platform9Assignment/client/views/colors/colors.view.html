@@ -31,11 +31,10 @@
                     <td >
 
                         <div class="form-group">
-                            <label for="sel1">Color</label>
-                            <select class="form-control" id="sel1" ng-model="model.red_selected_color">
-                                <option>Red</option>
-                                <option>Blue</option>
-                                <option>Green</option>
+
+                            <select class="form-control" id="sel1"
+                                    ng-model="model.color.color"
+                                    ng-options="acolor for acolor in color_list">
 
                             </select>
                         </div>
@@ -43,16 +42,17 @@
                     </td>
                     <td class="col-md-2 right-align-cell">
 
-                        <button ng-click= "model.addColor(model.red_selected_color)" class="btn btn-success">
+                        <button ng-click= "model.addColor(model.color)" class="btn btn-success">
                             Add
                         </button>
 
-                        <button ng-click="model.updateColor(model.red_selected_color)" class="btn btn-info">
-                            Update</button>
+                        <button ng-click="model.updateColor(model.color)" class="btn btn-info">
+                            Update
+                        </button>
 
                     </td>
                 </tr>
-                <tr ng-repeat="color in model.red_colors">
+                <tr ng-repeat="color in model.colors">
 
                     <td>
 

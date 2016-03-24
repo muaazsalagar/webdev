@@ -12,16 +12,16 @@ module.exports = function(app, colorModel, uuid) {
     //The color object's id is initially null since it is a new record.
     // The id of the new color should be set dynamically using Node.js guid or node-uuid libraries.
     // These will eventually be set by the database when they are inserted into a collection
-    app.post("/api/assignment/user/:userId/color", createColor);
+    app.post("/api/assignment/color", createColor);
 
     //returns an array of colors belonging to a user whose id is equal to the userId path parameter
-    //app.get("/api/assignment/user/:userId/color", findAllcolorsForUser);
+    app.get("/api/assignment/allcolors", findAllcolors);
 
     //returns an array of colors belonging to a user whose id is equal to the userId path parameter
     app.get("/api/assignment/color/:color", findColorsByColor);
 
     //returns a color object whose id is equal to the colorId path parameter
-  //  app.get("/api/assignment/color/:colorId", findColorById);
+    app.get("/api/assignment/color/:colorId", findColorById);
 
     //updates a color object whose id is equal to the colorId path parameter so that its properties are the same as
     //the property values of the color object embedded in the request's body
@@ -37,26 +37,23 @@ module.exports = function(app, colorModel, uuid) {
     function createColor (req, res) {
 
         var color = req.body;
-        var userId = parseInt(req.params.userId);
 
-        color.userId = userId;
         color._id = parseInt(uuid.v4(), 16);
 
-        colorModel.createColor(color);
-        res.json(colorModel.findAllColorsByUserId(userId));
+        var allcolors=colorModel.createColor(color);
+
+        // later call for grouped data;
+
+
+        res.json(allcolors);
+
     }
 
-    function findAllcolorsForUser(req, res) {
+    function findAllcolors(req, res) {
 
-        var userId = parseInt(req.params.userId);
-
-        res.json(colorModel.findAllColorsByUserId(userId));
+        res.json(colorModel.findAllcolors());
     }
 
-    function findAllColors(req, res) {
-
-        res.json(colorModel.findAllColors());
-    }
 
 
     function findColorById(req, res) {

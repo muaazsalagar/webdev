@@ -9,16 +9,17 @@
         .module("ColorApp")
         .controller("ColorsController", ColorsController);
 
-    function ColorsController($rootScope, ColorService, $location) {
+    function ColorsController($rootScope, ColorService, $location, $scope) {
 
         var vm = this;
+        $scope.color_list = ["Red", "Blue", "Green"];
 
         function init() {
 
 
 
-            ColorService.findColorsByColor("red").then(function(response) {
-                vm.red_colors = response;
+            ColorService.findAllcolors().then(function(response) {
+                vm.colors = response;
 
 
             });
@@ -50,17 +51,18 @@
         //Event handler implementations
         function addColor(color) {
 
-            ColorService.createColorForUser(color).then(function(response) {
+            ColorService.createColor(color).then(function(response) {
 
                 vm.colors = response;
 
             });
             vm.color = {};
+
         }
 
         function updateColor(color) {
-
             ColorService.updateColorById(color._id, color).then(function (response) {
+                console.log(color);
 
                 if (response === "OK") {
 
@@ -72,11 +74,12 @@
             });
 
             vm.color={};
+            init();
         }
 
         function deleteColor($index) {
 
-            var colorID = vm.red_colors[$index]._id;
+            var colorID = vm.colors[$index]._id;
 
             ColorService.deleteColorById(colorID).then(function(response) {
 
@@ -90,15 +93,13 @@
 
             vm.color={};
 
-            var selectedColor = vm.red_colors[$index];
+            var selectedColor = vm.colors[$index];
+            console.log(selectedColor);
 
-            vm.color = {
-                _id: selectedColor._id,
-                title: selectedColor.title,
-                userId: selectedColor.userId
-            };
+            vm.color =selectedColor;
 
             toBeUpdatedIndex = $index;
+            init();
         }
     }
 })();
