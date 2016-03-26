@@ -1,0 +1,26 @@
+[
+  {"_id": 0, "title": "Contacts", "userId": 123,
+    "fields":
+    [
+      {"_id": 1, "label": "First Name", "type": "TEXT", "placeholder": "First Name"},
+      {"_id": 2, "label": "Last Name", "type": "TEXT", "placeholder": "Last Name"},
+      {"_id": 3, "label": "Address", "type": "TEXT", "placeholder": "Address"},
+      {"_id": 4, "label": "State", "type": "OPTIONS",
+        "options":
+        [
+          {"label": "Massachussetts", "value": "MA"},
+          {"label": "New Hampshire", "value": "NH"}
+        ]},
+      {"_id": 5, "label": "ZIP", "type": "TEXT", "placeholder": "ZIP"},
+      {"_id": 6, "label": "Email", "type": "EMAIL", "placeholder": "Email"}
+    ]
+  },
+  {"_id": 1, "title": "ToDo", "userId": 234,
+    "fields":
+    [
+      {"_id": 7, "label": "Title", "type": "TEXT", "placeholder": "Title"},
+      {"_id": 8, "label": "Description", "type": "TEXTAREA", "placeholder": "Title"},
+      {"_id": 9, "label": "Due Date", "type": "DATE"}
+    ]
+  }
+]
