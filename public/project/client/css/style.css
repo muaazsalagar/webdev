@@ -85,3 +85,13 @@ img{
     align:center;
     margin:auto;
 }
+
+.PropertyReviews{
+    max-height: 500px;
+
+}
+.PropertyReviews img{
+    width: 150px;
+    height:150px;
+
+}
