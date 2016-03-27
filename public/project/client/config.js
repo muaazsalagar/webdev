@@ -46,6 +46,13 @@
 
             })
 
+            .when("/property/:propertyId", {
+                templateUrl:"client/views/property/properties.view.html",
+                controller:"PropertyController",
+                controllerAs:"model"
+
+            })
+
             .otherwise({
                 redirectTo:"/home"
             });

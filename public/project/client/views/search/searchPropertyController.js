@@ -16,6 +16,27 @@
         console.log("propertyAddress "+ propertyAddress);
 
 
+        // new calling for Property search
+
+      /*  var vm = this;
+
+        function init() {
+
+            FormService.findAllFormsForUser($rootScope.currentUser._id).then(function(response) {
+
+                vm.forms = response;
+
+                vm.$location = $location;
+
+            });
+        }
+        init();*/
+
+
+
+
+
+
         //need wait operation
         /*
          LocationService.getCityFromAddress(propertyAddress,function(callback) {
@@ -49,7 +70,7 @@
             console.log("Google Returned");
             console.log(response);
 
-            PropertyService.getPropertiesInCity( $scope.cityFetched,function (callback){
+            /*PropertyService.getPropertiesInCity( $scope.cityFetched,function (callback){
 
                 console.log("The Fetched City is: " + $scope.cityFetched);
                 console.log("Properties in city");
@@ -60,7 +81,22 @@
                 convertPropertyToMapDisplay();
 
 
+            });*/
+
+
+            // new calling for property Search
+
+            PropertyService.getPropertiesInCity($scope.cityFetched).then(function (response) {
+                console.log("The Fetched City is: " + $scope.cityFetched);
+                console.log("Properties in city");
+                console.log(response);
+                propertiesInCity=response;
+
+                convertPropertyToMapDisplay();
+
             });
+
+
 
 
         });

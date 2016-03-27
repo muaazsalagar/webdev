@@ -9,88 +9,31 @@
         .factory("PropertyService", PropertyService);
 
 
-    function PropertyService($http,$rootScope){
-
-        var forms=[];
-
-        properties=[
-            {
-                "desc":"Near NEU",
-                "address":{"addressLine1":"","addressLine2":"","city":"boston","state":"ma","zipCode":"","lat": "42","long":"-71"},
-                "capacity":"100",
-                "eventAvailable":["party","marriage","birthday"],
-                "facilities":["party","marriage","birthday"],
-                "cost":1000
-
-            },
-
-            {
-                "desc":"Best Party",
-                "address":{"addressLine1":"","addressLine2":"","city":"Boston","state":"ma","zipCode":"","lat": "43","long":"-71.2"},
-                "capacity":"100",
-                "eventAvailable":["party","marriage","birthday"],
-                "facilities":["party","marriage","birthday"],
-                "cost":2000
-
-            },
-
-            {
-                "desc":"Panera",
-                "address":{"addressLine1":"","addressLine2":"","city":"Boston","state":"ma","zipCode":"","lat": "42","long":"-71.6"},
-                "capacity":"10",
-                "eventAvailable":["party","marriage","birthday"],
-                "facilities":["party","marriage","birthday"],
-                "cost":3000
-
-            },
-            {
-                "desc":"Awesome party in NYC",
-                "address":{"addressLine1":"","addressLine2":"","city":"new york","state":"NY","zipCode":"","lat": "40","long":"-74.2"},
-                "capacity":"10",
-                "eventAvailable":["party","marriage","birthday"],
-                "facilities":["party","marriage","birthday"],
-                "cost":3000
-
-            },
-
-            {   "desc":"party In LA",
-                "address":{"addressLine1":"","addressLine2":"","city":"Los Angeles","state":"NEVADA","zipCode":"","lat": "34","long":"-118"},
-                "capacity":"10",
-                "eventAvailable":["party","marriage","birthday"],
-                "facilities":["party","marriage","birthday"],
-                "cost":3000
-
-            },
-
-            {   "desc":"Awesome LA Parties",
-                "address":{"addressLine1":"","addressLine2":"","city":"Los Angeles","state":"NEVADA","zipCode":"","lat": "34","long":"-117"},
-                "capacity":"10",
-                "eventAvailable":["party","marriage","birthday"],
-                "facilities":["party","marriage","birthday"],
-                "cost":4000
-
-            }
-
-
-
-
-
-
-        ];
-
+    function PropertyService($http,$q,$rootScope){
 
         var api = {
             // declaration of methods by following standards of john papas
 
-            getPropertiesInCity:getPropertiesInCity
+            getPropertiesInCity:getPropertiesInCity,
 
+            createProperty:createProperty,
+            setCurrentProperty:setCurrentProperty,
+            getCurrentProperty:getCurrentProperty,
+
+            // Api
+            findPropertyByCredentials:findPropertyByCredentials,
+            findPropertyByPropertyname:findPropertyByPropertyname,
+            findAllPropertys:findAllPropertys,
+            updatePropertyByID:updatePropertyByID,
+            findPropertyByID:findPropertyByID,
+            deletePropertyById:deletePropertyById
 
         };
 
         return api;
 
 
-        function getPropertiesInCity(city, callback){
+        /*function getPropertiesInCity(city, callback){
 
             var propertiesInCity=[];
             for (var i=0;i<properties.length;i++)
@@ -108,7 +51,132 @@
             }
 
             callback(propertiesInCity);
+        }*/
+
+
+        function getPropertiesInCity(city)
+        {
+            console.log("Client Calling the find all properties in the city from server");
+            var deferred=$q.defer();
+            var url="/api/banquet/property/city/:city";
+            url=url.replace(":city",city);
+            console.log(url);
+            console.log(city);
+
+            $http.get(url).success(function(response){
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
+
         }
+
+        function findPropertyByCredentials(propertyname, password) {
+
+            var deferred = $q.defer();
+
+            var url = "/api/banquet/property?propertyname=:propertyname&password=:password";
+            url = url.replace(":propertyname", propertyname);
+            url = url.replace(":password", password);
+
+            $http.get(url).success (function (response) {
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
+        }
+
+        function createProperty(property)
+        {
+            var deferred=$q.defer();
+            var url="/api/banquet/property";
+            $http.post(url,property).success(function(response){
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
+
+
+        }
+
+        function setCurrentProperty (property) {
+            $rootScope.currentProperty = property;
+        }
+
+        function getCurrentProperty () {
+            return $rootScope.currentProperty;
+        }
+
+        function findPropertyByPropertyname(propertyname)
+        {
+            var deferred=$q.defer();
+            var url="/api/banquet/property?propertyname=propertyname";
+            url=url.replace(":propertyname",propertyname);
+            $http.get(url).success(function(response){
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
+
+
+        }
+
+        function findAllPropertys(){
+            var deferred=$q.defer();
+            var url="/api/banquet/property";
+
+            $http.get(url).success(function(response){
+                deferred.resolve(response);
+            });
+
+
+            return deferred.promise;
+        }
+
+        function updatePropertyByID(propertyId,property)
+        {
+            var deferred=$q.defer();
+            var url="/api/banquet/property/:id";
+            url=url.replace(":id",propertyId);
+            console.log(url);
+            console.log(propertyId);
+
+            $http.put(url,property).success(function(response){
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
+        }
+
+        function deletePropertyById(property)
+        {
+            var deferred=$q.defer();
+            var url="/api/banquet/property/:id";
+            $http.delete(url).success(function(response){
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
+        }
+
+        function findPropertyByID(propertyId)
+        {
+            console.log("Client Calling the findpropertyID to the server");
+            var deferred=$q.defer();
+            var url="/api/banquet/property/:id";
+            url=url.replace(":id",propertyId);
+            console.log(url);
+            console.log(propertyId);
+
+            $http.get(url).success(function(response){
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
+
+        }
+
+
 
 
     }

@@ -42,9 +42,7 @@
                 console.log("Response From Service:  Updated the User");
                 console.log(response);
 
-
             });
-
 
         };
 
