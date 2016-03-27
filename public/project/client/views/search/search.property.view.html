@@ -4,7 +4,7 @@
 
 
             <!-- For Date input and guests-->
-            <form class="navbar-form navbar-left" >
+            <form class="navbar-form navbar-left">
                 <div class="form-group">
                     <label>
                         From Date
@@ -48,42 +48,41 @@
             </form>
 
 
-            <!--
+
+            <br> </br>
             <div class="row">
 
                 <div class="col-md-12 pre-scrollable">
-                    <div class="col-md-6">
-                        <img alt="Bootstrap Image Preview" src="http://lorempixel.com/300/230/" />
-                        <br> <br>
-                        <img alt="Bootstrap Image Preview" src="http://lorempixel.com/300/230/" />
+                    <div>
 
+                        <div class="table-responsive" id="forms-n-fields-tbl">
 
+                            <table class="table table-bordered table-striped">
 
-                    </div>
-                    <div class="col-md-6">
-                        <img alt="Bootstrap Image Preview" src="http://lorempixel.com/300/230/" />
-                        <br> <br>
-                        <img alt="Bootstrap Image Preview" src="http://lorempixel.com/300/230/" />
+                                <tbody>
+
+                                <tr ng-repeat="property in model.properties">
+                                    <td>
+
+                                        <a href="#/property/{{property._id}}/propertyDetails" target="_blank">
+                                            <img alt="Bootstrap Image Preview" src="https://placeimg.com/150/150/arch"/>
+                                        </a>
+
+                                        {{property.title}}
+
+                                    </td>
+                                </tr>
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
 
                     </div>
 
                 </div>
             </div>
-            -->
-
-            <<div class="row">
-
-            <div class="col-md-12 pre-scrollable">
-                <div class="col-md-6">
-                    <img alt="Bootstrap Image Preview" src="http://lorempixel.com/300/230/" />
-                    <br>
-                    <br>
-
-                </div>
-
-            </div>
-        </div>
-
 
 
         </div>
@@ -97,6 +96,7 @@
                 html, body {
 
                 }
+
                 .map2 {
 
                     width: 600px;
@@ -106,11 +106,10 @@
             </style>
 
 
-            <div id="map1"  class="map2"></div>
+            <div id="map1" class="map2"></div>
             <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
                 <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
             </div>
-
 
 
         </div>

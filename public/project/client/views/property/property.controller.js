@@ -9,19 +9,26 @@
         .module("BanquetApp")
         .controller("PropertyController", PropertyController);
 
-    function PropertyController($rootScope, PropertyService, $location) {
+    function PropertyController($rootScope, PropertyService,ReviewService, $location,$routeParams) {
+
+        var propertyId=$routeParams.propertyId;
 
         var vm = this;
 
         function init() {
 
-           /* FormService.findAllFormsForUser($rootScope.currentUser._id).then(function(response) {
+            PropertyService.findPropertyByID(propertyId).then(function (response) {
 
-                vm.forms = response;
+            vm.property=response;
 
-                vm.$location = $location;
+            });
 
-            });*/
+            ReviewService.findReviewByPropertyId(propertyId).then(function (response) {
+            vm.reviews=response;
+
+            });
+
+
         }
         init();
 

@@ -8,6 +8,7 @@ module .exports=function(app,uuid)
     var UserModel=require("./model/user/user.model.js")();
     var FormModel=require("./model/form/form.model.js")();
     var PropertyModel=require("./model/property/property.model.js")();
+    var ReviewModel=require("./model/review/review.model.js")();
 
 
     // services
@@ -16,6 +17,7 @@ module .exports=function(app,uuid)
     var UserService = require("./services/user.service.server.js")(app,UserModel,uuid);
     var FormService = require("./services/form.service.server.js")(app,FormModel,uuid);
     var PropertyService = require("./services/property.service.server.js")(app,PropertyModel,uuid);
+    var ReviewService = require("./services/review.service.server.js")(app,ReviewModel,uuid);
 
 
 

@@ -1,62 +1,149 @@
 <div class="container-fluid">
+
     <div class="row">
+        <div class="container-fluid">
+            <div class="jumbotron">
+                <img src="https://placeimg.com/640/480/arch"
+                     width="1200" height="300"/>
+                <img src="https://placeimg.com/640/480/arch"
+                     width="1200" height="300"/>
+                <img src="https://placeimg.com/640/480/arch"
+                     width="1200" height="300"/>
+                <img src="https://placeimg.com/640/480/arch"
+                     width="1200" height="300"/>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row propertyDetails">
         <div class="col-md-12">
             <!-- Property Background Image-->
 
-            <img alt="Bootstrap Image Preview" src="http://lorempixel.com/800/300/"/>
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-10">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-4 owner">
                             <!-- Property Host Profile Image-->
-                            <img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-circle"/>
-                            <h3>
-                                Property Host Name:
-                            </h3>
+                            <img alt="Bootstrap Image Preview" src="http://lorempixel.com/300/300/"
+                                 class="img-circle"/>
+
+                            <h4>Hosted By:</h4>
+                            <h4>
+                                {{model.property.owner}}
+                            </h4>
                         </div>
 
                         <!-- Property Title and Address-->
 
                         <div class="col-md-8">
                             <h3 class="text-left">
-                                Title: Great Party Place
+                                {{model.property.title}}
                             </h3>
                             <address>
-                                <strong>Address:, Inc.</strong><br/> 795 Folsom Ave, Suite 600<br/> San Francisco, CA
-                                94107<br/> <abbr title="Phone">P:</abbr> (123) 456-7890
+                                <strong>Address:, Inc.</strong><br/> 795 Folsom Ave, Suite 600<br/> Boston,
+                                MA
+                                94107<br/>
                             </address>
+                            <h3>
+                                {{model.property.cost | currency:"$"}}
+                            </h3>
+
                         </div>
                     </div>
 
                     <!-- Property Features-->
-
+                    <h3>Amenities Available:</h3>
                     <div class="row">
                         <div class="col-md-12">
-                            <p>
-                                Amenities/ Features available !!!
-                            </p>
+
+                            <div class="table-responsive">
+
+                                <table class="table table-bordered table-striped">
+
+                                    <thead class="thead-inverse">
+                                    <tr>
+                                        <th>
+                                            <span class="glyphicon glyphicon-triangle-bottom hover"></span>
+                                            Feature
+                                        </th>
+                                        <th>
+                                            <span class="glyphicon glyphicon-triangle-bottom hover"></span>
+                                            Availability
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    <tr ng-repeat="facility in model.property.facilities">
+                                        <td>
+                                            {{facility}}
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-success">
+                                                Yes
+                                            </button>
+
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
 
                     <!-- More Images of the Property-->
-                    <img alt="Bootstrap Image Preview" src="http://lorempixel.com/200/300/"/>
-
+                    <h2>Browse more photos</h2>
+                    <img alt="Bootstrap Image Preview" src="https://placeimg.com/200/200/arch"/>
+                    <img alt="Bootstrap Image Preview" src="https://placeimg.com/200/200/arch"/>
+                    <img alt="Bootstrap Image Preview" src="https://placeimg.com/200/200/arch"/>
 
                     <!-- Review Section about the property Host-->
+                    <br> <br>
+                    <div class="row ">
+                        <div class="col-md-12">
+                            <h3>Reviews: </h3>
+                            <!-- Review Section List of the property -->
+                            <div class="row">
+                                <div class="col-md-12 pre-scrollable">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-striped">
+                                            <tbody>
+                                            <div class="col-md-12">
+                                                <tr ng-repeat="review in model.reviews">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <td>
+                                                                <img alt="Bootstrap Image Preview"
+                                                                     src="https://placeimg.com/200/200/people"
+                                                                     class="img-circle"/>
+                                                            </td>
 
-                    <div class="row">
-                        <div class="col-md-4">
-                            <img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-circle"/>
+
+                                                        </div>
+
+                                                        <td>
+                                                            <div class="col-md-8">
+                                                                <blockquote>
+                                                                    <p>
+                                                                        "{{review.review}}"
+                                                                    </p>
+                                                                </blockquote>
+                                                            </div>
+
+                                                        </td>
+                                                </tr>
+                                            </div>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
-                        <div class="col-md-8">
-                            <blockquote>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a
-                                    ante.
-                                </p>
-                                <small>Someone famous <cite>Source Title</cite></small>
-                            </blockquote>
-                        </div>
+
                     </div>
 
 
@@ -64,30 +151,20 @@
 
                         <!-- More information about host of the property / Profile of host-->
                         <div class="col-md-4">
-                            <img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-circle"/>
+                            <img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/"
+                                 class="img-circle"/>
                         </div>
                         <div class="col-md-8">
-                            <dl>
-                                <dt>
-                                    Host Information !!
-                                </dt>
-                                <dd>
-                                    A description list is perfect for defining terms.
-                                </dd>
-                                <dt>
-                                    Euismod
-                                </dt>
-
-                            </dl>
+                            <h3> More About Host:
+                            </h3>
                         </div>
                     </div>
                 </div>
 
 
-
                 <!-- Booking tab fixed right Side -->
 
-                <div class="col-md-4">
+                <div class="col-md-2">
                     <form role="form">
                         <div class="form-group">
 
@@ -124,4 +201,5 @@
             </div>
         </div>
     </div>
+
 </div>

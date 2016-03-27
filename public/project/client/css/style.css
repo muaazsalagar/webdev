@@ -72,3 +72,16 @@ img{
 * html .centered-pills ul.nav-pills, *+html .centered-pills ul.nav-pills {
     display: inline
 }
+
+
+.propertyDetails{
+    width: 80%;
+    align:center;
+    margin:auto;
+}
+
+.owner{
+    text-align: center;
+    align:center;
+    margin:auto;
+}

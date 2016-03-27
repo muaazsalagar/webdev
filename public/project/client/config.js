@@ -46,7 +46,7 @@
 
             })
 
-            .when("/property/:propertyId", {
+            .when("/property/:propertyId/propertyDetails", {
                 templateUrl:"client/views/property/properties.view.html",
                 controller:"PropertyController",
                 controllerAs:"model"

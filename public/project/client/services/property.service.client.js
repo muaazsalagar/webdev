@@ -161,7 +161,7 @@
 
         function findPropertyByID(propertyId)
         {
-            console.log("Client Calling the findpropertyID to the server");
+            console.log("Client Calling the find propertyByID to the server");
             var deferred=$q.defer();
             var url="/api/banquet/property/:id";
             url=url.replace(":id",propertyId);

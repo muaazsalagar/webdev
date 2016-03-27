@@ -18,93 +18,44 @@
 
         // new calling for Property search
 
-      /*  var vm = this;
-
-        function init() {
-
-            FormService.findAllFormsForUser($rootScope.currentUser._id).then(function(response) {
-
-                vm.forms = response;
-
-                vm.$location = $location;
-
-            });
-        }
-        init();*/
-
-
-
-
-
-
-        //need wait operation
-        /*
-         LocationService.getCityFromAddress(propertyAddress,function(callback) {
-
-         console.log(callback);
-         $scope.AddressFetched=callback;
-
-
-         var city=callback.results[0].address_components[3].short_name;
-
-
-         console.log("CITY FETCHED FROM ADDRESS: ");
-         console.log(city);
-         $scope.cityFetched=city;
-         });
-
-         */
+        var vm = this;
 
         var propertiesOnMap=[];
         var propertiesInCity=[];
         var mapCenter=[];
 
 
-        LocationService.getCityFromAddress(propertyAddress).then(function(response){
-
-            //$scope.cityFetched=response.results[0].address_components[3].short_name;
-
-            $scope.cityFetched=LocationService.getCityFormGooleResponse(response);
 
 
-            console.log("Google Returned");
-            console.log(response);
+        function init() {
 
-            /*PropertyService.getPropertiesInCity( $scope.cityFetched,function (callback){
+            LocationService.getCityFromAddress(propertyAddress).then(function(response){
 
-                console.log("The Fetched City is: " + $scope.cityFetched);
-                console.log("Properties in city");
-                console.log(callback);
-                propertiesInCity=callback;
+                //$scope.cityFetched=response.results[0].address_components[3].short_name;
+
+                $scope.cityFetched=LocationService.getCityFormGooleResponse(response);
 
 
-                convertPropertyToMapDisplay();
-
-
-            });*/
-
-
-            // new calling for property Search
-
-            PropertyService.getPropertiesInCity($scope.cityFetched).then(function (response) {
-                console.log("The Fetched City is: " + $scope.cityFetched);
-                console.log("Properties in city");
+                console.log("Google Returned");
                 console.log(response);
-                propertiesInCity=response;
 
-                convertPropertyToMapDisplay();
+                // new calling for property Search
+
+                PropertyService.getPropertiesInCity($scope.cityFetched).then(function (response) {
+                    console.log("The Fetched City is: " + $scope.cityFetched);
+                    console.log("Properties in city");
+                    console.log(response);
+                    propertiesInCity=response;
+
+                    convertPropertyToMapDisplay();
+                    vm.properties=propertiesInCity;
+
+                });
+
 
             });
-
-
-
-
-        });
-
-        //Data for page
-        console.log("Call to get Listing has city: ");
-
-        console.log($scope.cityFetched);
+        }
+        init();
 
 
 

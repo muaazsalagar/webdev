@@ -1,0 +1,11 @@
+[
+    {"_id":1,"user_id":1,"property_id":1,"rating":5,"review":"It was nice stay I enjoyed a lot"},
+    {"_id":2,"user_id":1,"property_id":1,"rating":5,"review":"Very Friendly"},
+    {"_id":3,"user_id":2,"property_id":2,"rating":4,"review":"Enjoyed the stay"},
+    {"_id":4,"user_id":2,"property_id":2,"rating":4,"review":"Friendly host"},
+    {"_id":5,"user_id":1,"property_id":1,"rating":5,"review":"It was nice stay I enjoyed a lot"},
+    {"_id":6,"user_id":1,"property_id":3,"rating":5,"review":"Very Friendly"},
+    {"_id":7,"user_id":2,"property_id":2,"rating":1,"review":"Bad  stay"},
+    {"_id":8,"user_id":2,"property_id":2,"rating":4,"review":"Friendly host"}
+
+]
