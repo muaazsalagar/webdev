@@ -80,11 +80,24 @@ img{
     margin:auto;
 }
 
+.propertySearch{
+    width: 70%;
+    align:center;
+    margin:auto;
+}
+
+
 .owner{
     text-align: center;
     align:center;
     margin:auto;
 }
+.owner img{
+    width: 150px;
+    height:150px;
+    border-radius: 50%;
+}
+
 
 .PropertyReviews{
     max-height: 500px;
