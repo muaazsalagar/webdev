@@ -17,6 +17,8 @@ module.exports = function (mongoose) {
 
     }, {collection: 'assignment.user'});
 
+    // returning Schema
     return userSchema;
+
 
 }
