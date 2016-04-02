@@ -2,10 +2,9 @@
  * Created by muaazsalagar on 3/13/16.
  */
 
-
 "use strict"
 
-module.exports = function(app, formModel, uuid) {
+module.exports = function(app, formModel) {
 
     //creates a new form whose properties are the same as the form object embedded in the HTTP request's body and
     //the form belongs to a user whose id is equal to the userId path parameter.
@@ -30,50 +29,134 @@ module.exports = function(app, formModel, uuid) {
     function createForm (req, res) {
 
         var form = req.body;
-        var userId = parseInt(req.params.userId);
+        var userId = req.params.userId;
 
         form.userId = userId;
-        form._id = parseInt(uuid.v4(), 16);
 
-        formModel.createForm(form);
-        res.json(formModel.findAllFormsByUserId(userId));
+        form = formModel.createForm(form)
+
+            .then(
+
+                function (doc) {
+
+                    res.status(200).send("Created");
+
+                },
+
+                function (err) {
+
+                    res.status(400).send(err);
+
+                }
+            );
     }
 
     function findAllformsForUser(req, res) {
 
-        var userId = parseInt(req.params.userId);
+        var userId = req.params.userId;
 
-        res.json(formModel.findAllFormsByUserId(userId));
+        formModel.findAllFormsByUserId(userId)
+
+            .then(
+
+                function (docs) {
+
+                    res.json(docs);
+
+                },
+
+                function (err) {
+
+                    res.status(400).send(err);
+
+                }
+            );
+
     }
 
     function findAllForms(req, res) {
 
-        res.json(formModel.findAllForms());
+        formModel.findAllForms()
+
+            .then(
+
+                function (docs) {
+
+                    res.json(docs);
+
+                },
+
+                function (err) {
+
+                    res.status(400).send(err);
+
+                }
+            );
     }
 
     function findFormById(req, res) {
 
-        var formId = parseInt(req.params.formId);
+        var formId = req.params.formId;
 
-        res.json(formModel.findFormById(formId));
+        formModel.findFormById(formId)
+
+            .then(
+
+                function (doc) {
+
+                    res.json(doc);
+
+                },
+
+                function (err) {
+
+                    res.status(400).send(err);
+
+                }
+            );
     }
 
     function updateFormById(req, res) {
 
-        var formId = parseInt(req.params.formId);
+        var formId = req.params.formId;
         var form = req.body;
 
-        formModel.updateFormById(formId, form);
+        formModel.updateFormById(formId, form)
 
-        res.send(200);
+            .then(
+
+                function (doc) {
+
+                    if(!doc) {
+
+                        res.status(400).send('Error');
+                    } else {
+
+                        res.status(200).send('Updated');
+                    }
+                }
+            )
     }
 
     function deleteFormById(req, res) {
 
-        var formId = parseInt(req.params.formId);
+        var formId = req.params.formId;
 
-        formModel.deleteFormById(formId);
+        formModel.deleteFormById(formId)
 
-        res.send(200);
+            .then(
+
+                function (doc) {
+
+                    if(!doc) {
+
+                        res.status(400).send('Error');
+
+                    } else {
+
+                        res.status(200).send('Deleted');
+                    }
+                }
+            );
     }
 }
