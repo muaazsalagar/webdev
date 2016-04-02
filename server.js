@@ -1,10 +1,13 @@
 var express = require('express');
+var app = express();
 var multer        = require('multer');
 var bodyParser    = require('body-parser');
+var mongoose=require('mongoose');
 var uuid = require('node-uuid');
 
+var connectionString = 'mongodb://127.0.0.1:27017/FormApp';
+var db = mongoose.connect(connectionString);
 
-var app = express();
 
 app.use(express.static(__dirname + '/public/personalwebsite'));
 app.use(express.static(__dirname + '/public'));
