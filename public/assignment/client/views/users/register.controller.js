@@ -2,49 +2,37 @@
  * Created by muaazsalagar on 2/20/16.
  */
 
-(function () {
+
+(function() {
     angular
         .module("FormBuilderApp")
-        .controller("RegisterController",RegisterController);
+        .controller("RegisterController", RegisterController);
 
-    function RegisterController($location, UserService, $rootScope){
-        
-        var vm=this;
-        
-        vm.register=register;
-        vm.$location=$location;
+    function RegisterController(UserService, $rootScope, $location) {
 
-        
-        (function init() {
+        var vm = this;
 
-        })();
-        //console.log("In Register conyroller");
+        vm.register = register;
 
-        function register(username, password, vpassword, emailId){
-            console.log("Register Called");
-
-            var user={
-                "_id":0,
-                "username":username,
-                "password":password,
-                "roles": ["student"],
-                "emailId":emailId
-            };
+        // for the registration of th user
 
 
-            UserService.createUser(user, function(response) {
+        function register(user) {
+                // new feature to added with emails support
 
-                //console.log("response from service"+response.username);
-                if(response){
-                    console.log(response);
-                    UserService.setCurrentUser(response);
+            user.emails = user.emails.trim().split(",");
+
+            UserService.createUser(user).then(function(users) {
+
+                UserService.findUserByUsername(user.username).then(function (newUser) {
+
+                    // set the Seession
+
+                    UserService.setCurrentUser(newUser);
+
                     $location.url("/profile");
-
-                }
-
+                });
             });
-
         }
-
     }
 })();
