@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
-var multer        = require('multer');
-var bodyParser    = require('body-parser');
+var multer = require('multer');
+var bodyParser = require('body-parser');
 var mongoose=require('mongoose');
 var uuid = require('node-uuid');
 var session = require('express-session');
@@ -33,7 +33,6 @@ app.use(session({
     saveUninitialized: true,
     secret: process.env.PASSPORT_SECRET
 }));
-
 
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';

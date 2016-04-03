@@ -2,6 +2,7 @@
  * Created by muaazsalagar on 2/03/12.
  */
 
+
 "use strict";
 
 (function () {
@@ -24,6 +25,23 @@
             logout: logout
         };
         return service;
+
+
+        function getCurrentUser() {
+
+            return $http.get("/api/assignment/user/loggedin");
+        }
+
+        function setCurrentUser(user) {
+
+            $rootScope.currentUser = user;
+        }
+
+        function logout() {
+
+            return $http.post("/api/assignment/user/logout")
+        }
+
 
         function findUserByCredentials(username, password) {
 
@@ -122,21 +140,6 @@
             return deferred.promise;
         }
 
-        // added session mgmt
-        function getCurrentUser() {
 
-            return $http.get("/api/assignment/user/loggedin");
-        }
-
-        function setCurrentUser(user) {
-
-            $rootScope.currentUser = user;
-        }
-
-        // logout by user
-        function logout() {
-
-            return $http.post("/api/assignment/user/logout")
-        }
     }
 })();
