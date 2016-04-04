@@ -19,7 +19,6 @@ module.exports = function() {
         findColorsbyColor:findColorsbyColor,
         findColorsGrouped:findColorsGrouped
 
-
     };
     return api;
 
