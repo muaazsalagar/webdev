@@ -242,7 +242,6 @@
                         $scope.field.placeholder = $scope.newPlaceholder;
 
                     } else {
-
                         UpdateOtherFields();
                     }
                 }
@@ -275,7 +274,9 @@
             $uibModalInstance.close($scope.field);
         };
 
+        // after cancell
         $scope.cancel = function () {
+
             $uibModalInstance.dismiss('cancel');
         };
     });
