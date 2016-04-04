@@ -12,5 +12,4 @@ module .exports=function(app,uuid)
     var ColorService = require("./services/color.service.server.js")(app,ColorModel,uuid);
 
 
-
 };
