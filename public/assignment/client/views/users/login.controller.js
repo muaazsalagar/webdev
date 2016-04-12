@@ -18,7 +18,8 @@
 
         function login(user) {
 
-            UserService.findUserByCredentials(user.username, user.password).then(isUserPresent);
+            // call User Service login
+            UserService.login(user).then(isUserPresent);
         }
 
         // check if already present
@@ -28,6 +29,7 @@
 
                 UserService.setCurrentUser(response);
 
+                // if success from user present change url to profile
                 $location.url("/profile");
             }
         }

@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var mongoose=require('mongoose');
 var uuid = require('node-uuid');
 var session = require('express-session');
+var passport      = require('passport');
 
 var connectionString = 'mongodb://127.0.0.1:27017/FormApp';
 
@@ -20,7 +21,6 @@ if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
 var db = mongoose.connect(connectionString);
 
 
-
 app.use(express.static(__dirname + '/public/personalwebsite'));
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
@@ -34,6 +34,9 @@ app.use(session({
     secret: process.env.PASSPORT_SECRET
 }));
 
+app.use(passport.initialize());
+
+app.use(passport.session());
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
@@ -56,5 +59,6 @@ app.get('/', function(req, res){
 
 
 app.listen(port, ipaddress, function(){
-    console.log("The Force has awoken!!")
+    console.log("The Force has awoken!!");
+    console.log("Server listening at: " + ipaddress + ":" + port);
 });

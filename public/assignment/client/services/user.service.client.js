@@ -13,7 +13,8 @@
     function UserService($http, $q, $rootScope) {
 
         var service = {
-            findUserByCredentials: findUserByCredentials,
+            login:login,
+            register:register,
             findUserByUsername: findUserByUsername,
             findAllUsers: findAllUsers,
             createUser: createUser,
@@ -25,6 +26,13 @@
             logout: logout
         };
         return service;
+
+        // instead of find user by credentials a common method for login
+        function login(user) {
+
+            return $http.post("/api/assignment/login", user);
+
+        }
 
 
         function getCurrentUser() {
@@ -40,6 +48,18 @@
         function logout() {
 
             return $http.post("/api/assignment/user/logout")
+        }
+
+        function register(user) {
+
+            var deferred = $q.defer();
+            var url = "/api/assignment/register";
+
+            $http.post(url, user).success (function (response) {
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
         }
 
 

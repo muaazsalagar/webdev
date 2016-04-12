@@ -14,19 +14,24 @@
 
         vm.register = register;
 
-        // for the registration of th user
 
+        // for the registration of th user
 
         function register(user) {
                 // new feature to added with emails support
 
-            user.emails = user.emails.trim().split(",");
+            console.log("in Register USer");
+            console.log(user);
+
+
+            user.emails = user.emails.split(",");
 
             UserService.createUser(user).then(function(users) {
 
                 UserService.findUserByUsername(user.username).then(function (newUser) {
 
                     // set the Seession
+                    console.log("User Registered");
 
                     UserService.setCurrentUser(newUser);
 
