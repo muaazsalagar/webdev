@@ -1,61 +1,109 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
 
-<div class="container-fluid">
+    <h1 class="page-header">Admin Panel</h1>
 
-    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        <h2 class="page-header">Admin</h2>
-        <h3 class="page-header">Users</h3>
+    <h2>Users</h2>
 
-        <div class="table-responsive">
-            <table class="table table-bordered table-striped">
+    <div class="row">
+
+        <div class="table-responsive col-md-12">
+
+            <table class="table table-bordered table-hover table-striped">
+
                 <thead>
                 <tr>
-                    <th><i class="fa fa-fw fa-sort-desc"></i> Username</th>
-                    <th><i class="fa fa-fw fa-sort-desc"></i>Password</th>
-                    <th><i class="fa fa-fw fa-sort-desc"></i>Role</th>
-                    <th><i class="fa fa-fw fa-sort-desc"></i>Action</th>
+                    <th>
+                        Username
+                    </th>
+                    <th>
+                        Password
+                    </th>
+                    <th>
+                        <span class="glyphicon glyphicon-triangle-bottom hover"></span>
+                        First Name
+                    </th>
+                    <th>
+                        <span class="glyphicon glyphicon-triangle-bottom hover"></span>
+                        Last Name
+                    </th>
+                    <th>
+                        Roles
+                    </th>
+                    <th>
+                        Action
+                    </th>
                 </tr>
                 </thead>
+
                 <tbody>
-
                 <tr>
-                    <td><input type="text" placeholder="username"></td>
-                    <td><input type="password" placeholder="password"></td>
-                    <td><input type="text" placeholder="role1, role2"></td>
-                    <td><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                    <td class="col-md-2">
+                        <input type="text" class="form-control" placeholder="Username" ng-model="model.user.username">
+                    </td>
+                    <td class="col-md-2">
+                        <input type="password" class="form-control" placeholder="Password" ng-model="model.user.password">
+                    </td>
+
+                    <td class="col-md-2">
+                        <input type="text" class="form-control" placeholder="First Name" ng-model="model.user.firstName">
+                    </td>
+
+
+                    <td class="col-md-2">
+                        <input type="text" class="form-control" placeholder="Last Name" ng-model="model.user.lastName">
+                    </td>
+
+                    <td class="col-md-2">
+                        <input type="text" class="form-control" placeholder="Roles" ng-model="model.user.roles">
+                    </td>
+
+                    <td class="col-md-2">
+                        <button ng-click= "model.addUser(model.user)" class="btn btn-success">
+                            Add
+                        </button>
+
+                        <button ng-click="model.updateUser(model.user)" class="btn btn-info">
+                            Update
+                        </button>
+
+
                     </td>
 
                 </tr>
-
-
-                <tr>
-                    <td>alice</td>
-                    <td></td>
-                    <td>Student</td>
-                    <td><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                <tr ng-repeat="user in model.users">
+                    <td class="col-md-2">
+                        <input type="text" name="username" ng-model="user.username" class="form-control">
                     </td>
-
-                </tr>
-                <tr>
-                    <td>bob</td>
-                    <td></td>
-                    <td>faculty | admin</td>
-                    <td><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                    <td class="col-md-2">
+                        <input type="password" name="password" ng-model="user.password" class="form-control">
                     </td>
+                    <td class="col-md-2">
+                        <input type="text" name="firstName" ng-model="user.firstName" class="form-control">
+                    </td>
+                    <td class="col-md-2">
+                        <input type="text" name="lastName" ng-model="user.lastName" class="form-control">
+                    </td>
+                    <td class="col-md-2">
+                        <input type="text" name="roles" ng-model="user.roles" class="form-control">
+                    </td>
+                    <td class="col-md-2">
 
-                </tr>
-                <tr>
-                    <td>charlie</td>
-                    <td></td>
-                    <td></td>
-                    <td><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        <button ng-click= "model.selectUser($index)"  class="btn btn-info">
+                            Select
+                        </button>
+
+                        <button ng-click="model.removeUser($index)" class="btn btn-danger">
+                            Delete
+                        </button>
+
+
                     </td>
                 </tr>
+
                 </tbody>
+
             </table>
+
         </div>
 
     </div>

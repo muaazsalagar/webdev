@@ -50,6 +50,8 @@
             return $http.post("/api/assignment/user/logout")
         }
 
+        // register
+
         function register(user) {
 
             var deferred = $q.defer();
@@ -92,7 +94,8 @@
             return deferred.promise;
         }
 
-        function findAllUsers(callback) {
+        // for admin functionality
+        function findAllUsers() {
 
             var deferred = $q.defer();
 
@@ -104,6 +107,7 @@
 
             return deferred.promise;
         }
+
 
         function createUser(user) {
 
@@ -117,6 +121,7 @@
 
             return deferred.promise;
         }
+
 
         function deleteUserById(userID) {
 

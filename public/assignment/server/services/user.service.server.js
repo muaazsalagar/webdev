@@ -5,16 +5,15 @@
 "use strict"
 var passport         = require('passport');
 var LocalStrategy    = require('passport-local').Strategy;
-
 var bcrypt = require("bcrypt-nodejs");
 
 
 
 module.exports = function(app, userModel, uuid) {
 
+    // for passport intercepters
     var auth = authorized;
 
-    // for passport
     //Registers a new user embedded in the body of the request, and responds with an array of all users
     app.post("/api/assignment/register",  register);
 

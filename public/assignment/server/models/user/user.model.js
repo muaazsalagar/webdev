@@ -13,6 +13,7 @@ module.exports = function(db, mongoose) {
     var api = {
         createUser: createUser,
         findUserById: findUserById,
+        // new added feature for admin
         findAllUsers: findAllUsers,
         updateUserById: updateUserById,
         deleteUserId: deleteUserById,
@@ -31,9 +32,15 @@ module.exports = function(db, mongoose) {
         return userModel.findById(userId);
     }
 
+    // for admin
     function findAllUsers() {
+        return userModel.find({});
+    }
 
-        return mock;
+
+    function findUserByCredentials(credentials) {
+
+        return userModel.findOne({username: credentials.username, password: credentials.password});
     }
 
     function updateUserById(userId, user) {
@@ -51,9 +58,7 @@ module.exports = function(db, mongoose) {
         return userModel.findOne({username: userName});
     }
 
-    function findUserByCredentials(credentials) {
 
-        return userModel.findOne({username: credentials.username, password: credentials.password});
-    }
+
 
 }

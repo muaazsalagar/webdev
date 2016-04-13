@@ -20,7 +20,7 @@
         function register(user) {
                 // new feature to added with emails support
 
-            console.log("in Register USer");
+            console.log("in Register User");
             console.log(user);
 
 
