@@ -34,12 +34,14 @@ module.exports = function(app, userModel, uuid) {
     // Responds with an array of all users
     app.put("/api/assignment/user/:id",auth ,updateUserById);
 
-    //removes an existing user whose id property is equal to the id path parameter. Responds with an array of all users
-    app.delete("/api/assignment/user/:id",auth, deleteUserById);
-
 
     //responds with a single user whose id property is equal to the id path parameter
     app.get("/api/assignment/user/:id", findUserById);
+
+
+    //removes an existing user whose id property is equal to the id path parameter. Responds with an array of all users
+
+    app.delete("/api/assignment/user/:id", auth, deleteUserById);
 
     // for passport implementation
 
@@ -134,7 +136,8 @@ module.exports = function(app, userModel, uuid) {
 
     function isUserIsAdmin(user) {
 
-        // check in the roles array
+        // check in the roles array call before each crud operation performed by Admin
+
 
         if(user.roles.indexOf("admin") > 0) {
 
@@ -226,6 +229,9 @@ module.exports = function(app, userModel, uuid) {
     function createUser (req, res) {
 
         var userFromRequest = req.body;
+
+        // need to add the condition to check if the user is admin or not!!
+
 
         if(userFromRequest.roles && userFromRequest.roles.length > 1) {
             // add roles by commo septated values
@@ -409,18 +415,16 @@ module.exports = function(app, userModel, uuid) {
 
 
 
-
     function updateUserById(req, res) {
 
+        var userFromRequest = req.body;
         var userId = req.params.id;
 
-        var user = req.body;
+        // need to add the condition to check if the user is admin or not!!
 
-        userModel.updateUserById(userId, user)
 
-            .then(
-
-                function (doc) {
+        userModel.updateUserById(userId, userFromRequest)
+            .then(function (doc) {
 
                     if(!doc) {
 
@@ -433,11 +437,16 @@ module.exports = function(app, userModel, uuid) {
             );
     }
 
+
+
+
+    // delete by ID
+
     function deleteUserById(req, res) {
 
         var userId = req.params.id;
 
-        if(isUserIsAdmin(req.user)) {
+        if(isAdmin(req.user)) {
 
             userModel.deleteUserById(userId)
 
@@ -457,6 +466,24 @@ module.exports = function(app, userModel, uuid) {
         }else {
             res.status(403);
         }
-
     }
+
+
+
+
+    // to check if user is admin first this will be used for each admin realted crud opeation
+
+
+    function isAdmin(user) {
+
+        if(user.roles.indexOf("admin") > 0) {
+
+            return true;
+        }
+
+        return false;
+    }
+
+
+
 }

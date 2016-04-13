@@ -19,7 +19,8 @@ module.exports = function(db, mongoose, formModel) {
 
         findFieldByFieldIdAndFormId: findFieldByFieldIdAndFormId,
         updateFieldByFieldIdAndFormId: updateFieldByFieldIdAndFormId,
-        deleteFieldByFieldIdAndFormId: deleteFieldByFieldIdAndFormId
+        deleteFieldByFieldIdAndFormId: deleteFieldByFieldIdAndFormId,
+        sortFields:sortFields
     }
 
     function deleteFieldByFieldIdAndFormId(formId, fieldId) {
@@ -73,6 +74,27 @@ module.exports = function(db, mongoose, formModel) {
                 });
 
     }
+
+    // sort
+    function sortFields(formId, startIndex, endIndex) {
+
+        return formModel.findOne(formId)
+
+            .then(
+
+                function (form) {
+
+                    form.fields.splice(endIndex, 0, form.fields.splice(startIndex, 1)[0]);
+
+                    form.markModified("fields");
+
+                    form.save();
+
+                }
+            );
+
+    }
+
 
 
 }

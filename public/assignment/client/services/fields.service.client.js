@@ -14,15 +14,13 @@
 
         var api = {
 
+
             createFieldForForm: createFieldForForm,
-
             getFieldsForForm: getFieldsForForm,
-
             getFieldForForm: getFieldForForm,
-
             deleteFieldFromForm: deleteFieldFromForm,
-
-            updateField: updateField
+            updateField: updateField,
+            sortFields: sortFields
 
         };
         return api;
@@ -100,6 +98,16 @@
             });
 
             return deferred.promise;
+        }
+
+
+        // sortable
+
+
+        function sortFields(formId, startIndex, endIndex) {
+
+            return $http
+                .put("/api/assignment/form/" + formId + "/field?startIndex=" + startIndex + "&endIndex=" + endIndex);
         }
 
     }

@@ -12,13 +12,9 @@
 
         var api = {
             createFormForUser: createFormForUser,
-
             findAllFormsForUser: findAllFormsForUser,
-
             deleteFormById: deleteFormById,
-
             updateFormById: updateFormById,
-
             findFormById: findFormById
         };
         return api;

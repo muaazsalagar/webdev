@@ -14,9 +14,11 @@ module.exports = function(db, mongoose) {
         createUser: createUser,
         findUserById: findUserById,
         // new added feature for admin
+
+
         findAllUsers: findAllUsers,
         updateUserById: updateUserById,
-        deleteUserId: deleteUserById,
+        deleteUserById: deleteUserById,
         findUserByUsername: findUserByUsername,
         findUserByCredentials: findUserByCredentials
     };

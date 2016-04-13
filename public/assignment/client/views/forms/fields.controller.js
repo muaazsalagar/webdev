@@ -3,7 +3,6 @@
  */
 
 "use strict";
-
 (function() {
     angular
         .module("FormBuilderApp")
@@ -18,9 +17,11 @@
 
         vm.options = [];
 
+        // crud operations on Field
         vm.removeField = removeField;
         vm.addField = addField;
         vm.editField = editField;
+        vm.sortFields = sortFields;
 
         vm.oldIndex = -1;
 
@@ -34,7 +35,7 @@
 
                 FieldService.getFieldsForForm(formId).then(function (response) {
 
-                    vm.fields = response;
+                    vm.fields = response.fields;
                     $scope.fields = vm.fields;
 
                 });
@@ -50,7 +51,9 @@
                 {name: "Date Field", value: "date"},
                 {name: "Dropdown Field", value: "dropdown"},
                 {name: "Checkboxes Field", value: "checkbox"},
-                {name: "Radio Buttons Field", value: "radio"}
+                {name: "Radio Buttons Field", value: "radio"},
+                {name: "Password Field", value: "password"},
+                {name: "Email Field", value: "email"}
             ];
         }
         init();
@@ -61,11 +64,11 @@
 
             FieldService.deleteFieldFromForm(formId, fieldId).then(function (response) {
 
-                if(response === "OK") {
+                if(response === "Deleted") {
 
                     FieldService.getFieldsForForm(formId).then(function (response) {
 
-                        vm.fields = response;
+                        vm.fields = response.fields;
                         $scope.fields = vm.fields;
 
                     });
@@ -80,7 +83,7 @@
             switch (fieldType) {
 
                 case "sline-text":
-                    vm.field = createSingleLineField();
+                    vm.field = createSingleLineField("TEXT");
                     break;
 
                 case "mline-text":
@@ -103,24 +106,42 @@
                     vm.field = createRadioField();
                     break;
 
+                case "email":
+                    vm.field = createSingleLineField("EMAIL");
+                    break;
+
+                case "password":
+                    vm.field = createSingleLineField("PASSWORD");
+                    break;
+
             }
 
-            FieldService.createFieldForForm(formId, vm.field).then(function (response) {
+            FieldService.createFieldForForm(formId, vm.field)
 
-                vm.fields = response;
-                $scope.fields = vm.fields;
-                vm.field = {};
-            });
+                .then(function (response) {
+
+                    if(response === "Created") {
+                        return  FieldService.getFieldsForForm(formId);
+                    }
+                })
+
+                .then(
+
+                    function (response) {
+
+                        vm.fields = response.fields;
+                        $scope.fields = vm.fields;
+                    }
+                )
 
         }
 
-        function createSingleLineField() {
+        function createSingleLineField(type) {
 
             var field = {
-                _id: null,
-                label: "New Text Field",
-                type: "TEXT",
-                placeholder: "New Field"
+                label: "New " + type.toLowerCase() + " Field",
+                type: type,
+                placeholder: "New " + type.toLowerCase() + " Field"
             };
 
             return field;
@@ -129,7 +150,6 @@
         function createMultiLineField() {
 
             var field = {
-                _id: null,
                 label: "New Text Field",
                 type: "TEXTAREA",
                 placeholder: "New Field"
@@ -141,7 +161,6 @@
         function createDateField() {
 
             var field = {
-                _id: null,
                 label: "New Date Field",
                 type: "DATE"
             };
@@ -151,7 +170,8 @@
 
         function createDropDownField() {
 
-            var field = {"_id": null, "label": "New Dropdown", "type": "OPTIONS", "options": [
+            var field =
+            {"label": "New Dropdown", "type": "OPTIONS", "options": [
                 {"label": "Option 1", "value": "OPTION_1"},
                 {"label": "Option 2", "value": "OPTION_2"},
                 {"label": "Option 3", "value": "OPTION_3"}
@@ -162,7 +182,8 @@
 
         function createCheckboxField() {
 
-            var field = {"_id": null, "label": "New Checkboxes", "type": "CHECKBOXES", "options": [
+            var field =
+            {"label": "New Checkboxes", "type": "CHECKBOXES", "options": [
                 {"label": "Option A", "value": "OPTION_A"},
                 {"label": "Option B", "value": "OPTION_B"},
                 {"label": "Option C", "value": "OPTION_C"}
@@ -173,7 +194,8 @@
 
         function createRadioField() {
 
-            var field = {"_id": null, "label": "New Radio Buttons", "type": "RADIOS", "options": [
+            var field =
+            {"label": "New Radio Buttons", "type": "RADIOS", "options": [
                 {"label": "Option X", "value": "OPTION_X"},
                 {"label": "Option Y", "value": "OPTION_Y"},
                 {"label": "Option Z", "value": "OPTION_Z"}
@@ -182,7 +204,6 @@
             return field;
         }
 
-        $scope.items = ['item1', 'item2', 'item3'];
 
         function editField($index) {
 
@@ -203,23 +224,41 @@
 
             });
 
-            modalInstance.result.then(function (field) {
+            modalInstance.result
+                .then(function (field) {
+                    return FieldService.updateField(formId, field._id, field);
 
-                FieldService.updateField(formId, field._id, field).then(function (response) {
-
-                    if(response === "OK") {
-
-                        FieldService.getFieldsForForm(formId).then(function (response) {
-
-                            vm.fields = response;
-                            $scope.fields = vm.fields;
-
-                        });
+                })
+                .then(function (response) {
+                    if(response === "Updated") {
+                        return FieldService.getFieldsForForm(formId);
 
                     }
-                });
+                })
+                .then(function (response) {
+                    vm.fields = response.fields;
+                    $scope.fields = vm.fields;
 
-            });
+                });
+        }
+
+        function sortFields(start, end) {
+
+            FieldService.sortFields(formId, start, end)
+
+                .then(
+
+                    function (response) {
+
+                    },
+
+                    function (err) {
+
+                        vm.error = err;
+
+                    }
+                );
+
         }
     }
 
@@ -230,6 +269,7 @@
         $scope.ok = function () {
 
             if($scope.newLabel) {
+
                 $scope.field.label = $scope.newLabel;
             }
 
@@ -237,11 +277,13 @@
 
                 if($scope.newPlaceholder) {
 
-                    if($scope.field.type === "TEXT" || $scope.field.type === "TEXTAREA") {
+                    if($scope.field.type === "TEXT" || $scope.field.type === "TEXTAREA"
+                        || $scope.field.type === "EMAIL" || $scope.field.type === "PASSWORD ") {
 
                         $scope.field.placeholder = $scope.newPlaceholder;
 
                     } else {
+
                         UpdateOtherFields();
                     }
                 }
@@ -274,9 +316,7 @@
             $uibModalInstance.close($scope.field);
         };
 
-        // after cancell
         $scope.cancel = function () {
-
             $uibModalInstance.dismiss('cancel');
         };
     });

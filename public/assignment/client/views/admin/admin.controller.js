@@ -9,7 +9,7 @@
         .module("FormBuilderApp")
         .controller("AdminController", AdminController);
 
-    function AdminController(UserService) {
+    function AdminController($rootScope,UserService) {
         var vm = this;
 
         // crud operations for Admin Panel

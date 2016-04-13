@@ -15,8 +15,6 @@
         function init() {
 
             vm.user= {};
-            // ncall to findUser
-
 
             UserService.findUserById($rootScope.currentUser._id)
 
@@ -25,8 +23,11 @@
                     function (res) {
 
                         vm.user = res;
-                        // new feature for emails
+                        // new added feature
+
+
                         vm.user.emails = vm.user.emails.join(",");
+
                         vm.user.phones = vm.user.phones.join(",s");
                     }
                 );
@@ -34,6 +35,16 @@
         }
         init();
 
+        vm.update = update;
+
+        function update(user) {
+            // get updated emails
+
+            user.emails = user.emails.trim().split(",");
+            user.phones = user.phones.trim().split(",");
+
+            UserService.updateUser($rootScope.currentUser._id, user).then(updateProfilePage);
+        }
 
         function updateProfilePage(response) {
 
@@ -50,20 +61,5 @@
                 });
             }
         }
-
-
-        // updating of the user
-        vm.update = update;
-
-        function update(user) {
-
-            user.emails = user.emails.trim().split(",");
-            user.phones = user.phones.trim().split(",");
-
-            UserService.updateUser($rootScope.currentUser._id, user).then(updateProfilePage);
-        }
-
-
-
     }
 })();

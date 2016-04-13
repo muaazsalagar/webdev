@@ -16,88 +16,110 @@
 
             </ul>
 
-            <form action="" id="my-form" field-sorting field-axis="y">
+            <form action="" id="my-form">
+                <div field-sorting field-sorting-callback="model.sortFields(start, end)" field-axis="y">
 
-                <div class="row" ng-repeat="field in model.fields">
+                    <div class="row" ng-repeat="field in model.fields">
 
-                    <div class="form-group col-md-8" ng-switch on="field.type">
+                        <div class="form-group col-md-8" ng-switch on="field.type">
 
-                        <!-- For text and date fields-->
-                        <div ng-switch-default>
+                            <!-- For text and date fields-->
+                            <div ng-switch-default>
 
-                            <label for="{{field._id}}">{{field.label}}</label>
-                            <input type="{{field.type}}" class="form-control"
-                                   placeholder="{{field.placeholder}}"
-                                   id="{{field._id}}">
+                                <label for="{{field._id}}">{{field.label}}</label>
+                                <input type="{{field.type}}" class="form-control"
+                                       placeholder="{{field.placeholder}}"
+                                       id="{{field._id}}">
 
-                        </div>
+                            </div>
 
-                        <div ng-switch-when="TEXTAREA">
+                            <div ng-switch-when="TEXTAREA">
 
-                            <label for="{{field._id}}">{{field.label}}</label>
+                                <label for="{{field._id}}">{{field.label}}</label>
                             <textarea class="form-control"
                                       placeholder="{{field.placeholder}}"
                                       id="{{field._id}}" rows="3"></textarea>
 
-                        </div>
-
-                        <!--For dropdown fields-->
-                        <div ng-switch-when="OPTIONS">
-
-                            <label for="{{field._id}}">{{field.label}}</label>
-
-                            <select name="{{field.label}}" id="{{field._id}}" class="form-control">
-
-                                <option ng-repeat = "option in field.options"
-                                        value="{{option.value}}">{{option.label}}</option>
-
-                            </select>
-                        </div>
-
-                        <!--For Checkbox-->
-                        <div ng-switch-when="CHECKBOXES">
-
-                            <label for="{{field._id}}">{{field.label}}</label>
-
-                            <div ng-repeat = "option in field.options">
-                                <input
-                                        type="checkbox"
-                                        name="{{field.label}}"
-                                        value="{{option.value}}">
-                                {{option.label}}
-                                <br>
                             </div>
-                        </div>
 
-                        <!--For radio buttons-->
-                        <div ng-switch-when="RADIOS">
+                            <div ng-switch-when="EMAIL">
 
-                            <label for="{{field._id}}">{{field.label}}</label>
+                                <label for="{{field._id}}">{{field.label}}</label>
+                                <input type="email" class="form-control"
+                                       placeholder="{{field.placeholder}}"
+                                       id="{{field._id}}" />
 
-                            <div ng-repeat = "option in field.options">
-                                <input
-                                        type="radio"
-                                        name="{{field.label}}"
-                                        value="{{option.value}}">
-                                {{option.label}}
-                                <br>
                             </div>
+
+                            <div ng-switch-when="PASSWORD">
+
+                                <label for="{{field._id}}">{{field.label}}</label>
+                                <input type="password" class="form-control"
+                                       placeholder="{{field.placeholder}}"
+                                       id="{{field._id}}" />
+
+                            </div>
+
+                            <!--For dropdown fields-->
+                            <div ng-switch-when="OPTIONS">
+
+                                <label for="{{field._id}}">{{field.label}}</label>
+
+                                <select name="{{field.label}}" id="{{field._id}}" class="form-control">
+
+                                    <option ng-repeat = "option in field.options"
+                                            value="{{option.value}}">{{option.label}}</option>
+
+                                </select>
+                            </div>
+
+                            <!--For Checkbox-->
+                            <div ng-switch-when="CHECKBOXES">
+
+                                <label for="{{field._id}}">{{field.label}}</label>
+
+                                <div ng-repeat = "option in field.options">
+                                    <input
+                                            type="checkbox"
+                                            name="{{field.label}}"
+                                            value="{{option.value}}">
+                                    {{option.label}}
+                                    <br>
+                                </div>
+                            </div>
+
+                            <!--For radio buttons-->
+
+                            <div ng-switch-when="RADIOS">
+
+                                <label for="{{field._id}}">{{field.label}}</label>
+
+                                <div ng-repeat = "option in field.options">
+                                    <input
+                                            type="radio"
+                                            name="{{field.label}}"
+                                            value="{{option.value}}">
+                                    {{option.label}}
+                                    <br>
+                                </div>
+                            </div>
+
                         </div>
 
-                    </div>
+                        <div class="col-md-4 text-center top-pad">
 
-                    <div class="col-md-4 text-center">
+                            <button ng-click= "model.editField($index)" class="btn btn-success">
+                                Edit
+                            </button>
+
+                            <button ng-click= "model.removeField($index)" class="btn btn-danger">
+                                Delete
+                            </button>
+
+                            <span class="glyphicon glyphicon-align-justify hover"></span>
 
 
-                        <button ng-click= "model.editField($index)" class="btn btn-success">
-                            Edit
-                        </button>
-
-                        <button ng-click= "model.removeField($index)" class="btn btn-danger">
-                            Delete
-                        </button>
-
-                        <span class="glyphicon glyphicon-align-justify hover"></span>
+                        </div>
 
                     </div>
 
@@ -122,12 +144,14 @@
 
                     <div class="col-md-4 text-center">
 
+
                         <button ng-click="model.addField()" class="btn btn-success">
                             Add
                         </button>
                         <span class="glyphicon glyphicon-align-justify hover"></span>
                         <span class="glyphicon glyphicon-align-justify hover not-visible"></span>
                         <span class="glyphicon glyphicon-align-justify hover not-visible"></span>
+
 
                     </div>
 
@@ -138,6 +162,10 @@
         </div>
 
     </div>
+
+
+    <!-- Modal when edit clicked -->
+
     <script type="text/ng-template" id="fieldEditModal.html">
 
         <div class="modal-header" ng-switch on="field.type">
@@ -170,6 +198,42 @@
         <form class="modal-body form" ng-switch on="field.type">
 
             <div class="row" ng-switch-when="TEXT">
+
+                <div class="form-group col-md-12">
+
+                    <label for="labelForField">Label</label>
+                    <input type="text" id="labelForField" class="form-control" ng-model="$parent.newLabel">
+
+                </div>
+
+                <div class="form-group col-md-12">
+
+                    <label for="placeholderForField">Placeholder</label>
+                    <input type="text" id="placeholderForField" class="form-control" ng-model="$parent.newPlaceholder">
+
+                </div>
+
+            </div>
+
+            <div class="row" ng-switch-when="EMAIL">
+
+                <div class="form-group col-md-12">
+
+                    <label for="labelForField">Label</label>
+                    <input type="text" id="labelForField" class="form-control" ng-model="$parent.newLabel">
+
+                </div>
+
+                <div class="form-group col-md-12">
+
+                    <label for="placeholderForField">Placeholder</label>
+                    <input type="text" id="placeholderForField" class="form-control" ng-model="$parent.newPlaceholder">
+
+                </div>
+
+            </div>
+
+            <div class="row" ng-switch-when="PASSWORD">
 
                 <div class="form-group col-md-12">
 

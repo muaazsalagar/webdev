@@ -29,6 +29,14 @@ module.exports = function (app, fieldModel) {
     // belonging to a form object whose id is equal to the formId path parameter
     app.delete("/api/assignment/form/:formId/field/:fieldId", deleteFieldByFieldIdAndFormId);
 
+    // update feature fields
+
+    app.put("/api/assignment/form/:formId/field", updateFields);
+
+
+
+
+
     function createFormField (req, res) {
 
         var field = req.body;
@@ -137,6 +145,39 @@ module.exports = function (app, fieldModel) {
                 }
             );
     }
+
+    // upadate fields
+
+
+    function updateFields(req, res) {
+
+        var formId = req.params.formId;
+
+        var startIndex = req.query.startIndex;
+
+        var endIndex = req.query.endIndex;
+
+        if(startIndex && endIndex) {
+
+            fieldModel.sortFields(formId, startIndex, endIndex)
+
+                .then(
+                    function (status) {
+
+                        res.json(200);
+
+                    },
+
+                    function (err) {
+
+                        res.json(400);
+                    }
+                )
+        }
+
+    }
+
+
 
     function deleteFieldByFieldIdAndFormId (req, res) {
 

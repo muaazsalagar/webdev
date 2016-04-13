@@ -1,77 +1,77 @@
- <div class="container-fluid">
+<div class="container-fluid">
 
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Forms</h1>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <h1 class="page-header">Forms</h1>
 
-            <ul class="nav nav-tabs" id="my-nav">
+        <ul class="nav nav-tabs" id="my-nav">
 
-                <li ng-class="{'active': model.$location.url() == '/forms'}" role="presentation">
-                    <a href="#/forms">Forms</a>
-                </li>
+            <li ng-class="{'active': model.$location.url() == '/forms'}" role="presentation">
+                <a href="#/forms">Forms</a>
+            </li>
 
-            </ul>
+        </ul>
 
-            <div class="table-responsive" id="forms-n-fields-tbl">
+        <div class="table-responsive" id="forms-n-fields-tbl">
 
-                <table class="table table-bordered table-striped">
+            <table class="table table-bordered table-striped">
 
-                    <thead class="thead-inverse">
-                    <tr>
-                        <th>
-                            <span class="glyphicon glyphicon-triangle-bottom hover"></span>
-                            Form Name
-                        </th>
-                        <th>
-                            <span class="glyphicon glyphicon-triangle-bottom hover"></span>
-                            Action
-                        </th>
-                    </tr>
-                    </thead>
+                <thead class="thead-inverse">
+                <tr>
+                    <th>
 
-                    <tbody>
-                    <tr>
-                        <td >
-                            <input type="text" placeholder="Name" class="form-control" ng-model="model.form.title">
-                        </td>
-                        <td class="col-md-2 right-align-cell">
+                        Form Name
+                    </th>
+                    <th>
 
-                            <button ng-click= "model.addForm(model.form)" class="btn btn-success">
-                                Add
-                            </button>
+                        Action
+                    </th>
+                </tr>
+                </thead>
 
-                            <button ng-click="model.updateForm(model.form)" class="btn btn-info">
-                                Update
-                            </button>
+                <tbody>
+                <tr>
+                    <td >
+                        <input type="text" placeholder="Name" class="form-control" ng-model="model.form.title">
+                    </td>
+                    <td class="col-md-2 right-align-cell">
 
-                        </td>
-                    </tr>
-                    <tr ng-repeat="form in model.forms">
-                        <td>
+                        <button ng-click= "model.addForm(model.form)" class="btn btn-success">
+                            Add
+                        </button>
 
-                            <a href="#/form/{{form._id}}/fields">{{form.title}}</a>
+                        <button ng-click="model.updateForm(model.form)" class="btn btn-info">
+                            Update
+                        </button>
 
-                        </td>
-                        <td>
+                    </td>
+                </tr>
+                <tr ng-repeat="form in model.forms">
+                    <td>
 
-                            <button ng-click= "model.selectForm($index)"  class="btn btn-info">
-                                Select
-                            </button>
+                        <a href="#/form/{{form._id}}/fields">{{form.title}}</a>
 
-                            <button ng-click="model.deleteForm($index)" class="btn btn-danger">
-                                Delete
-                            </button>
+                    </td>
+                    <td>
 
-                        </td>
-                    </tr>
-                    </tbody>
+                        <button ng-click= "model.selectForm($index)"  class="btn btn-info">
+                            Select
+                        </button>
 
-                </table>
+                        <button ng-click="model.deleteForm($index)" class="btn btn-danger">
+                            Delete
+                        </button>
 
-             </div>
+                    </td>
+                </tr>
+                </tbody>
 
+            </table>
 
         </div>
 
+
     </div>
+
+</div>
 
 

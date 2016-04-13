@@ -1,44 +1,42 @@
 /**
- * Created by sudeep on 3/17/16.
+ * Created by muaaz on 3/17/16.
  */
 
 "use strict";
-
+// changed as per new sortable
 (function () {
 
     angular
         .module("fieldSorting", [])
         .directive("fieldSorting", fieldSorting);
-    
+
     function fieldSorting() {
 
-        var start = null, end = null;
+        function link(scope, element) {
 
-        function link(scope, element, attributes) {
+            var start = null;
+            var end   = null;
 
-            var fieldAxis = attributes.fieldAxis;
-
-            $(element).sortable( {
-
-                axis: fieldAxis,
-
-                start: function (event, ui) {
-
-                    start = ui.item.index();
-                },
-                
-                stop: function (event, ui) {
-
-                    end = ui.item.index();
-                    var temp = scope.fields[start];
-                    scope.fields[start] = scope.fields[end];
-                    scope.fields[end] = temp;
-                    scope.$apply();
-                }
-            });
+            $(element)
+                .sortable({
+                    axis: "y",
+                    sort: function(event, ui) {
+                        start = ui.item.index();
+                    },
+                    stop: function(event, ui) {
+                        end = ui.item.index();
+                        if(start >= end) {
+                            start--;
+                        }
+                        scope.fieldSorting({start: start, end: end});
+                    }
+                });
         }
         return {
+            scope: {
+                fieldSorting: '&'
+            },
             link: link
-        }
+        };
     }
 })();

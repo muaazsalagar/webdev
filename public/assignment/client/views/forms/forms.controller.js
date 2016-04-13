@@ -32,13 +32,14 @@
 
         var toBeUpdatedIndex = -1;
 
-        //Event handler declarations
+        //crud operations from front end
+
         vm.addForm = addForm;
         vm.updateForm = updateForm;
         vm.deleteForm = deleteForm;
         vm.selectForm = selectForm;
 
-        //Event handler implementations
+        // functions implemented
         function addForm(form) {
 
             FormService.createFormForUser($rootScope.currentUser._id, form)

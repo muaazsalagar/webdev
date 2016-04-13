@@ -23,7 +23,7 @@
             findAllUsers:findAllUsers,
             updateUserByID:updateUserByID,
             findUserByID:findUserByID,
-            deleteUserById:deleteUserById
+            //deleteUserById:deleteUserById
         };
 
         return api;
