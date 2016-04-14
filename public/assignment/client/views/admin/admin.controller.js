@@ -42,7 +42,9 @@
 
         function selectUser($index) {
 
-            var user = vm.users[$index];
+          //  var user = vm.users[$index];
+
+            var user=$index;
 
             oldIndex = $index;
             // set the user field to the selected row
@@ -90,7 +92,10 @@
         // remove
         function removeUser($index) {
 
-            var user = vm.users[$index];
+            //var user = vm.users[$index];
+
+            var user=$index;
+
             UserService.deleteUserById(user._id)
 
                 .then(function (response) {

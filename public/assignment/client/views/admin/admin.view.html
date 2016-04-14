@@ -1,6 +1,6 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
 
-    <h1 class="page-header">Admin</h1>
+    <h1 class="page-header">Admin Panel</h1>
 
     <h2>Users</h2>
 
@@ -69,8 +69,16 @@
                         <input type="text" class="form-control" placeholder="Roles" ng-model="model.user.roles">
                     </td>
                     <td class="col-md-2">
-                        <span class="glyphicon glyphicon-plus glyphicon-big hover" ng-click="model.addUser(model.user)"></span>
-                        <span class="glyphicon glyphicon-ok glyphicon-big hover" ng-click="model.updateUser(model.user)"></span>
+
+                        <button ng-click= "model.addUser(model.user)" class="btn btn-success">
+                            Add
+                        </button>
+
+                        <button ng-click="model.updateUser(model.user)" class="btn btn-info">
+                            Update
+                        </button>
+
+
                     </td>
                 </tr>
                 <tr ng-repeat="user in model.users | orderBy:model.predicate:model.reverse">
@@ -90,8 +98,16 @@
                         {{user.roles.join(', ')}}
                     </td>
                     <td class="col-md-2">
-                        <span class="glyphicon glyphicon-remove glyphicon-big hover" ng-click="model.removeUser(user)"></span>
-                        <span class="glyphicon glyphicon-pencil glyphicon-big hover" ng-click="model.selectUser(user)"></span>
+
+                        <button ng-click= "model.selectUser(user)"  class="btn btn-info">
+                            Select
+                        </button>
+
+                        <button ng-click="model.removeUser(user)" class="btn btn-danger">
+                            Delete
+                        </button>
+
+
                     </td>
                 </tr>
 
