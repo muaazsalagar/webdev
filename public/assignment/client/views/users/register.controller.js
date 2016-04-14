@@ -10,34 +10,33 @@
 
     function RegisterController(UserService, $rootScope, $location) {
 
-        var vm = this;
+        // for the registration of the user
 
-        vm.register = register;
+            var vm = this;
 
+            vm.register = register;
 
-        // for the registration of th user
+            function register(user) {
 
-        function register(user) {
-                // new feature to added with emails support
+                // get emails seperated:
 
-            console.log("in Register User");
-            console.log(user);
+                user.emails = user.emails.trim().split(",");
 
+                UserService.register(user).then(function(users) {
 
-            user.emails = user.emails.split(",");
+                    // get by username
+                    UserService.findUserByUsername(user.username).then(function (registeredUser) {
 
-            UserService.createUser(user).then(function(users) {
+                        // set session
 
-                UserService.findUserByUsername(user.username).then(function (newUser) {
+                        UserService.setCurrentUser(registeredUser);
 
-                    // set the Seession
-                    console.log("User Registered");
+                        // step 2 redirect
 
-                    UserService.setCurrentUser(newUser);
-
-                    $location.url("/profile");
+                        $location.url("/profile");
+                    });
                 });
-            });
-        }
+            }
+
     }
 })();

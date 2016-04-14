@@ -1,6 +1,6 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
 
-    <h1 class="page-header">Admin Panel</h1>
+    <h1 class="page-header">Admin</h1>
 
     <h2>Users</h2>
 
@@ -12,18 +12,34 @@
 
                 <thead>
                 <tr>
-                    <th>
+                    <th ng-click="model.order('username')" class="hover">
+                        <span class="sortorder glyphicon glyphicon-triangle-top hover"
+                              ng-show="model.predicate === 'username' && !model.reverse"
+                              ng-class="{reverse:!model.reverse}"></span>
+                        <span class="sortorder glyphicon glyphicon-triangle-bottom hover"
+                              ng-show="model.predicate === 'username' && model.reverse"
+                              ng-class="{reverse:model.reverse}"></span>
                         Username
                     </th>
                     <th>
                         Password
                     </th>
-                    <th>
-                        <span class="glyphicon"></span>
+                    <th ng-click="model.order('firstName')" class="hover">
+                        <span class="sortorder glyphicon glyphicon-triangle-top hover"
+                              ng-show="model.predicate === 'firstName' && !model.reverse"
+                              ng-class="{reverse:!model.reverse}"></span>
+                        <span class="sortorder glyphicon glyphicon-triangle-bottom hover"
+                              ng-show="model.predicate === 'firstName' && model.reverse"
+                              ng-class="{reverse:model.reverse}"></span>
                         First Name
                     </th>
-                    <th>
-                        <span class="glyphicon"></span>
+                    <th ng-click="model.order('lastName')" class="hover">
+                        <span class="sortorder glyphicon glyphicon-triangle-top hover"
+                              ng-show="model.predicate === 'lastName' && !model.reverse"
+                              ng-class="{reverse:!model.reverse}"></span>
+                        <span class="sortorder glyphicon glyphicon-triangle-bottom hover"
+                              ng-show="model.predicate === 'lastName' && model.reverse"
+                              ng-class="{reverse:model.reverse}"></span>
                         Last Name
                     </th>
                     <th>
@@ -43,61 +59,39 @@
                     <td class="col-md-2">
                         <input type="password" class="form-control" placeholder="Password" ng-model="model.user.password">
                     </td>
-
                     <td class="col-md-2">
                         <input type="text" class="form-control" placeholder="First Name" ng-model="model.user.firstName">
                     </td>
-
-
                     <td class="col-md-2">
                         <input type="text" class="form-control" placeholder="Last Name" ng-model="model.user.lastName">
                     </td>
-
                     <td class="col-md-2">
                         <input type="text" class="form-control" placeholder="Roles" ng-model="model.user.roles">
                     </td>
-
                     <td class="col-md-2">
-
-                        <button ng-click= "model.addUser(model.user)" class="btn btn-success">
-                            Add
-                        </button>
-
-                        <button ng-click="model.updateUser(model.user)" class="btn btn-info">
-                            Update
-                        </button>
-
-
+                        <span class="glyphicon glyphicon-plus glyphicon-big hover" ng-click="model.addUser(model.user)"></span>
+                        <span class="glyphicon glyphicon-ok glyphicon-big hover" ng-click="model.updateUser(model.user)"></span>
                     </td>
-
                 </tr>
-                <tr ng-repeat="user in model.users">
+                <tr ng-repeat="user in model.users | orderBy:model.predicate:model.reverse">
                     <td class="col-md-2">
-                        <input type="text" name="username" ng-model="user.username" class="form-control">
+                        {{user.username}}
                     </td>
                     <td class="col-md-2">
-                        <input type="password" name="password" ng-model="user.password" class="form-control">
+                        <input type="password" ng-model="user.password" class="form-control" readonly>
                     </td>
                     <td class="col-md-2">
-                        <input type="text" name="firstName" ng-model="user.firstName" class="form-control">
+                        {{user.firstName}}
                     </td>
                     <td class="col-md-2">
-                        <input type="text" name="lastName" ng-model="user.lastName" class="form-control">
+                        {{user.lastName}}
                     </td>
                     <td class="col-md-2">
-                        <input type="text" name="roles" ng-model="user.roles" class="form-control">
+                        {{user.roles.join(', ')}}
                     </td>
                     <td class="col-md-2">
-
-                        <button ng-click= "model.selectUser($index)"  class="btn btn-info">
-                            Select
-                        </button>
-
-                        <button ng-click="model.removeUser($index)" class="btn btn-danger">
-                            Delete
-                        </button>
-
-
+                        <span class="glyphicon glyphicon-remove glyphicon-big hover" ng-click="model.removeUser(user)"></span>
+                        <span class="glyphicon glyphicon-pencil glyphicon-big hover" ng-click="model.selectUser(user)"></span>
                     </td>
                 </tr>
 

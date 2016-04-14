@@ -16,6 +16,7 @@
             createUser:createUser,
             setCurrentUser:setCurrentUser,
             getCurrentUser:getCurrentUser,
+            logout: logout,
 
             // Api
             findUserByCredentials:findUserByCredentials,
@@ -57,12 +58,19 @@
 
         }
 
-        function setCurrentUser (user) {
+        function getCurrentUser() {
+
+            return $http.get("/api/assignment/user/loggedin");
+        }
+
+        function setCurrentUser(user) {
+
             $rootScope.currentUser = user;
         }
 
-        function getCurrentUser () {
-            return $rootScope.currentUser;
+        function logout() {
+
+            return $http.post("/api/assignment/user/logout")
         }
 
         function findUserByUsername(username)

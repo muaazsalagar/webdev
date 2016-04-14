@@ -89,14 +89,12 @@ module.exports = function(app, userModel, uuid) {
 
     function login(req, res) {
 
-        console.log("In login");
         var user = req.user;
         res.json(user);
+
     }
 
-
     function loggedIn(req, res) {
-        console.log("In loggedIn");
 
         res.send(req.isAuthenticated() ? req.user : null);
     }
@@ -106,6 +104,8 @@ module.exports = function(app, userModel, uuid) {
         req.logOut();
         res.send(200);
     }
+
+
 
     // passportJS user methods
     function serializeUser(user, done) {
@@ -222,7 +222,6 @@ module.exports = function(app, userModel, uuid) {
             );
 
     }
-
 
 
 
@@ -438,8 +437,6 @@ module.exports = function(app, userModel, uuid) {
     }
 
 
-
-
     // delete by ID
 
     function deleteUserById(req, res) {
@@ -472,7 +469,6 @@ module.exports = function(app, userModel, uuid) {
 
 
     // to check if user is admin first this will be used for each admin realted crud opeation
-
 
     function isAdmin(user) {
 

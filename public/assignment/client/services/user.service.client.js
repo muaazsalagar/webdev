@@ -13,17 +13,19 @@
     function UserService($http, $q, $rootScope) {
 
         var service = {
+
             login:login,
+            logout: logout,
+            getCurrentUser: getCurrentUser,
+            setCurrentUser: setCurrentUser,
             register:register,
             findUserByUsername: findUserByUsername,
             findAllUsers: findAllUsers,
             createUser: createUser,
             deleteUserById: deleteUserById,
             updateUser: updateUser,
-            findUserById: findUserById,
-            getCurrentUser: getCurrentUser,
-            setCurrentUser: setCurrentUser,
-            logout: logout
+            findUserById: findUserById
+
         };
         return service;
 
@@ -34,6 +36,10 @@
 
         }
 
+        function logout() {
+
+            return $http.post("/api/assignment/user/logout")
+        }
 
         function getCurrentUser() {
 
@@ -45,10 +51,6 @@
             $rootScope.currentUser = user;
         }
 
-        function logout() {
-
-            return $http.post("/api/assignment/user/logout")
-        }
 
         // register
 
