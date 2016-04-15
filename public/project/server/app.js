@@ -1,12 +1,12 @@
 /**
  * Created by muaazsalagar on 2/20/16.
  */
-module .exports=function(app,uuid)
+module .exports=function(app, db, mongoose, uuid)
 
 {
     // models
-    var UserModel=require("./model/user/user.model.js")();
-    var FormModel=require("./model/form/form.model.js")();
+    var UserModel=require("./model/user/user.model.js")(db, mongoose);
+    var FormModel=require("./model/form/form.model.js")(db, mongoose);
     var PropertyModel=require("./model/property/property.model.js")();
     var ReviewModel=require("./model/review/review.model.js")();
 

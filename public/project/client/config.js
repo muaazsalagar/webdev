@@ -25,12 +25,19 @@
             .when("/profile", {
                 templateUrl:"client/views/users/profile.view.html",
                 controller:"ProfileController",
-                controllerAs:"model"
+                controllerAs:"model",
+                resolve: {
+                    checkLoggedIn: checkLoggedIn
+                }
             })
             .when("/admin", {
                 templateUrl:"client/views/admin/admin.view.html",
                 controller:"AdminController",
-                controllerAs:"model"
+                controllerAs:"model",
+                resolve: {
+                    checkAdmin: checkAdmin
+                }
+
             })
 
             .when("/forms", {
@@ -57,4 +64,57 @@
                 redirectTo:"/home"
             });
     }
+
+
+    // session mgmt functions
+
+    function checkLoggedIn(UserService, $q, $location) {
+
+        var deferred = $q.defer();
+
+        UserService.getCurrentUser().then(function (response) {
+
+            var currentUser = response.data;
+
+            if (currentUser) {
+
+                UserService.setCurrentUser(currentUser);
+                deferred.resolve();
+
+            } else {
+
+                deferred.reject();
+                $location.url("/home");
+            }
+        });
+
+        return deferred.promise;
+    }
+
+
+    var checkAdmin = function($q, $timeout, $location, UserService)
+    {
+        var deferred = $q.defer();
+
+        UserService.getCurrentUser().then(function (response) {
+
+            var currentUser = response.data;
+
+            if (currentUser && currentUser.roles.indexOf('admin') != -1) {
+
+                UserService.setCurrentUser(currentUser);
+                deferred.resolve();
+
+            } else {
+
+                deferred.reject();
+                $location.url("/home");
+            }
+        });
+
+        return deferred.promise;
+    };
+
+
+
 })();

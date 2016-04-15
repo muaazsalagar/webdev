@@ -3,41 +3,35 @@
  */
 
 
-(function () {
+"use strict";
+
+(function() {
     angular
         .module("BanquetApp")
-        .controller("LoginController",LoginController);
+        .controller("LoginController", LoginController);
 
-    function LoginController($location, UserService){
+    function LoginController(UserService, $location) {
 
-        // Declaring Virtual model
-        var vm=this;
-        vm.login=login;
+        var vm = this;
 
-        //console.log("In Register controller");
+        vm.login = login;
 
+        function login(user) {
 
-        function login(username, password){
-            console.log("Login Called");
-
-            UserService.findUserByCredentials(username,password).then(isUserVerified);
-
+            // call User Service login
+            UserService.login(user).then(isUserPresent);
         }
 
+        // check if already present
+        function isUserPresent(response) {
 
-        function isUserVerified(response){
-            if(response)
-            {
+            if(response) {
+
                 UserService.setCurrentUser(response);
+
+                // if success from user present change url to profile
                 $location.url("/profile");
-
             }
-            else {
-
-                console.log("Not a Valid User!");
-            }
-
         }
-
     }
 })();

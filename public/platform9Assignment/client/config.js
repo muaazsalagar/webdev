@@ -13,10 +13,9 @@
             })
 
             .when("/edit", {
-               /* templateUrl: "client/views/colors/colors.view.html",
+                templateUrl: "client/views/colors/colors.view.html",
                 controller: "ColorsController",
                 controllerAs: "model"
-               */ redirectTo:"/home"
 
             })
 

@@ -2,49 +2,41 @@
  * Created by muaazsalagar on 2/20/16.
  */
 
-(function () {
+
+(function() {
     angular
         .module("BanquetApp")
-        .controller("RegisterController",RegisterController);
+        .controller("RegisterController", RegisterController);
 
-    function RegisterController($location, UserService, $rootScope){
-        
-        var vm=this;
-        
-        vm.register=register;
-        vm.$location=$location;
+    function RegisterController(UserService, $rootScope, $location) {
 
-        
-        (function init() {
+        // for the registration of the user
 
-        })();
-        //console.log("In Register conyroller");
+            var vm = this;
 
-        function register(username, password, vpassword, emailId){
-            console.log("Register Called");
+            vm.register = register;
 
-            var user={
-                "_id":0,
-                "username":username,
-                "password":password,
-                "roles": ["student"],
-                "emailId":emailId
-            };
+            function register(user) {
 
+                // get emails seperated:
 
-            UserService.createUser(user, function(response) {
+                user.emails = user.emails.trim().split(",");
 
-                //console.log("response from service"+response.username);
-                if(response){
-                    console.log(response);
-                    UserService.setCurrentUser(response);
-                    $location.url("/profile");
+                UserService.register(user).then(function(users) {
 
-                }
+                    // get by username
+                    UserService.findUserByUsername(user.username).then(function (registeredUser) {
 
-            });
+                        // set session
 
-        }
+                        UserService.setCurrentUser(registeredUser);
+
+                        // step 2 redirect
+
+                        $location.url("/profile");
+                    });
+                });
+            }
 
     }
 })();

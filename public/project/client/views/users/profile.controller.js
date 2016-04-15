@@ -1,85 +1,60 @@
 /**
  * Created by muaazsalagar on 2/20/16.
  */
-(function () {
+"use strict";
+
+(function() {
     angular
         .module("BanquetApp")
-        .controller("ProfileController",ProfileController);
+        .controller("ProfileController", ProfileController);
 
-    function ProfileController($location, UserService, $rootScope){
+    function ProfileController($rootScope, UserService) {
 
-        var vm=this;
-        
-        (function init () {
+        var vm = this;
 
-        })();
+        function init() {
 
-        console.log("current User set is: ");
-        console.log($rootScope.currentUser._id);
+            vm.user= {};
 
-        console.log($rootScope.currentUser);
+            UserService.findUserById($rootScope.currentUser._id)
 
+                .then(function (res) {
 
-        vm.username=$rootScope.currentUser.username;
-        vm.firstName=$rootScope.currentUser.firstName;
-        vm.lastName=$rootScope.currentUser.lastName;
-        vm.emailId=$rootScope.currentUser.emailId;
+                        vm.user = res;
+                        // new added feature
+                        vm.user.emails = vm.user.emails.join(",");
+                        vm.user.phones = vm.user.phones.join(",s");
+                    }
+                );
 
+        }
+        init();
 
-        // method declarations:
-        vm.update=update;
+        vm.update = update;
 
-        //vm.$location=$location;
+        function update(user) {
+            // get updated emails
 
-        console.log("Data Set for Profile");
+            user.emails = user.emails.trim().split(",");
+            user.phones = user.phones.trim().split(",");
 
-        console.log("In Profile Controller");
+            UserService.updateUser($rootScope.currentUser._id, user).then(updateProfilePage);
+        }
 
-        function update(username,password,firstName, lastName, emailId){
-            var userLoggedIn=$rootScope.currentUser;
+        function updateProfilePage(response) {
 
-            var LoggedInUserId=userLoggedIn._id;
+            if (response === "Updated") {
 
-            console.log("User Logged in ID:  ");
-            console.log(userLoggedIn);
+                UserService.findUserById($rootScope.currentUser._id).then (function (updatedUser) {
 
-            var user={
-                "_id":LoggedInUserId,
-                "username":username,
-                "password":password,
-                "firstName":firstName,
-                "lastName":lastName,
-                "emailId":emailId
-            };
+                    vm.user.username = updatedUser.username;
+                    vm.user.firstName = updatedUser.firstName;
+                    vm.user.lastName = updatedUser.lastName;
+                    vm.user.emails = updatedUser.emails;
 
-
-            UserService.updateUserByID(LoggedInUserId,user).then(function (response) {
-
-
-                console.log("Response From Service:  Updated the User");
-                if(response)
-                {
-
-                    UserService.findUserByID(LoggedInUserId).then(function (response){
-
-                        UserService.setCurrentUser(response);
-                        vm.username=$rootScope.currentUser.username;
-                        vm.firstName=$rootScope.currentUser.firstName;
-                        vm.lastName=$rootScope.currentUser.lastName;
-                        vm.emailId=$rootScope.currentUser.emailId;
-                        console.log("response");
-                        console.log("Updated User");
-
-                    });
-
-                }
-                console.log(response);
-
-            });
-
-
-        };
-
-
+                    UserService.setCurrentUser(updatedUser);
+                });
+            }
+        }
     }
 })();

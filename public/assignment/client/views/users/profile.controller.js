@@ -18,16 +18,11 @@
 
             UserService.findUserById($rootScope.currentUser._id)
 
-                .then(
-
-                    function (res) {
+                .then(function (res) {
 
                         vm.user = res;
                         // new added feature
-
-
                         vm.user.emails = vm.user.emails.join(",");
-
                         vm.user.phones = vm.user.phones.join(",s");
                     }
                 );
