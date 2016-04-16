@@ -4,8 +4,11 @@
 
 "use strict"
 
-var mock = require("./property.mock.json");
-module.exports = function () {
+module.exports = function (db,mongoose) {
+
+    var propertySchema = require("./property.schema.server.js")(mongoose);
+    var propertyModel = mongoose.model('Property', propertySchema);
+
 
     var api = {
 
@@ -20,106 +23,85 @@ module.exports = function () {
 
     };
     return api;
+
+
+    function createProperty(property) {
+
+        return propertyModel.create(property);
+
+
+    }
+
+
+    function findAllPropertys() {
+        return propertyModel.find({});
+
+
+    }
+
+    function findPropertyById(PropertyById) {
+        //userID = parseInt(userID);
+        console.log("IN MODEL "+PropertyById);
+        return propertyModel.findById(PropertyById);
+
+    }
+
+
+    function deletePropertyByID(userID) {
+
+        userID = parseInt(userID);
+        propertyModel.findByIdAndRemove(userID);
+    }
+
+
+    function updatePropertyById(userId, user) {
+
+        userId = parseInt(userId);
+        propertyModel.findByIdAndUpdate(userId, user);
+
+    }
+
+
+    function findPropertyByPropertyname(userName) {
+
+        return propertyModel.findOne({owner: userName});
+    }
+
+
+    function findPropertyByCredentials(credentials) {
+
+        return propertyModel.findOne({owner: credentials.username});
+    }
+
+    function getPropertiesInCity(city) {
+        console.log("In Model Property ");
+
+        var propertiesInCity = [];
+        for (var i in property) {
+            var property = property[i];
+            var propertyCity = null;
+            propertyCity = property.address.city;
+            if (propertyCity.toUpperCase() === city.toUpperCase()) {
+                propertiesInCity.push(property);
+                //console.log("Cheking for city ");
+                //console.log(propertyCity);
+            }
+        }
+
+        // callback(propertiesInCity);
+        //return propertiesInCity;
+
+
+        // currently return all
+        return propertyModel.find(
+            {
+                address: {
+                    city: city
+                }
+            }
+        );
+
+
+    }
+
 };
-
-
-function createProperty(user) {
-
-    mock.push(user);
-    // console.log("after creation, users are:")
-    console.log(mock);
-
-    return mock;
-
-}
-
-
-function findAllPropertys() {
-    return mock;
-
-
-}
-
-function findPropertyById(userID) {
-    userID = parseInt(userID);
-
-    for (var i in mock) {
-        if (mock[i]._id == userID) {
-            console.log("Match Found");
-            return mock[i];
-        }
-    }
-    return null;
-
-}
-
-
-function deletePropertyByID(userID) {
-
-    userID = parseInt(userID);
-    for (var i in mock) {
-        if (mock[i]._id == userId) {
-            mock.splice(i, 1);
-
-            return mock;
-        }
-    }
-
-}
-
-
-function updatePropertyById(userId, user) {
-
-    userId = parseInt(userId);
-    for (var i in mock) {
-        if (mock[i]._id == userId) {
-            console.log("Match Found");
-            mock[i] = user;
-            return mock;
-        }
-    }
-
-}
-
-
-function findPropertyByPropertyname(userName) {
-    for (var i in mock) {
-        if (mock[i].username == userName) {
-            return mock[i];
-
-        }
-    }
-    return null;
-}
-
-
-function findPropertyByCredentials(credentials) {
-    for (var i in mock) {
-        if (mock[i].username == credentials.username &&
-            mock[i].password == credentials.password) {
-            return mock[i];
-
-        }
-    }
-    return null;
-}
-
-function getPropertiesInCity(city) {
-console.log("In Model Property ");
-
-    var propertiesInCity = [];
-    for (var i in mock) {
-        var property = mock[i];
-        var propertyCity = null;
-        propertyCity = property.address.city;
-        if (propertyCity.toUpperCase() === city.toUpperCase()) {
-            propertiesInCity.push(property);
-            //console.log("Cheking for city ");
-            //console.log(propertyCity);
-        }
-    }
-
-   // callback(propertiesInCity);
-    return propertiesInCity;
-}
-

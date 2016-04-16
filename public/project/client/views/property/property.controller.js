@@ -19,13 +19,15 @@
 
             PropertyService.findPropertyByID(propertyId).then(function (response) {
 
+
             vm.property=response;
+                console.log("Success1");
 
             });
 
             ReviewService.findReviewByPropertyId(propertyId).then(function (response) {
             vm.reviews=response;
-
+            console.log("Success2");
             });
 
 

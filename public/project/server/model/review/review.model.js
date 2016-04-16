@@ -4,8 +4,14 @@
 
 "use strict"
 
-var mock =require("./review.mock.json");
-module.exports= function () {
+
+
+module.exports= function (db,mongoose) {
+
+    var ReviewSchema = require("./review.schema.server.js")(mongoose);
+
+    var reviewModel = mongoose.model('Review', ReviewSchema);
+
 
     var api={
 
@@ -14,123 +20,102 @@ module.exports= function () {
         findReviewById:findReviewById,
         updateReviewById:updateReviewById,
         deleteReviewByID:deleteReviewByID,
+        findReviewByUserId:findReviewByUserId,
+
+        // unused functions
+
         findReviewByReviewname:findReviewByReviewname,
         findReviewByCredentials:findReviewByCredentials,
         findReviewByPropertyId:findReviewByPropertyId
 
+
+
     };
+
     return api;
+
+
+    function createReview(review){
+
+        console.log("Review Created!! ");
+        console.log(mock);
+
+        return reviewModel.create(review);
+    }
+
+
+    function findAllReviews(){
+        return reviewModel.find({});
+
+
+    }
+
+    function  findReviewById(reviewID)
+    {
+        reviewID=parseInt(reviewID);
+
+        return reviewModel.findById(reviewID);
+
+    }
+
+    function  findReviewByPropertyId(propertyID)
+    {
+
+        return reviewModel.find({property_id:propertyID});
+        //  return reviewsForProperty;
+
+    }
+
+    function  findReviewByUserId(userID)
+    {
+
+        return reviewModel.find({user_id:userID});
+        //  return reviewsForProperty;
+    }
+
+    function  deleteReviewByID(reviewID){
+
+        reviewID= parseInt(reviewId);
+        return (propertyModel.findByIdAndRemove(reviewID));
+    }
+
+
+    function  updateReviewById(reviewId, review){
+
+        reviewId= parseInt(reviewId);
+        return reviewModel.findOneAndUpdate(reviewId,review);
+    }
+
+
+
+    function findReviewByReviewname(reviewName)
+    {
+
+        // no need
+        for (var i in mock)
+        {
+            if(mock[i].reviewname==reviewName)
+            {
+                return mock[i];
+
+            }
+        }
+        return null;
+    }
+
+
+
+    function findReviewByCredentials(credentials)
+    {
+        for (var i in mock)
+        {
+            if(mock[i].reviewname==credentials.reviewname &&
+                mock[i].password==credentials.password)
+            {
+                return mock[i];
+
+            }
+        }
+        return null;
+    }
 };
-
-function createReview(review){
-
-    mock.push(review);
-   // console.log("after creation, reviews are:")
-    console.log(mock);
-
-    return mock;
-
-}
-
-
-function findAllReviews(){
-    return mock;
-
-
-}
-
-function  findReviewById(reviewID)
-{
-    reviewID=parseInt(reviewID);
-
-    for(var i in mock)
-    {
-        if (mock[i]._id==reviewID)
-        {
-            console.log("Match Found");
-            return mock[i];
-        }
-    }
-    return null;
-
-}
-
-function  findReviewByPropertyId(propertyID)
-{
-    propertyID=parseInt(propertyID);
-    var reviewsForProperty=[];
-    for(var i in mock)
-    {
-        if (mock[i].property_id==propertyID)
-        {
-            console.log("Match for review");
-            reviewsForProperty.push(mock[i]);
-
-        }
-    }
-    return reviewsForProperty;
-
-}
-
-
-function  deleteReviewByID(reviewID){
-
-    reviewID= parseInt(reviewID);
-    for (var i in mock)
-    {
-        if(mock[i]._id==reviewId)
-        {
-            mock.splice(i,1);
-
-            return mock;
-        }
-    }
-
-}
-
-
-function  updateReviewById(reviewId, review){
-
-     reviewId= parseInt(reviewId);
-    for (var i in mock)
-    {
-        if(mock[i]._id==reviewId)
-        {
-
-            mock[i]=review;
-            return mock;
-        }
-    }
-
-}
-
-
-
-function findReviewByReviewname(reviewName)
-{
-    for (var i in mock)
-    {
-        if(mock[i].reviewname==reviewName)
-        {
-            return mock[i];
-
-        }
-    }
-    return null;
-}
-
-
-
-function findReviewByCredentials(credentials)
-{
-    for (var i in mock)
-    {
-        if(mock[i].reviewname==credentials.reviewname &&
-            mock[i].password==credentials.password)
-        {
-            return mock[i];
-
-        }
-    }
-    return null;
-}

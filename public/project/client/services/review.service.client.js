@@ -141,7 +141,7 @@
         {
             console.log("Client Calling the findReviewByPropertyId to the server");
             var deferred=$q.defer();
-            var url="/api/banquet/property/reviews/:id";
+            var url="/api/banquet/property/all_reviews/:id";
             url=url.replace(":id",propertyId);
             console.log(url);
             console.log(propertyId);

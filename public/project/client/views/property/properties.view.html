@@ -4,8 +4,7 @@
         <div class="container-fluid">
             <div class="jumbotron">
                 <img src="http://lorempixel.com/1000/400/city/"
-                  class="img-responsive	"/>
-
+                     class="img-responsive"/>
 
             </div>
 
@@ -17,164 +16,165 @@
         <div class="col-md-12">
             <!-- Property Background Image-->
 
-            <div class="row">
-                <div class="col-md-10">
-                    <div class="row">
-                        <div class="col-md-4 owner">
-                            <!-- Property Host Profile Image-->
-                            <img alt="Bootstrap Image Preview" src="http://lorempixel.com/300/300/people/"
-                                 class="img-circle"/>
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-4 owner">
+                        <!-- Property Host Profile Image-->
+                        <img alt="Bootstrap Image Preview" src="http://lorempixel.com/300/300/people/"
+                             class="img-circle"/>
 
-                            <h4>Hosted By:</h4>
-                            <h4>
-                                {{model.property.owner}}
-                            </h4>
-                        </div>
-
-                        <!-- Property Title and Address-->
-
-                        <div class="col-md-8">
-                            <h3 class="text-left">
-                                {{model.property.title}}
-                            </h3>
-                            <address>
-                                <strong>Address:, Inc.</strong><br/> 795 Folsom Ave, Suite 600<br/> Boston,
-                                MA
-                                94107<br/>
-                            </address>
-                            <h3>
-                                {{model.property.cost | currency:"$"}}
-                            </h3>
-
-                        </div>
+                        <h4>Hosted By:</h4>
+                        <h4>
+                            {{model.property.owner}}
+                        </h4>
                     </div>
 
-                    <!-- Property Features-->
-                    <h3>Amenities Available:</h3>
-                    <div class="row">
-                        <div class="col-md-12">
+                    <!-- Property Title and Address-->
 
-                            <div class="table-responsive">
-
-                                <table class="table table-bordered table-striped">
-
-                                    <thead class="thead-inverse">
-                                    <tr>
-                                        <th>
-                                            <span class="glyphicon glyphicon-triangle-bottom hover"></span>
-                                            Feature
-                                        </th>
-                                        <th>
-                                            <span class="glyphicon glyphicon-triangle-bottom hover"></span>
-                                            Availability
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-
-                                    <tr ng-repeat="facility in model.property.facilities">
-                                        <td>
-                                            {{facility}}
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-success">
-                                                Yes
-                                            </button>
-
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                    <br> <br>
-                    <!-- More Images of the Property-->
-                    <h2>Browse more photos</h2>
-                    <img alt="Bootstrap Image Preview" src="http://lorempixel.com/700/400/city/"/>
-
-
-                    <!-- Review Section about the property Host-->
-
-                    <div class="row ">
-                        <div class="col-md-12">
-                            <h3>Reviews: </h3>
-                            <!-- Review Section List of the property -->
-                            <div class="row ">
-                                <div class="col-md-4">
-                                    <h4>Summary </h4>
-
-                                </div>
-                            </div>
-
-                            <div class="row ">
-                                <div class="col-md-8">
-                                    <h4>Overall Ratings: 4/5 Etc </h4>
-
-                                </div>
-                            </div>
-
-
-                            <div class="row">
-                                <div class="col-md-12 pre-scrollable PropertyReviews">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-striped">
-                                            <tbody>
-                                            <tr ng-repeat="review in model.reviews">
-
-                                                <td>
-                                                    <img alt="Bootstrap Image Preview"
-                                                         src="http://lorempixel.com/300/300/people/"
-                                                         class="img-circle"/>
-                                                </td>
-
-                                                <td>
-                                                    <blockquote>
-                                                        <p>
-                                                            "{{review.review}}"
-                                                        </p>
-                                                    </blockquote>
-                                                </td>
-                                            </tr>
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
+                    <div class="col-md-8">
+                        <h3 class="text-left">
+                            {{model.property.title}}
+                        </h3>
+                        <address>
+                            <strong>Address:, Inc.</strong><br/> 795 Folsom Ave, Suite 600<br/> Boston,
+                            MA
+                            94107<br/>
+                        </address>
+                        <h3>
+                            {{model.property.cost | currency:"$"}}
+                        </h3>
 
                     </div>
+                </div>
 
-                    <br> <br>
-                    <h3> More About Host:
-                    </h3>
-                    <div class="row">
+                <!-- Property Features-->
+                <h3>Amenities Available:</h3>
+                <div class="row">
+                    <div class="col-md-12">
 
-                        <!-- More information about host of the property / Profile of host-->
-                        <div class="col-md-4">
-                            <img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/"
-                                 class="img-circle"/>
-                        </div>
-                        <div class="col-md-8">
+                        <div class="table-responsive">
 
-                            <!-- Summary of Host-->
-                            <h4>
-                                Hello there My name John Doe
-                                I am happy to assist you for hositng your event!
-                            </h4>
+                            <table class="table table-bordered table-striped">
 
+                                <thead class="thead-inverse">
+                                <tr>
+                                    <th>
+                                        <span class="glyphicon glyphicon-triangle-bottom hover"></span>
+                                        Feature
+                                    </th>
+                                    <th>
+                                        <span class="glyphicon glyphicon-triangle-bottom hover"></span>
+                                        Availability
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <tr ng-repeat="facility in model.property.facilities">
+                                    <td>
+                                        {{facility}}
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-success">
+                                            Yes
+                                        </button>
+
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
 
+                <br> <br>
+                <!-- More Images of the Property-->
+                <h2>Browse more photos</h2>
+                <img alt="Bootstrap Image Preview" src="http://lorempixel.com/700/400/city/"/>
 
-                <!-- Booking tab fixed right Side -->
 
-                <div class="col-md-2">
+                <!-- Review Section about the property Host-->
+
+                <div class="row ">
+                    <div class="col-md-12">
+                        <h3>Reviews: </h3>
+                        <!-- Review Section List of the property -->
+                        <div class="row ">
+                            <div class="col-md-4">
+                                <h4>Summary </h4>
+
+                            </div>
+                        </div>
+
+                        <div class="row ">
+                            <div class="col-md-8">
+                                <h4>Overall Ratings: 4/5 Etc </h4>
+
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-12 pre-scrollable PropertyReviews">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped">
+                                        <tbody>
+                                        <tr ng-repeat="review in model.reviews">
+
+                                            <td>
+                                                <img alt="Bootstrap Image Preview"
+                                                     src="http://lorempixel.com/300/300/people/"
+                                                     class="img-circle"/>
+                                            </td>
+
+                                            <td>
+                                                <blockquote>
+                                                    <p>
+                                                        "{{review.review}}"
+                                                    </p>
+                                                </blockquote>
+                                            </td>
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <br> <br>
+                <h3> More About Host:
+                </h3>
+                <div class="row">
+
+                    <!-- More information about host of the property / Profile of host-->
+                    <div class="col-md-4">
+                        <img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/"
+                             class="img-circle"/>
+                    </div>
+                    <div class="col-md-8">
+
+                        <!-- Summary of Host-->
+                        <h4>
+                            Hello there My name John Doe
+                            I am happy to assist you for hositng your event!
+                        </h4>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Booking tab fixed right Side -->
+
+            <div class="col-md-3">
+                <div class="bookingTab">
+
                     <form role="form">
                         <div class="form-group">
 
@@ -207,8 +207,11 @@
                         </button>
 
                     </form>
+
                 </div>
+
             </div>
+
         </div>
     </div>
 

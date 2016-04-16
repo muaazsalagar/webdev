@@ -7,8 +7,8 @@ module .exports=function(app, db, mongoose, uuid)
     // models
     var UserModel=require("./model/user/user.model.js")(db, mongoose);
     var FormModel=require("./model/form/form.model.js")(db, mongoose);
-    var PropertyModel=require("./model/property/property.model.js")();
-    var ReviewModel=require("./model/review/review.model.js")();
+    var PropertyModel=require("./model/property/property.model.js")(db,mongoose);
+    var ReviewModel=require("./model/review/review.model.js")(db,mongoose);
 
 
     // services

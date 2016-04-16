@@ -34,7 +34,22 @@ module.exports = function(app, propertyModel, uuid) {
 
         var property = req.body;
         property._id = parseInt(uuid.v4());
-        res.json(propertyModel.createProperty(property));
+
+        propertyModel.createProperty(property)
+            .then(
+                function(doc)
+                {
+                    res.json(doc);
+                },
+
+                function (err)
+                {
+                    res.status(400).send(err);
+                }
+            );
+
+
+       // res.json(propertyModel.createProperty(property));
 
 
     }
@@ -60,14 +75,49 @@ module.exports = function(app, propertyModel, uuid) {
 
         var propertyId = parseInt(req.params.id);
 
-        res.json(propertyModel.findPropertyById(propertyId));
+        //res.json(propertyModel.findPropertyById(propertyId));
+
+        propertyModel.findPropertyById(propertyId)
+
+            .then(
+
+                function (doc) {
+                    console.log("The findPropertyById");
+                    res.json(doc);
+                },
+
+                function (err) {
+                    console.log("The ERROR in findPropertyById server");
+                    console.log(err);
+                    res.status(400).send(err);
+                }
+            );
+
+
+
     }
 
     function findPropertyByPropertyname(req, res) {
 
         var propertyname = req.query.propertyname;
 
-        res.json(propertyModel.findPropertyByPropertyname(propertyname));
+        //res.json(propertyModel.findPropertyByPropertyname(propertyname));
+
+        propertyModel.findPropertyByPropertyname(propertyname)
+
+            .then(
+
+                function (doc) {
+
+                    res.json(doc);
+                },
+
+                function (err) {
+
+                    res.status(400).send(err);
+                }
+            );
+
     }
 
     function findPropertyByCredentials(req, res) {
@@ -77,7 +127,23 @@ module.exports = function(app, propertyModel, uuid) {
         var credentials = {propertyname: propertyname, password: password};
         var currentProperty = propertyModel.findPropertyByCredentials(credentials);
 
-        res.json(currentProperty);
+        //res.json(currentProperty);
+
+        propertyModel.findUserById(userId)
+
+            .then(
+
+                function (doc) {
+
+                    res.json(doc);
+                },
+
+                function (err) {
+
+                    res.status(400).send(err);
+                }
+            );
+
     }
 
     function updatePropertyById(req, res) {
@@ -86,17 +152,49 @@ module.exports = function(app, propertyModel, uuid) {
 
         var property = req.body;
 
-        propertyModel.updatePropertyById(propertyId, property);
-        res.send(200);
+        //propertyModel.updatePropertyById(propertyId, property);
+
+        propertyModel.updatePropertyById(propertyId,property)
+
+            .then(
+
+                function (doc) {
+
+                    res.send(200);
+                },
+
+                function (err) {
+
+                    res.status(400).send(err);
+                }
+            );
+
+       // res.send(200);
     }
 
     function deletePropertyById(req, res) {
 
         var propertyId = parseInt(req.params.id);
 
-        propertyModel.deletePropertyById(propertyId);
+        //propertyModel.deletePropertyById(propertyId);
 
-        res.send(200);
+       // res.send(200);
+
+        propertyModel.deletePropertyById(propertyId)
+
+            .then(
+
+                function (doc) {
+
+                    res.send(200);
+                },
+
+                function (err) {
+
+                    res.status(400).send(err);
+                }
+            );
+
     }
 
     function getPropertiesInCity(req, res) {
@@ -105,7 +203,22 @@ module.exports = function(app, propertyModel, uuid) {
         console.log("City at server side is ");
         console.log(city);
 
-        res.json(propertyModel.getPropertiesInCity(city));
+        //res.json(propertyModel.getPropertiesInCity(city));
+
+        propertyModel.getPropertiesInCity(city)
+            .then(
+                function(doc)
+                {
+                    res.json(doc);
+                },
+
+                function (err)
+                {
+                    res.status(400).send(err);
+                }
+            );
+
+
     }
 
 }

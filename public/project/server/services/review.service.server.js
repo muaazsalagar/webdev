@@ -9,7 +9,6 @@ module.exports = function(app, reviewModel, uuid) {
     //creates a new review embedded in the body of the request, and responds with an array of all reviews
     app.post("/api/banquet/reviews/review", createReview);
 
-
     //responds with an array of all reviews
     app.get("/api/banquet/reviews/review", findAllreviews);
 
@@ -17,8 +16,7 @@ module.exports = function(app, reviewModel, uuid) {
     app.get("/api/banquet/reviews/review/:id", findReviewById);
 
     //responds with all reviews whose id property is equal to the id path parameter
-    app.get("/api/banquet/property/reviews/:id", findReviewByPropertyId);
-
+    app.get("/api/banquet/property/all_reviews/:id", findReviewByPropertyId);
 
 
     //updates an existing review whose id property is equal to the id path parameter.
@@ -36,7 +34,22 @@ module.exports = function(app, reviewModel, uuid) {
         review._id = parseInt(uuid.v4());
 
 
-        res.json(reviewModel.createReview(review));
+        //res.json(reviewModel.createReview(review));
+
+        reviewModel.findUserById(review)
+
+            .then(
+
+                function (doc) {
+
+                    res.json(doc);
+                },
+
+                function (err) {
+
+                    res.status(400).send(err);
+                }
+            );
 
 
     }
@@ -54,7 +67,25 @@ module.exports = function(app, reviewModel, uuid) {
 
         }else {
 
-            res.json(reviewModel.findAllReviews());
+            //res.json(reviewModel.findAllReviews());
+
+            reviewModel.findAllReviews()
+
+                .then(
+
+                    function (doc) {
+
+                        res.json(doc);
+                    },
+
+                    function (err) {
+
+                        res.status(400).send(err);
+                    }
+                );
+
+
+
         }
     }
 
@@ -62,13 +93,48 @@ module.exports = function(app, reviewModel, uuid) {
 
         var reviewId = parseInt(req.params.id);
 
-        res.json(reviewModel.findReviewById(reviewId));
+        //res.json(reviewModel.findReviewById(reviewId));
+
+        reviewModel.findReviewById(reviewId)
+
+            .then(
+
+                function (doc) {
+
+                    res.json(doc);
+                },
+
+                function (err) {
+
+                    res.status(400).send(err);
+                }
+            );
+
     }
 
     function findReviewByPropertyId(req, res) {
 
+        console.log("the ")
         var propertyId = parseInt(req.params.id);
-        res.json(reviewModel.findReviewByPropertyId(propertyId));
+        //res.json(reviewModel.findReviewByPropertyId(propertyId));
+        console.log("the Property iD is ");
+        console.log(propertyId);
+
+        reviewModel.findReviewByPropertyId(propertyId)
+
+            .then(
+
+                function (doc) {
+
+                    res.json(doc);
+                },
+
+                function (err) {
+
+                    res.status(400).send(err);
+                }
+            );
+
     }
 
 
@@ -99,16 +165,50 @@ module.exports = function(app, reviewModel, uuid) {
 
         var review = req.body;
 
-        reviewModel.updateReviewById(reviewId, review);
-        res.send(200);
+        //reviewModel.updateReviewById(reviewId, review);
+        //res.send(200);
+
+        reviewModel.updateReviewById(reviewId, review)
+
+            .then(
+
+                function (doc) {
+
+                    res.send(200);
+                },
+
+                function (err) {
+
+                    res.status(400).send(err);
+                }
+            );
+
     }
 
     function deleteReviewById(req, res) {
 
         var reviewId = parseInt(req.params.id);
 
-        reviewModel.deleteReviewById(reviewId);
+       // reviewModel.deleteReviewById(reviewId);
 
-        res.send(200);
+       // res.send(200);
+
+        reviewModel.deleteReviewById(reviewId)
+
+            .then(
+
+                function (doc) {
+
+                    res.send(200);
+                },
+
+                function (err) {
+
+                    res.status(400).send(err);
+                }
+            );
+
+
+
     }
 }
