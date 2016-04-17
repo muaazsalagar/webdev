@@ -14,7 +14,7 @@ module.exports = function (mongoose) {
         title: String,
         desc: String,
         address: addressSchema,
-        eventAvailable: [String],
+        eventsAvailable: [String],
         facilities: [String],
         capacity: Number,
         cost: Number

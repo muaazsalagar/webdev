@@ -18,8 +18,8 @@
                 controllerAs:"model"
             })
             .when("/login", {
-                templateUrl:"client/views/users/loginAndRegister.view.html",
-                controller:"LoginRegisterController",
+                templateUrl:"client/views/users/login.view.html",
+                controller:"LoginController",
                 controllerAs:"model"
             })
             .when("/profile", {
@@ -59,6 +59,15 @@
                 controllerAs:"model"
 
             })
+
+            .when("/property/addProperty", {
+                templateUrl:"client/views/property/add.properties.view.html",
+                controller:"AddPropertyController",
+                controllerAs:"model"
+
+            })
+
+
 
             .otherwise({
                 redirectTo:"/home"

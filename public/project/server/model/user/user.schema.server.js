@@ -8,11 +8,14 @@ module.exports = function (mongoose) {
 
     var projectuserSchema = mongoose.Schema({
 
+        _id:Number,
         username: String,
         password: String,
+        token:String,
         firstName: String,
         lastName: String,
         emails: [String],
+        fbemail:String,
         phones: [String],
         roles: [String]
 

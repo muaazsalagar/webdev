@@ -14,7 +14,7 @@ module.exports = function (mongoose) {
         state: String,
         zipcode: String,
         lat: String,
-        lon: String
+        long: String
 
     }, {collection: 'project.address'});
 

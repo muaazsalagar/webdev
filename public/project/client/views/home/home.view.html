@@ -1,34 +1,69 @@
 <div class="container-fluid" xmlns="http://www.w3.org/1999/html">
     <div class="col-md-12">
-        <div class="propertySearch">
+        <div id="myCarousel" class="carousel container slide" data-ride="carousel">
+
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+
+
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner " role="listbox">
+                <div class="item active">
+                    <img src="img/back1.jpg" alt="Chania" >
+                </div>
+
+                <div class="item">
+                    <img src="img/back2.jpg" alt="Chania" >
+                </div>
+
+                <div class="item">
+                    <img src="img/back3.jpg" alt="Chania">
+                </div>
+
+
+            </div>
+
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $('.myCarousel').carousel({interval: 1000});
+                });
+            </script>
+
+
+
+        </div>
+
+        <div class="propertySearch displaySearchBox">
 
             <form id="form-horizontal" role="form">
 
-                <h2 class="page-header">Search Places to host Event</h2>
+                <h2 class="page-header"></h2>
                 <fieldset>
-
-                    <br class="form-group col-md-4 center-block">
 
                     <input type="text" id="Autocomplete" class="form-control" ng-autocomplete ng-model="result1"/>
                     <br>
-                    <button id="button1id" name="button1id" class="btn btn-success"
-                            ng-click="getGeoCode(result1)">Search
+                    <button id="button1id" name="button1id" class="btn btn-block btn-success"
+                            ng-click="getGeoCode(result1)">Search Places to host Event
                     </button>
 
 
                 </fieldset>
 
                 <div> You Selected: {{result1}}</div>
-                <div> For testing use Address as Northeastern university</div>
-
-
-                <div> Instructions : 1) Type any boston, NY address
-                    2) Select one from the predictive drop box
-                    3) After selecting address only press search !
-                </div>
 
 
             </form>
+
+
+
+
+
+
         </div>
 
 

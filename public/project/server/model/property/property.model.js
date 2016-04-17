@@ -29,7 +29,6 @@ module.exports = function (db,mongoose) {
 
         return propertyModel.create(property);
 
-
     }
 
 
@@ -42,7 +41,7 @@ module.exports = function (db,mongoose) {
     function findPropertyById(PropertyById) {
         //userID = parseInt(userID);
         console.log("IN MODEL "+PropertyById);
-        return propertyModel.findById(PropertyById);
+        return propertyModel.findOne({_id:PropertyById});
 
     }
 
