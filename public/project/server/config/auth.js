@@ -9,5 +9,4 @@ module.exports = {
         'clientSecret'  : process.env.FBclientSecret, //  App Secret
         'callbackURL'   : process.env.FBcallbackURL
     }
-
 };

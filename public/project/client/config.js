@@ -39,6 +39,16 @@
                 }
 
             })
+            .when("/manager", {
+                templateUrl:"client/views/manager/manager.view.html",
+                controller:"ManagerController",
+                controllerAs:"model",
+                resolve: {
+                    checkManager: checkManager
+                }
+
+            })
+
 
             .when("/forms", {
                 templateUrl:"views/forms/colors.view.html",
@@ -123,6 +133,31 @@
 
         return deferred.promise;
     };
+
+    var checkManager = function($q, $timeout, $location, UserService)
+    {
+        var deferred = $q.defer();
+
+        UserService.getCurrentUser().then(function (response) {
+
+            var currentUser = response.data;
+
+            if (currentUser && currentUser.roles.indexOf('manager') != -1) {
+
+                console.log("Yes Manager!!");
+                UserService.setCurrentUser(currentUser);
+                deferred.resolve();
+
+            } else {
+
+                deferred.reject();
+                $location.url("/home");
+            }
+        });
+
+        return deferred.promise;
+    };
+
 
 
 

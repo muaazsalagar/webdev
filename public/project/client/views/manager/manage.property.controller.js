@@ -12,48 +12,104 @@
     function ManagerController($rootScope, PropertyService, UserService,$location,$routeParams) {
 
         // for the registration of the user
-
         var vm = this;
 
-        vm.register = register;
+        // crud operations for Admin Panel
+        vm.addUser = addUser;
+        vm.removeUser = removeUser;
+        vm.selectUser = selectUser;
+        vm.updateUser = updateUser;
 
-        function register(newProperty) {
+        var oldIndex = -1;
 
-            // get emails seperated:
-            console.log("IN Manager Controller");
+        function init() {
 
-            UserService.findUserById($rootScope.currentUser._id)
-                .then(function(user) {
+            vm.users = {};
 
-                    //console.log(user);
+            UserService.findAllUsers()
 
-                    newProperty.owner=user.firstName+ " "+user.lastName;
-                    newProperty.owner_id=user._id;
-                    newProperty.eventsAvailable = newProperty.eventsAvailable.trim().split(",");
-                    newProperty.facilities = newProperty.facilities.trim().split(",");
+                .then(
 
-                    PropertyService.createProperty(newProperty)
-                        .then(function(newProperty) {
+                    function (users) {
 
-                            console.log("Registered Controller now properties are !!!");
-                            console.log(newProperty);
-                            var propertyID=newProperty._id;
+                        vm.users = users;
 
-                            //location.reload();
-                            var newUrl="/property/:propertyID/propertyDetails";
-                            newUrl=newUrl.replace(":propertyID",propertyID);
+                    }
+                );
 
-                            $location.url(newUrl);
-
-                           // vm.property={};
-                        });
+        }
+        // initialize the table when page loads
+        init();
 
 
-                });
+        function selectUser($index) {
+
+            //  var user = vm.users[$index];
+
+            var user=$index;
+
+            oldIndex = $index;
+            // set the user field to the selected row
+            vm.user = {
+                _id: user._id,
+                username: user.username,
+                password: user.password,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                roles: user.roles
+            }
+        }
+
+        function updateUser(user) {
+
+            UserService.updateUser(user._id, user)
+
+                .then(
+
+                    function (response) {
+                        // if successful update we get msg as updated
+                        if(response === "Updated") {
+
+                            init();
+                            vm.user = {};
+                        }
+                    }
+                );
+        }
 
 
+        function addUser(user) {
+
+            UserService.createUser(user)
+                .then(function (response) {
+
+                        init();
+                        vm.user = {};
+
+                    }
+                );
+        }
+
+
+        // remove
+        function removeUser($index) {
+
+            //var user = vm.users[$index];
+
+            var user=$index;
+
+            UserService.deleteUserById(user._id)
+
+                .then(function (response) {
+
+                        init();
+                    }
+                );
         }
 
     }
 
+
+
+    // END
 })();

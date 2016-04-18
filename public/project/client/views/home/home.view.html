@@ -1,70 +1,67 @@
-<div class="container-fluid" xmlns="http://www.w3.org/1999/html">
-    <div class="col-md-12">
-        <div id="myCarousel" class="carousel container slide" data-ride="carousel">
-
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-            </ol>
-
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner " role="listbox">
-                <div class="item active">
-                    <img src="img/back1.jpg" alt="Chania" >
-                </div>
-
-                <div class="item">
-                    <img src="img/back2.jpg" alt="Chania" >
-                </div>
-
-                <div class="item">
-                    <img src="img/back3.jpg" alt="Chania">
-                </div>
-
-
-            </div>
-
-            <script type="text/javascript">
-                $(document).ready(function() {
-                    $('.myCarousel').carousel({interval: 5000});
-                });
-            </script>
-
-        </div>
-
-        <div class="propertySearch displaySearchBox">
-
-            <h2><div class="HomeHeader">Search Places to host Event</div></h2>
-            <form id="form-horizontal" role="form">
-
-
-                <fieldset>
-
-                    <input type="text" id="Autocomplete" class="form-control" ng-autocomplete ng-model="result1"/>
-                    <br>
-                    <button id="button1id" name="button1id" class="btn btn-block btn-success"
-                            ng-click="getGeoCode(result1)">Let's Plan it!
-                    </button>
-
-
-                </fieldset>
-
-                <div> You Selected: {{result1}}</div>
-
-
-            </form>
+<div class="container-fluid homeBackground" xmlns="http://www.w3.org/1999/html">
 
 
 
+    <!--     <div id="myCarousel" class="carousel " data-ride="carousel">
+
+             &lt;!&ndash; Indicators &ndash;&gt;
+             <ol class="carousel-indicators">
+                 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                 <li data-target="#myCarousel" data-slide-to="1"></li>
+                 <li data-target="#myCarousel" data-slide-to="2"></li>
+             </ol>
+
+             &lt;!&ndash; Wrapper for slides &ndash;&gt;
+             <div class="carousel-inner " role="listbox">
+                 <div class="item active">
+                     <img src="img/back1.jpg" alt="Chania" >
+                 </div>
+
+                 <div class="item">
+                     <img src="img/back2.jpg" alt="Chania" >
+                 </div>
+
+                 <div class="item">
+                     <img src="img/back3.jpg" alt="Chania">
+                 </div>
 
 
+             </div>
 
-        </div>
+             <script type="text/javascript">
+                 $(document).ready(function() {
+                     $('.myCarousel').carousel({interval: 5000});
+                 });
+             </script>
 
+         </div>
+
+
+ -->
+
+    <div class="propertySearch">
+
+        <h3><div class="HomeHeader">Search Places. Book and Celebrate </div></h3>
+
+        <form id="form-horizontal" role="form">
+
+
+            <fieldset>
+
+                <input type="text" id="Autocomplete" class="form-control" ng-autocomplete ng-model="result1"/>
+                <br>
+                <button id="button1id" name="button1id" class="btn btn-block btn-success"
+                        ng-click="getGeoCode(result1)">Let's Plan it!
+                </button>
+
+            </fieldset>
+
+            <div> You Selected: {{result1}}</div>
+
+        </form>
 
     </div>
+
 
 </div>
 
