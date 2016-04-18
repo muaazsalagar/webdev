@@ -7,9 +7,9 @@
 (function() {
     angular
         .module("BanquetApp")
-        .controller("AddPropertyController", AddPropertyController);
+        .controller("ManagerController", ManagerController);
 
-    function AddPropertyController($rootScope, PropertyService, UserService,$location,$routeParams) {
+    function ManagerController($rootScope, PropertyService, UserService,$location,$routeParams) {
 
         // for the registration of the user
 
@@ -20,7 +20,7 @@
         function register(newProperty) {
 
             // get emails seperated:
-            console.log("IN Property Controller");
+            console.log("IN Manager Controller");
 
             UserService.findUserById($rootScope.currentUser._id)
                 .then(function(user) {

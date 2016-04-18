@@ -1,11 +1,10 @@
 <div class="container-fluid">
 
     <div class="row">
-        <div class="container-fluid">
-            <div class="jumbotron">
-                <img src="http://lorempixel.com/1000/400/city/"
+        <div>
+            <div class="propertyMainImage">
+                <img src="http://lorempixel.com/1000/300/city/"
                      class="img-responsive"/>
-
             </div>
 
         </div>
@@ -24,9 +23,9 @@
                              class="img-circle"/>
 
                         <h4>Hosted By:</h4>
-                        <h4>
+                        <label>
                             {{model.property.owner}}
-                        </h4>
+                        </label>
                     </div>
 
                     <!-- Property Title and Address-->
@@ -93,7 +92,93 @@
                 <img alt="Bootstrap Image Preview" src="http://lorempixel.com/700/400/city/"/>
 
 
-                <!-- Review Section about the property Host-->
+                <!-- Review Posted By user For property -->
+                <h2>Your reviews </h2>
+
+                <div class="row">
+
+                    <div class="table-responsive col-md-12">
+
+                        <table class="table table-bordered table-hover table-striped">
+
+                            <thead>
+                            <tr>
+                                <th class="hover">
+
+                                    Review
+
+                                </th>
+
+                                <th  class="hover">
+
+                                    Date Posted
+                                </th>
+
+                                <th>
+                                    Action
+                                </th>
+
+                            </tr>
+                            </thead>
+
+                            <tbody>
+
+                            <tr>
+                                <td class="col-md-2">
+                                    <input type="text" class="form-control" placeholder="Write Your Review" ng-model="model.a_review.review">
+                                </td>
+
+                                <td class="col-md-2">
+
+                                </td>
+
+                                <td class="col-md-2">
+
+                                    <button ng-click= "model.addReview(model.a_review)" class="btn btn-success">
+                                        Add
+                                    </button>
+
+                                    <button ng-click="model.updateReview(model.a_review)" class="btn btn-info">
+                                        Update
+                                    </button>
+
+
+                                </td>
+                            </tr>
+                            <tr ng-repeat="user_review in model.userReviews">
+
+                                <td class="col-md-2">
+                                    {{user_review.review}}
+                                </td>
+
+                                <td class="col-md-2">
+                                    {{user_review.date_posted | date:'medium'}}
+                                </td>
+
+
+                                <td class="col-md-2">
+
+                                    <button ng-click= "model.selectReview(user_review)"  class="btn btn-info">
+                                        Select
+                                    </button>
+
+                                    <button ng-click="model.removeReview(user_review)" class="btn btn-danger">
+                                        Delete
+                                    </button>
+
+                                </td>
+                            </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ALL Reviews Section about the property Host-->
 
                 <div class="row ">
                     <div class="col-md-12">
@@ -108,7 +193,7 @@
 
                         <div class="row ">
                             <div class="col-md-8">
-                                <h4>Overall Ratings: 4/5 Etc </h4>
+                                <h4>Overall Ratings: 4/5 </h4>
 
                             </div>
                         </div>
@@ -123,7 +208,7 @@
 
                                             <td>
                                                 <img alt="Bootstrap Image Preview"
-                                                     src="http://lorempixel.com/300/300/people/"
+                                                     src="http://lorempixel.com/200/200/people/"
                                                      class="img-circle"/>
                                             </td>
 
@@ -133,6 +218,7 @@
                                                         "{{review.review}}"
                                                     </p>
                                                 </blockquote>
+                                                - {{review.date_posted | date }}
                                             </td>
                                         </tr>
 
@@ -181,7 +267,7 @@
                             <label for="checkIn">
                                 Check In
                             </label>
-                            <input type="date" class="form-control" id="checkIn"/>
+                            <input type="date" class="form-control" id="checkIn" ng-model="model.booking.start_date"/>
                         </div>
 
                         <div class="form-group">
@@ -189,7 +275,7 @@
                             <label for="checkOut">
                                 Check Out
                             </label>
-                            <input type="date" class="form-control" id="checkOut"/>
+                            <input type="date" class="form-control" id="checkOut" ng-model="model.booking.end_date"/>
                         </div>
 
 
@@ -198,12 +284,13 @@
                             <label for="checkIn">
                                 Guests
                             </label>
-                            <input type="text" class="form-control" id="guests"/>
+                            <input type="text" class="form-control" id="guests" ng-model="model.booking.number_guest"/>
                         </div>
 
 
-                        <button type="submit" class="btn btn-success">
-                            Book Now!
+                        <button class="btn btn-success"
+                                ng-click="model.bookThePlace(model.booking)">
+                            Book Place Now!
                         </button>
 
                     </form>

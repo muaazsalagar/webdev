@@ -13,13 +13,20 @@
                 <thead>
                 <tr>
                     <th ng-click="model.order('username')" class="hover">
+
                         <span class="sortorder glyphicon glyphicon-triangle-top hover"
                               ng-show="model.predicate === 'username' && !model.reverse"
-                              ng-class="{reverse:!model.reverse}"></span>
+                              ng-class="{reverse:!model.reverse}">
+                        </span>
+
                         <span class="sortorder glyphicon glyphicon-triangle-bottom hover"
                               ng-show="model.predicate === 'username' && model.reverse"
-                              ng-class="{reverse:model.reverse}"></span>
+                              ng-class="{reverse:model.reverse}">
+
+                        </span>
+
                         Username
+
                     </th>
                     <th>
                         Password

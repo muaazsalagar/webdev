@@ -29,7 +29,7 @@
                         <option value="2">Marriage</option>
                         <option value="3">Hangout</option>
 
-                    </select> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </select>
 
                     <label>Guests</label>
 
@@ -57,21 +57,29 @@
 
                         <div class="table-responsive" id="forms-n-fields-tbl">
 
-                            <table class="table table-bordered table-striped">
+                            <table class="table table-bordered table-striped table-borderless">
 
                                 <tbody>
 
                                 <tr ng-repeat="property in model.properties">
                                     <td>
-
                                         <a href="#/property/{{property._id}}/propertyDetails" target="_blank">
                                             <img alt="Bootstrap Image Preview"
-                                                 src="http://lorempixel.com/150/150/city/"/>
+                                                 src="http://lorempixel.com/200/150/city/"/>
                                         </a>
 
-                                        {{property.title}}
-
                                     </td>
+
+
+                                    <td>
+                                        <label>{{property.title}}</label>
+                                        <br>Price:
+                                        <label>{{property.cost | currency:"$ "}}</label>
+                                        <br>Guests Allowed:
+                                        {{property.capacity}}
+                                    </td>
+
+
                                 </tr>
                                 </tbody>
 

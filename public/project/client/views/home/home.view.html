@@ -7,8 +7,6 @@
                 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                 <li data-target="#myCarousel" data-slide-to="1"></li>
                 <li data-target="#myCarousel" data-slide-to="2"></li>
-
-
             </ol>
 
             <!-- Wrapper for slides -->
@@ -30,25 +28,24 @@
 
             <script type="text/javascript">
                 $(document).ready(function() {
-                    $('.myCarousel').carousel({interval: 1000});
+                    $('.myCarousel').carousel({interval: 5000});
                 });
             </script>
-
-
 
         </div>
 
         <div class="propertySearch displaySearchBox">
 
+            <h2><div class="HomeHeader">Search Places to host Event</div></h2>
             <form id="form-horizontal" role="form">
 
-                <h2 class="page-header"></h2>
+
                 <fieldset>
 
                     <input type="text" id="Autocomplete" class="form-control" ng-autocomplete ng-model="result1"/>
                     <br>
                     <button id="button1id" name="button1id" class="btn btn-block btn-success"
-                            ng-click="getGeoCode(result1)">Search Places to host Event
+                            ng-click="getGeoCode(result1)">Let's Plan it!
                     </button>
 
 

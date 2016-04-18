@@ -73,34 +73,20 @@ module.exports = function (db,mongoose) {
     }
 
     function getPropertiesInCity(city) {
-        console.log("In Model Property ");
 
-        var propertiesInCity = [];
-        for (var i in property) {
-            var property = property[i];
-            var propertyCity = null;
-            propertyCity = property.address.city;
-            if (propertyCity.toUpperCase() === city.toUpperCase()) {
-                propertiesInCity.push(property);
-                //console.log("Cheking for city ");
-                //console.log(propertyCity);
-            }
-        }
+        console.log("In Model Property: "+city);
 
         // callback(propertiesInCity);
         //return propertiesInCity;
 
-
         // currently return all
         return propertyModel.find(
             {
-                address: {
-                    city: city
-                }
+
             }
-        );
-
-
+        )
     }
+
+
 
 };

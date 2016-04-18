@@ -33,6 +33,8 @@ module.exports = function(app, propertyModel, uuid) {
     function createProperty (req, res) {
 
         var property = req.body;
+        property.address.city=property.address.city.toLowerCase();
+
         property._id = parseInt(uuid.v4());
 
         propertyModel.createProperty(property)
@@ -199,7 +201,7 @@ module.exports = function(app, propertyModel, uuid) {
 
     function getPropertiesInCity(req, res) {
 
-        var city = (req.params.city);
+        var city = (req.params.city).toLowerCase();
         console.log("City at server side is ");
         console.log(city);
 

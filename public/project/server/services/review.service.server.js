@@ -18,6 +18,9 @@ module.exports = function(app, reviewModel, uuid) {
     //responds with all reviews whose id property is equal to the id path parameter
     app.get("/api/banquet/property/all_reviews/:id", findReviewByPropertyId);
 
+    //responds with all reviews whose id user is equal to the id path parameter
+    app.get("/api/banquet/property/reviewsByUser/:id", findReviewByUserId);
+
 
     //updates an existing review whose id property is equal to the id path parameter.
     // The new properties are set to the values in the review object embedded in the HTTP request.
@@ -36,7 +39,7 @@ module.exports = function(app, reviewModel, uuid) {
 
         //res.json(reviewModel.createReview(review));
 
-        reviewModel.findUserById(review)
+        reviewModel.createReview(review)
 
             .then(
 
@@ -46,7 +49,7 @@ module.exports = function(app, reviewModel, uuid) {
                 },
 
                 function (err) {
-
+                    console.log(err);
                     res.status(400).send(err);
                 }
             );
@@ -136,6 +139,34 @@ module.exports = function(app, reviewModel, uuid) {
             );
 
     }
+
+
+    function findReviewByUserId(req, res) {
+
+
+        var userId = parseInt(req.params.id);
+        //res.json(reviewModel.findReviewByPropertyId(propertyId));
+        console.log("the Property iD is ");
+        console.log(userId);
+
+        reviewModel.findReviewByUserId(userId)
+
+            .then(
+
+                function (doc) {
+
+                    res.json(doc);
+                },
+
+                function (err) {
+
+                    res.status(400).send(err);
+                }
+            );
+
+    }
+
+
 
 
     function findReviewByReviewname(req, res) {

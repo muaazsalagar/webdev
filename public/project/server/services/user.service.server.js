@@ -19,45 +19,44 @@ module.exports = function(app, userModel, uuid) {
     var auth = authorized;
 
     //Registers a new user embedded in the body of the request, and responds with an array of all users
-    app.post("/api/assignment/register",  register);
+    app.post("/api/project/register",  register);
 
     //creates a new user embedded in the body of the request, and responds with an array of all users
-    app.post("/api/assignment/user",createUser);
+    app.post("/api/project/user",createUser);
 
     //Return logged in user
-    app.get("/api/assignment/user/loggedin", loggedIn);
+    app.get("/api/project/user/loggedin", loggedIn);
 
     //Logout
-    app.post("/api/assignment/user/logout", logout);
+    app.post("/api/project/user/logout", logout);
 
     //responds with all users
-    app.get("/api/assignment/user",auth ,findAllusers);
+    app.get("/api/project/user",auth ,findAllusers);
 
     //updates an existing user whose id property is equal to the id path parameter.
     // The new properties are set to the values in the user object embedded in the HTTP request.
     // Responds with an array of all users
-    app.put("/api/assignment/user/:id",auth ,updateUserById);
+    app.put("/api/project/user/:id",auth ,updateUserById);
 
 
     //responds with a single user whose id property is equal to the id path parameter
-    app.get("/api/assignment/user/:id", findUserById);
+    app.get("/api/project/user/:id", findUserById);
 
 
     //removes an existing user whose id property is equal to the id path parameter. Responds with an array of all users
 
-    app.delete("/api/assignment/user/:id", auth, deleteUserById);
+    app.delete("/api/project/user/:id", auth, deleteUserById);
 
     // for passport implementation
 
-    //app.post  ('/api/assignment/login', passport.authenticate('local'), login);
-
+    //app.post  ('/api/project/login', passport.authenticate('local'), login);
 
 
     // FB STUFF
     app.get   ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
-            successRedirect: '/#/profile',
+            successRedirect: '/project/#/profile',
             failureRedirect: '/#/login'
         }));
 
@@ -102,6 +101,7 @@ module.exports = function(app, userModel, uuid) {
                             lastname:  names[1],
                             firstname: names[0],
                             //email:     profile.emails ? profile.emails[0].value:"",
+                            roles:["user","admin","manager"],
                             _id:    profile.id,
                             password: token
                         };
@@ -124,26 +124,6 @@ module.exports = function(app, userModel, uuid) {
                 }
             );
     }
-
-    function login(req, res) {
-
-        var user = req.user;
-        res.json(user);
-
-    }
-
-    function loggedIn(req, res) {
-
-        res.send(req.isAuthenticated() ? req.user : null);
-    }
-
-    function logout(req, res) {
-
-        req.logOut();
-        res.send(200);
-    }
-
-
 
     // passportJS user methods
     function serializeUser(user, done) {
@@ -171,7 +151,25 @@ module.exports = function(app, userModel, uuid) {
             );
     }
 
+    function login(req, res) {
 
+        var user = req.user;
+        res.json(user);
+
+    }
+
+    function loggedIn(req, res) {
+
+        res.send(req.isAuthenticated() ? req.user : null);
+    }
+
+    function logout(req, res) {
+
+        req.logOut();
+        res.send(200);
+    }
+
+    
     function isUserIsAdmin(user) {
 
         // check in the roles array call before each crud operation performed by Admin
@@ -481,7 +479,7 @@ module.exports = function(app, userModel, uuid) {
 
         var userId = req.params.id;
 
-        if(isAdmin(req.user)) {
+        if(isManager(req.user)) {
 
             userModel.deleteUserById(userId)
 
@@ -518,6 +516,18 @@ module.exports = function(app, userModel, uuid) {
         return false;
     }
 
+    // to check if user is MANAGER first this will be used for each MANAGER realted crud opeation
 
+    function isManager(user) {
+
+        if(user.roles.indexOf("manager") > 0) {
+
+            return true;
+        }
+
+        return false;
+    }
+
+    // END
 
 }

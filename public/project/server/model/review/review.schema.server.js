@@ -10,6 +10,7 @@ module.exports = function (mongoose) {
 
     var reviewSchema = mongoose.Schema({
 
+        _id:String,
         user_id: String,
         property_id:String,
         rating: Number,

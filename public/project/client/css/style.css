@@ -138,5 +138,21 @@ img{
     margin:auto;
 }
 
+.table-borderless tbody tr td, .table-borderless tbody tr th, .table-borderless thead tr th {
+    border: none;
+}
 
+a:hover {
+    cursor:pointer;
+}
 
+.propertyMainImage {
+    padding:1px;
+    border:2px solid #021a40;
+    background-color:whitesmoke;
+}
+
+.HomeHeader{
+    text-align:center;
+    margin:auto;
+}

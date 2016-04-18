@@ -9,6 +9,7 @@ module.exports = function (mongoose) {
     var addressSchema = require("./address.schema.server.js")(mongoose);
     var propertySchema = mongoose.Schema({
 
+        _id:Number,
         owner: String,
         owner_id:String,
         title: String,

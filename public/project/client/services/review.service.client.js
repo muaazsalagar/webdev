@@ -21,10 +21,12 @@
             findReviewByCredentials:findReviewByCredentials,
             findReviewByReviewname:findReviewByReviewname,
             findAllReviews:findAllReviews,
-            updateReviewByID:updateReviewByID,
+
+            updateReviewById:updateReviewById,
             findReviewByID:findReviewByID,
             deleteReviewById:deleteReviewById,
-            findReviewByPropertyId:findReviewByPropertyId
+            findReviewByPropertyId:findReviewByPropertyId,
+            findReviewByUserId:findReviewByUserId
         };
 
         return api;
@@ -92,7 +94,7 @@
             return deferred.promise;
         }
 
-        function updateReviewByID(reviewId,review)
+        function updateReviewById(reviewId,review)
         {
             var deferred=$q.defer();
             var url="/api/banquet/reviews/review/:id";
@@ -107,10 +109,11 @@
             return deferred.promise;
         }
 
-        function deleteReviewById(review)
+        function deleteReviewById(reviewID)
         {
             var deferred=$q.defer();
             var url="/api/banquet/reviews/review/:id";
+            url = url.replace(":id", reviewID);
             $http.delete(url).success(function(response){
                 deferred.resolve(response);
             });
@@ -153,6 +156,24 @@
             return deferred.promise;
 
         }
+
+        function findReviewByUserId(userId)
+        {
+            console.log("Client Calling the findReviewByUserId to the server");
+            var deferred=$q.defer();
+            var url="/api/banquet/property/reviewsByUser/:id";
+            url=url.replace(":id",userId);
+            console.log(url);
+            console.log(userId);
+
+            $http.get(url).success(function(response){
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
+
+        }
+
 
 
 

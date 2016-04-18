@@ -29,18 +29,18 @@
         // instead of find user by credentials a common method for login
         function login(user) {
 
-            return $http.post("/api/assignment/login", user);
+            return $http.post("/api/project/login", user);
 
         }
 
         function logout() {
 
-            return $http.post("/api/assignment/user/logout")
+            return $http.post("/api/project/user/logout")
         }
 
         function getCurrentUser() {
 
-            return $http.get("/api/assignment/user/loggedin");
+            return $http.get("/api/project/user/loggedin");
         }
 
         function setCurrentUser(user) {
@@ -54,7 +54,7 @@
         function register(user) {
 
             var deferred = $q.defer();
-            var url = "/api/assignment/register";
+            var url = "/api/project/register";
 
             $http.post(url, user).success (function (response) {
                 deferred.resolve(response);
@@ -68,7 +68,7 @@
 
             var deferred = $q.defer();
 
-            var url = "/api/assignment/user?username=:username&password=:password";
+            var url = "/api/project/user?username=:username&password=:password";
             url = url.replace(":username", username);
             url = url.replace(":password", password);
 
@@ -83,7 +83,7 @@
 
             var deferred = $q.defer();
 
-            var url = "/api/assignment/user?username=:username";
+            var url = "/api/project/user?username=:username";
             url = url.replace(":username", username);
 
             $http.get(url).success (function (response) {
@@ -98,7 +98,7 @@
 
             var deferred = $q.defer();
 
-            var url = "/api/assignment/user";
+            var url = "/api/project/user";
 
             $http.get(url).success (function (response) {
                 deferred.resolve(response);
@@ -112,7 +112,7 @@
 
             var deferred = $q.defer();
 
-            var url = "/api/assignment/user";
+            var url = "/api/project/user";
 
             $http.post(url, user).success (function (response) {
                 deferred.resolve(response);
@@ -126,7 +126,7 @@
 
             var deferred = $q.defer();
 
-            var url = "/api/assignment/user/:id";
+            var url = "/api/project/user/:id";
             url = url.replace(":id", userID);
 
             $http.delete(url).success (function (response) {
@@ -140,7 +140,7 @@
 
             var deferred = $q.defer();
 
-            var url = "/api/assignment/user/:id";
+            var url = "/api/project/user/:id";
             url = url.replace(":id", userID);
 
             $http.put(url, user).success (function (response) {
@@ -154,8 +154,9 @@
 
             var deferred = $q.defer();
 
-            var url = "/api/assignment/user/:id";
+            var url = "/api/project/user/:id";
             url = url.replace(":id", userID);
+            console.log(url);
 
             $http.get(url).success (function (response) {
                 deferred.resolve(response);

@@ -25,7 +25,7 @@
             findPropertyByPropertyname:findPropertyByPropertyname,
             findAllPropertys:findAllPropertys,
             updatePropertyByID:updatePropertyByID,
-            findPropertyByID:findPropertyByID,
+            findPropertyById:findPropertyById,
             deletePropertyById:deletePropertyById
 
         };
@@ -159,7 +159,7 @@
             return deferred.promise;
         }
 
-        function findPropertyByID(propertyId)
+        function findPropertyById(propertyId)
         {
             console.log("Client Calling the find propertyByID to the server");
             var deferred=$q.defer();

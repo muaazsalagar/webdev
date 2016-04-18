@@ -87,26 +87,6 @@ module.exports = function(app, userModel, uuid) {
             )
     }
 
-    function login(req, res) {
-
-        var user = req.user;
-        res.json(user);
-
-    }
-
-    function loggedIn(req, res) {
-
-        res.send(req.isAuthenticated() ? req.user : null);
-    }
-
-    function logout(req, res) {
-
-        req.logOut();
-        res.send(200);
-    }
-
-
-
     // passportJS user methods
     function serializeUser(user, done) {
 
@@ -132,6 +112,27 @@ module.exports = function(app, userModel, uuid) {
 
             );
     }
+
+
+    function login(req, res) {
+
+        var user = req.user;
+        res.json(user);
+
+    }
+
+    function loggedIn(req, res) {
+
+        res.send(req.isAuthenticated() ? req.user : null);
+    }
+
+    function logout(req, res) {
+
+        req.logOut();
+        res.send(200);
+    }
+
+
 
 
     function isUserIsAdmin(user) {
@@ -443,7 +444,7 @@ module.exports = function(app, userModel, uuid) {
 
         var userId = req.params.id;
 
-        if(isAdmin(req.user)) {
+        if(isManager(req.user)) {
 
             userModel.deleteUserById(userId)
 
@@ -480,6 +481,18 @@ module.exports = function(app, userModel, uuid) {
         return false;
     }
 
+    // to check if user is MANAGER first this will be used for each MANAGER realted crud opeation
+
+    function isManager(user) {
+
+        if(user.roles.indexOf("manager") > 0) {
+
+            return true;
+        }
+
+        return false;
+    }
 
 
+    // END
 }

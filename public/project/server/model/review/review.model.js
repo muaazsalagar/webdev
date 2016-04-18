@@ -19,7 +19,7 @@ module.exports= function (db,mongoose) {
         findAllReviews:findAllReviews,
         findReviewById:findReviewById,
         updateReviewById:updateReviewById,
-        deleteReviewByID:deleteReviewByID,
+        deleteReviewById:deleteReviewById,
         findReviewByUserId:findReviewByUserId,
 
         // unused functions
@@ -38,7 +38,6 @@ module.exports= function (db,mongoose) {
     function createReview(review){
 
         console.log("Review Created!! ");
-        console.log(mock);
 
         return reviewModel.create(review);
     }
@@ -73,16 +72,15 @@ module.exports= function (db,mongoose) {
         //  return reviewsForProperty;
     }
 
-    function  deleteReviewByID(reviewID){
+    function  deleteReviewById(reviewID){
 
-        reviewID= parseInt(reviewId);
-        return (propertyModel.findByIdAndRemove(reviewID));
+        return (reviewModel.findByIdAndRemove(reviewID));
     }
 
 
     function  updateReviewById(reviewId, review){
 
-        reviewId= parseInt(reviewId);
+        //reviewId= parseInt(reviewId);
         return reviewModel.findOneAndUpdate(reviewId,review);
     }
 

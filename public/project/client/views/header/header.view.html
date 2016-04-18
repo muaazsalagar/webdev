@@ -12,7 +12,19 @@
 
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li ng-class="{'active':$location.url()=='/addProperty'}" ><a href="#/property/addProperty">Add New Property</a></li>
+                <li ng-class="{'active':$location.url()=='/addProperty'}" ng-show="currentUser.roles.indexOf('manager') > -1">
+
+                    <a class="dropdown-toggle" role="button" data-toggle="dropdown">
+                        <strong>Manage Properties</strong>
+                        <span class="caret"></span></a>
+
+                    <ul id="g-account-menu" class="dropdown-menu" role="menu">
+                        <li> <a href="#/property/addProperty">Add New Property</a></li>
+                        <li> <a href="#/property/addProperty">Booking Requests</a></li>
+                    </ul>
+
+                </li>
+
                 <li ng-class="{'active':$location.url()=='/register'}" ng-hide="currentUser.username"><a href="#/register">Register</a></li>
                 <li ng-class="{'active':$location.url()=='/login'}" ng-hide="currentUser.username"><a href="#/login">Login</a></li>
                 <li ng-class="{'active':$location.url()=='/profile'}" ng-show="currentUser.username"><a href="#/profile">{{currentUser.username}}</a></li>
