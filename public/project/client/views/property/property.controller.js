@@ -24,7 +24,7 @@
         // for Booking
         vm.bookThePlace=bookThePlace;
 
-
+        var dbUser;
 
         if($rootScope.currentUser)
         {
@@ -33,6 +33,24 @@
 
 
         function initUserReviews() {
+            console.log("In initUserReviews :");
+            var propertyId=$routeParams.propertyId;
+            console.log(propertyId);
+
+            if($rootScope.currentUser)
+            {
+                var user_id=$rootScope.currentUser._id;
+            }
+
+            /*UserService.findUserById(user_id)
+                .then(function (userFetched) {
+
+                    dbUser=userFetched;
+
+
+                });
+*/
+
             ReviewService.findReviewByUserId(user_id,propertyId)
                 .then(function (reviews) {
 
@@ -163,6 +181,9 @@
             console.log("Booking Start");
 
             bookingRequest.user_id=user_id;
+
+            //dbUser.user_id
+
             bookingRequest.property_id=propertyId;
            // bookingRequest.owner_id=vm.owner_id;
 

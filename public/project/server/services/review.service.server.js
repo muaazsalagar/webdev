@@ -145,11 +145,13 @@ module.exports = function(app, reviewModel, uuid) {
 
 
         var userId = parseInt(req.params.id);
+        var propertyId = parseInt(req.params.propertyId);
+
         //res.json(reviewModel.findReviewByPropertyId(propertyId));
         console.log("the Property iD is ");
-        console.log(userId);
+        console.log(propertyId);
 
-        reviewModel.findReviewByUserId(userId)
+        reviewModel.findReviewByUserId(userId,propertyId)
 
             .then(
 

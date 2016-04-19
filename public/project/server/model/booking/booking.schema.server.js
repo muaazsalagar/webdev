@@ -7,12 +7,12 @@
 module.exports = function (mongoose) {
 
     var bookingSchema = mongoose.Schema({
-        user_id: String,
+        user_id: Number,
         start_date: Date,
         end_date: Date,
         booking_date:Date,
-        property_id:String,
-        owner_id:String,
+        property_id:Number,
+        owner_id:Number,
         state:String,
         number_guest:Number
 

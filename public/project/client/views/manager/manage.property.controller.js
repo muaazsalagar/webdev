@@ -9,30 +9,37 @@
         .module("BanquetApp")
         .controller("ManagerController", ManagerController);
 
-    function ManagerController($rootScope, PropertyService, UserService,$location,$routeParams) {
+    function ManagerController($rootScope, PropertyService, BookingService,$location,$routeParams) {
 
-        // for the registration of the user
+        // for the registration of the booking
         var vm = this;
 
         // crud operations for Admin Panel
-        vm.addUser = addUser;
-        vm.removeUser = removeUser;
-        vm.selectUser = selectUser;
-        vm.updateUser = updateUser;
+        vm.addBooking = addBooking;
+        vm.removeBooking = removeBooking;
+        vm.selectBooking = selectBooking;
+        vm.updateBooking = updateBooking;
 
         var oldIndex = -1;
 
+        if($rootScope.currentUser)
+        {
+            var user_id=$rootScope.currentUser._id;
+        }
+
+
         function init() {
 
-            vm.users = {};
+            vm.bookings = {};
+            console.log(user_id);
 
-            UserService.findAllUsers()
+            BookingService.findBookingByOwnerId(user_id)
 
                 .then(
 
-                    function (users) {
+                    function (bookings) {
 
-                        vm.users = users;
+                        vm.bookings = bookings;
 
                     }
                 );
@@ -42,27 +49,30 @@
         init();
 
 
-        function selectUser($index) {
+        function selectBooking($index) {
 
-            //  var user = vm.users[$index];
+            //  var booking = vm.bookings[$index];
 
-            var user=$index;
+            var booking=$index;
 
             oldIndex = $index;
-            // set the user field to the selected row
-            vm.user = {
-                _id: user._id,
-                username: user.username,
-                password: user.password,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                roles: user.roles
+            // set the booking field to the selected row
+            vm.booking = {
+                user_id: booking.user_id,
+                start_end: booking.start_date,
+                end_date: booking.end_date,
+                start_date: booking.start_date,
+                property_id: booking.property_id,
+                state: booking.state,
+
+
+
             }
         }
 
-        function updateUser(user) {
+        function updateBooking(booking) {
 
-            UserService.updateUser(user._id, user)
+            BookingService.updateBooking(booking._id, booking)
 
                 .then(
 
@@ -71,20 +81,20 @@
                         if(response === "Updated") {
 
                             init();
-                            vm.user = {};
+                            vm.booking = {};
                         }
                     }
                 );
         }
 
 
-        function addUser(user) {
+        function addBooking(booking) {
 
-            UserService.createUser(user)
+            BookingService.createBooking(booking)
                 .then(function (response) {
 
                         init();
-                        vm.user = {};
+                        vm.booking = {};
 
                     }
                 );
@@ -92,13 +102,13 @@
 
 
         // remove
-        function removeUser($index) {
+        function removeBooking($index) {
 
-            //var user = vm.users[$index];
+            //var booking = vm.bookings[$index];
 
-            var user=$index;
+            var booking=$index;
 
-            UserService.deleteUserById(user._id)
+            BookingService.deleteBookingById(booking._id)
 
                 .then(function (response) {
 

@@ -11,7 +11,7 @@ module.exports = function (mongoose) {
 
         _id:Number,
         owner: String,
-        owner_id:String,
+        owner_id:Number,
         title: String,
         desc: String,
         address: addressSchema,

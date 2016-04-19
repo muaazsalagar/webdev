@@ -19,13 +19,13 @@
                 <div class="row">
                     <div class="col-md-4 owner">
                         <!-- Property Host Profile Image-->
-                        <img alt="Bootstrap Image Preview" src="http://lorempixel.com/300/300/people/"
-                             class="img-circle"/>
+                        <img alt="Bootstrap Image Preview" src="http://lorempixel.com/200/200/people/"
+                             class="img-circle img-responsive"/>
 
                         <h4>Hosted By:</h4>
-                        <label>
+                        <h4>
                             {{model.property.owner}}
-                        </label>
+                        </h4>
                     </div>
 
                     <!-- Property Title and Address-->
@@ -34,13 +34,13 @@
                         <h3 class="text-left">
                             {{model.property.title}}
                         </h3>
-                        <address>
-                            <strong>Address:, Inc.</strong><br/> 795 Folsom Ave, Suite 600<br/> Boston,
-                            MA
-                            94107<br/>
-                        </address>
+                        <!-- <address>
+                             <strong>Address:, Inc.</strong><br/> 795 Folsom Ave, Suite 600<br/> Boston,
+                             MA
+                             94107<br/>
+                         </address>-->
                         <h3>
-                            {{model.property.cost | currency:"$"}}
+                            {{model.property.cost | currency:"$"}} / Day
                         </h3>
 
                     </div>
@@ -89,8 +89,9 @@
                 <br> <br>
                 <!-- More Images of the Property-->
                 <h2>Browse more photos</h2>
-                <img alt="Bootstrap Image Preview" src="http://lorempixel.com/700/400/city/"/>
-
+                <img
+                        alt="Bootstrap Image Preview" src="http://lorempixel.com/700/400/city/"
+                        class="img-responsive"/>
 
                 <!-- Review Posted By user For property -->
                 <h2>Your reviews </h2>
@@ -124,15 +125,21 @@
                             <tbody>
 
                             <tr>
-                                <td class="col-md-2">
-                                    <input type="text" class="form-control" placeholder="Write Your Review" ng-model="model.a_review.review">
+                                <td class="col-md-6">
+
+                                    <div class="form-group">
+
+                                        <textarea class="form-control" rows="3" placeholder="Write Your Review" ng-model="model.a_review.review"></textarea>
+
+                                    </div>
+
                                 </td>
 
-                                <td class="col-md-2">
+                                <td class="col-md-3">
 
                                 </td>
 
-                                <td class="col-md-2">
+                                <td class="col-md-3">
 
                                     <button ng-click= "model.addReview(model.a_review)" class="btn btn-success">
                                         Add
@@ -182,7 +189,7 @@
 
                 <div class="row ">
                     <div class="col-md-12">
-                        <h3>Reviews: </h3>
+                        <h2>All Reviews: </h2>
                         <!-- Review Section List of the property -->
                         <div class="row ">
                             <div class="col-md-4">
@@ -200,25 +207,29 @@
 
 
                         <div class="row">
-                            <div class="col-md-12 pre-scrollable PropertyReviews">
+                            <div class="col-md-12 PropertyReviews">
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-striped">
                                         <tbody>
                                         <tr ng-repeat="review in model.reviews">
 
-                                            <td>
+                                            <td class="col-md-3">
                                                 <img alt="Bootstrap Image Preview"
-                                                     src="http://lorempixel.com/200/200/people/"
-                                                     class="img-circle"/>
+                                                     src="http://lorempixel.com/150/150/people/"
+                                                     class="img-circle img-responsive"/>
                                             </td>
 
-                                            <td>
+                                            <td class="col-md-9">
                                                 <blockquote>
                                                     <p>
                                                         "{{review.review}}"
                                                     </p>
+                                                    <p>
+                                                        - Posted On {{review.date_posted | date }}
+                                                    </p>
+
                                                 </blockquote>
-                                                - {{review.date_posted | date }}
+
                                             </td>
                                         </tr>
 
@@ -233,26 +244,30 @@
 
                 </div>
 
-                <br> <br>
-                <h3> More About Host:
-                </h3>
-                <div class="row">
+                <br>
+                <br>
 
-                    <!-- More information about host of the property / Profile of host-->
-                    <div class="col-md-4">
-                        <img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/"
-                             class="img-circle"/>
-                    </div>
-                    <div class="col-md-8">
+                <!-- <h3> More About Host:
+                 </h3>
+                 <div class="row">
 
-                        <!-- Summary of Host-->
-                        <h4>
-                            Hello there My name John Doe
-                            I am happy to assist you for hositng your event!
-                        </h4>
+                     &lt;!&ndash; More information about host of the property / Profile of host&ndash;&gt;
+                     <div class="col-md-4">
+                         <img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/"
+                              class="img-circle"/>
+                     </div>
+                     <div class="col-md-8">
 
-                    </div>
-                </div>
+                         &lt;!&ndash; Summary of Host&ndash;&gt;
+                         <h4>
+                             Hello there My name John Doe
+                             I am happy to assist you for hositng your event!
+                         </h4>
+
+                     </div>
+                 </div>-->
+
+
             </div>
 
 

@@ -27,11 +27,11 @@
 
 
 
-                <li ng-class="{'active':$location.url()=='/login'}" ng-hide="currentUser.username"><a href="#/login" data-toggle="collapse" data-target=".navbar-collapse">Login / Register</a></li>
+                <li ng-class="{'active':$location.url()=='/login'}" ng-hide="currentUser.username"><a href="#/login"> Login / Register </a></li>
 
-                <li ng-class="{'active':$location.url()=='/profile'}" ng-show="currentUser.username"><a href="#/profile" data-toggle="collapse" data-target=".navbar-collapse">{{currentUser.username}}</a></li>
+                <li ng-class="{'active':$location.url()=='/profile'}" ng-show="currentUser.username"><a href="#/profile"> {{currentUser.username}} </a></li>
 
-                <li ng-show="currentUser.username" ng-click="model.logout()" > <a href="#/home" data-toggle="collapse" data-target=".navbar-collapse">Logout</a> </a></li>
+                <li ng-show="currentUser.username" ng-click="model.logout()" > <a href="#/home" data-toggle="collapse" >Logout</a> </a> </li>
             </ul>
 
 

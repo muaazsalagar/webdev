@@ -18,7 +18,7 @@
         $scope.emailId=$rootScope.currentUser.emailId;
 
 */
-        console.log("In Profile Controller");
+       // console.log("In Profile Controller");
 
         function update(username,password,firstName, lastName, emailId){
             var userLoggedIn=$rootScope.currentUser;

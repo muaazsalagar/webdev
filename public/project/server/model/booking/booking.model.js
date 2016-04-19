@@ -20,6 +20,7 @@ module.exports = function(db, mongoose) {
         updateBookingById: updateBookingById,
         deleteBookingById: deleteBookingById,
         findBookingByBookingname: findBookingByBookingname,
+        findBookingByOwnerId: findBookingByOwnerId,
         findBookingByCredentials: findBookingByCredentials
     };
     return api;
@@ -59,6 +60,14 @@ module.exports = function(db, mongoose) {
 
         return bookingModel.findOne({bookingname: bookingName});
     }
+
+
+    function findBookingByOwnerId(ownerId) {
+
+        //return bookingModel.find({owner_id:ownerId});
+        return bookingModel.find({});
+    }
+
 
 
 

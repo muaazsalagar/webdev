@@ -19,6 +19,7 @@
             setCurrentBooking: setCurrentBooking,
             register:register,
             findBookingByBookingname: findBookingByBookingname,
+            findBookingByOwnerId: findBookingByOwnerId,
             findAllBookings: findAllBookings,
             createBooking: createBooking,
             deleteBookingById: deleteBookingById,
@@ -94,6 +95,21 @@
 
             return deferred.promise;
         }
+
+        function findBookingByOwnerId(ownerId) {
+
+            var deferred = $q.defer();
+
+            var url = "/api/assignment/bookingByOwnerId/:id";
+            url = url.replace(":id", ownerId);
+
+            $http.get(url).success (function (response) {
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
+        }
+
 
         // for admin functionality
         function findAllBookings() {

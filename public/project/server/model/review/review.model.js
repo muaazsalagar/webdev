@@ -67,7 +67,8 @@ module.exports= function (db,mongoose) {
 
     function  findReviewByUserId(userID,propertyID)
     {
-
+        console.log("finding Reviews by property ID and USerID");
+        console.log(userID,propertyID);
         return reviewModel.find({user_id:userID,property_id:propertyID});
         //  return reviewsForProperty;
     }

@@ -34,6 +34,10 @@ module.exports = function(app, bookingModel, uuid) {
     app.get("/api/assignment/booking/:id", findBookingById);
 
 
+    //responds with a single booking whose id property is equal to the id path parameter
+    app.get("/api/assignment/bookingByOwnerId/:id", findBookingByOwnerId);
+
+
     //removes an existing booking whose id property is equal to the id path parameter. Responds with an array of all bookings
 
     app.delete("/api/assignment/booking/:id", auth, deleteBookingById);
@@ -260,6 +264,27 @@ module.exports = function(app, bookingModel, uuid) {
                 }
             );
     }
+
+    function findBookingByOwnerId(req, res) {
+
+        var ownerId = req.params.id;
+
+        bookingModel.findBookingByOwnerId(ownerId)
+
+            .then(
+
+                function (doc) {
+
+                    res.json(doc);
+                },
+
+                function (err) {
+
+                    res.status(400).send(err);
+                }
+            );
+    }
+
 
     function findBookingByBookingname(req, res) {
 
