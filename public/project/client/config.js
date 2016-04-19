@@ -59,21 +59,30 @@
             .when("/search/:propertyAddress", {
                 templateUrl:"client/views/search/search.property.view.html",
                 controller:"PropertySearch",
-                controllerAs:"model"
+                controllerAs:"model",
+                resolve: {
+                    checkLoggedIn: checkLoggedIn
+                }
 
             })
 
             .when("/property/:propertyId/propertyDetails", {
                 templateUrl:"client/views/property/properties.view.html",
                 controller:"PropertyController",
-                controllerAs:"model"
+                controllerAs:"model",
+                resolve: {
+                    checkLoggedIn: checkLoggedIn
+                }
 
             })
 
             .when("/property/addProperty", {
                 templateUrl:"client/views/property/add.properties.view.html",
                 controller:"AddPropertyController",
-                controllerAs:"model"
+                controllerAs:"model",
+                resolve: {
+                    checkLoggedIn: checkManager
+                }
 
             })
 

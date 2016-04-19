@@ -65,10 +65,10 @@ module.exports= function (db,mongoose) {
 
     }
 
-    function  findReviewByUserId(userID)
+    function  findReviewByUserId(userID,propertyID)
     {
 
-        return reviewModel.find({user_id:userID});
+        return reviewModel.find({user_id:userID,property_id:propertyID});
         //  return reviewsForProperty;
     }
 

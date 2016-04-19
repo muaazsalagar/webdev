@@ -157,12 +157,13 @@
 
         }
 
-        function findReviewByUserId(userId)
+        function findReviewByUserId(userId,propertyId)
         {
             console.log("Client Calling the findReviewByUserId to the server");
             var deferred=$q.defer();
-            var url="/api/banquet/property/reviewsByUser/:id";
+            var url="/api/banquet/property/reviewsByUser/:id/:propertyId";
             url=url.replace(":id",userId);
+            url=url.replace(":propertyId",propertyId);
             console.log(url);
             console.log(userId);
 

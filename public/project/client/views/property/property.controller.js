@@ -33,7 +33,7 @@
 
 
         function initUserReviews() {
-            ReviewService.findReviewByUserId(user_id)
+            ReviewService.findReviewByUserId(user_id,propertyId)
                 .then(function (reviews) {
 
                     console.log("Fetched reviews posted by User :");

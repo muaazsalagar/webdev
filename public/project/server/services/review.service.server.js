@@ -19,7 +19,7 @@ module.exports = function(app, reviewModel, uuid) {
     app.get("/api/banquet/property/all_reviews/:id", findReviewByPropertyId);
 
     //responds with all reviews whose id user is equal to the id path parameter
-    app.get("/api/banquet/property/reviewsByUser/:id", findReviewByUserId);
+    app.get("/api/banquet/property/reviewsByUser/:id/:propertyId", findReviewByUserId);
 
 
     //updates an existing review whose id property is equal to the id path parameter.
