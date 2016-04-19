@@ -26,9 +26,8 @@
                 </li>
 
 
-                <li ng-class="{'active':$location.url()=='/register'}" ng-hide="currentUser.username"><a href="#/register" data-toggle="collapse" data-target=".navbar-collapse">Register</a></li>
 
-                <li ng-class="{'active':$location.url()=='/login'}" ng-hide="currentUser.username"><a href="#/login" data-toggle="collapse" data-target=".navbar-collapse">Login</a></li>
+                <li ng-class="{'active':$location.url()=='/login'}" ng-hide="currentUser.username"><a href="#/login" data-toggle="collapse" data-target=".navbar-collapse">Login / Register</a></li>
 
                 <li ng-class="{'active':$location.url()=='/profile'}" ng-show="currentUser.username"><a href="#/profile" data-toggle="collapse" data-target=".navbar-collapse">{{currentUser.username}}</a></li>
 

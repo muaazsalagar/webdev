@@ -12,12 +12,12 @@
 
         //$scope.$location=$location;
 
-        $scope.username=$rootScope.currentUser.username;
+       /* $scope.username=$rootScope.currentUser.username;
         $scope.firstName=$rootScope.currentUser.firstName;
         $scope.lastName=$rootScope.currentUser.lastName;
         $scope.emailId=$rootScope.currentUser.emailId;
 
-
+*/
         console.log("In Profile Controller");
 
         function update(username,password,firstName, lastName, emailId){
