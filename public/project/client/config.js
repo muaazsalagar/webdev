@@ -60,9 +60,7 @@
                 templateUrl:"client/views/search/search.property.view.html",
                 controller:"PropertySearch",
                 controllerAs:"model",
-                resolve: {
-                    checkLoggedIn: checkLoggedIn
-                }
+
 
             })
 

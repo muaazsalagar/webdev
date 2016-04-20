@@ -14,8 +14,6 @@
 
 
             createUser:createUser,
-            setCurrentUser:setCurrentUser,
-            getCurrentUser:getCurrentUser,
 
             // Api
             findUserByCredentials:findUserByCredentials,
@@ -57,13 +55,8 @@
 
         }
 
-        function setCurrentUser (user) {
-            $rootScope.currentUser = user;
-        }
 
-        function getCurrentUser () {
-            return $rootScope.currentUser;
-        }
+
 
         function findUserByUsername(username)
         {

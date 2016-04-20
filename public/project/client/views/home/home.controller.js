@@ -9,7 +9,10 @@
 
     function HomeController($location,$scope, LocationService, $rootScope, $http){
 
-        console.log("In HomeController");
+        //console.log("In HomeController");
+
+        // for Address suggestions at home page !!!
+
         $scope.result1 = '';
         $scope.options1 = null;
         $scope.details1 = '';
