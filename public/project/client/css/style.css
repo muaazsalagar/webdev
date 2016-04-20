@@ -158,6 +158,8 @@ a:hover {
 .HomeHeader{
     text-align:center;
     margin:auto;
+    color: #ffffff;
+
 }
 
 .profileView{
@@ -168,9 +170,10 @@ a:hover {
 .homeBackground{
 
     position: fixed;
-    background-image: url("../../img/back1.jpg");
+    background-image: url("../../img/back2.jpg");
     width: 100%;
     height: 100%;
     margin: auto;
+    align-content: center;
 
 }
