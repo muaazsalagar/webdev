@@ -13,10 +13,19 @@
         var vm = this;
 
         // crud operations for Admin Panel
+
+
         vm.addUser = addUser;
         vm.removeUser = removeUser;
         vm.selectUser = selectUser;
         vm.updateUser = updateUser;
+        vm.order = order;
+        vm.predicate='username';
+        vm.reverse = true;
+
+        var oldIndex = -1;
+
+
 
         var oldIndex = -1;
 
@@ -104,6 +113,14 @@
                     }
                 );
         }
+
+
+        function order(predicate) {
+
+            vm.reverse = (vm.predicate === predicate)? !vm.reverse: false;
+            vm.predicate = predicate;
+        }
+
 
     }
 })();
