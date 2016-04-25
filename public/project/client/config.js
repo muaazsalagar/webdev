@@ -39,6 +39,7 @@
                 }
 
             })
+
             .when("/manager", {
                 templateUrl:"client/views/manager/manager.view.html",
                 controller:"ManagerController",
@@ -48,6 +49,16 @@
                 }
 
             })
+            .when("/userdashboard", {
+                templateUrl:"client/views/users/useroperations.view.html",
+                controller:"UserOperationsController",
+                controllerAs:"model",
+                resolve: {
+                    checkLoggedIn: checkLoggedIn
+                }
+
+            })
+
 
 
             .when("/forms", {

@@ -19,6 +19,8 @@
         vm.removeBooking = removeBooking;
         vm.selectBooking = selectBooking;
         vm.updateBooking = updateBooking;
+        
+
 
         var oldIndex = -1;
 

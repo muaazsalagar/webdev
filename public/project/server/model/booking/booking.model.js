@@ -13,6 +13,7 @@ module.exports = function(db, mongoose) {
     var api = {
         createBooking: createBooking,
         findBookingById: findBookingById,
+        findBookingByUserId:findBookingByUserId,
         // new added feature for admin
 
 
@@ -34,6 +35,12 @@ module.exports = function(db, mongoose) {
 
         return bookingModel.findById(bookingId);
     }
+
+    function findBookingByUserId(bookingId) {
+
+        return bookingModel.findById(bookingId);
+    }
+
 
     // for admin
     function findAllBookings() {
