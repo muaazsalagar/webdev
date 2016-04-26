@@ -42,7 +42,7 @@
 
         function selectUser($index) {
 
-          //  var user = vm.users[$index];
+            //  var user = vm.users[$index];
 
             var user=$index;
 
@@ -61,7 +61,6 @@
         function updateUser(user) {
 
             UserService.updateUser(user._id, user)
-
                 .then(
 
                     function (response) {

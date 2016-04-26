@@ -13,12 +13,9 @@
 
         var service = {
 
-            login:login,
-            logout: logout,
-            getCurrentBooking: getCurrentBooking,
-            setCurrentBooking: setCurrentBooking,
-            register:register,
+
             findBookingByBookingname: findBookingByBookingname,
+            findBookingByUserId: findBookingByUserId,
             findBookingByOwnerId: findBookingByOwnerId,
             findAllBookings: findAllBookings,
             createBooking: createBooking,
@@ -101,6 +98,20 @@
             var deferred = $q.defer();
 
             var url = "/api/assignment/bookingByOwnerId/:id";
+            url = url.replace(":id", ownerId);
+
+            $http.get(url).success (function (response) {
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
+        }
+
+        function findBookingByUserId(ownerId) {
+
+            var deferred = $q.defer();
+
+            var url = "/api/assignment/user/:id/booking/";
             url = url.replace(":id", ownerId);
 
             $http.get(url).success (function (response) {

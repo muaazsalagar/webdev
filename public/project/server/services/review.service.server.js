@@ -194,14 +194,17 @@ module.exports = function(app, reviewModel, uuid) {
 
     function updateReviewById(req, res) {
 
-        var reviewId = parseInt(req.params.id);
+
 
         var review = req.body;
+        //var reviewId = (review._id);
 
         //reviewModel.updateReviewById(reviewId, review);
         //res.send(200);
+        var dateCreated=new Date();
+        review.date_posted=dateCreated;
 
-        reviewModel.updateReviewById(reviewId, review)
+        reviewModel.updateReviewById(review._id, review)
 
             .then(
 

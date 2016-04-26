@@ -8,6 +8,7 @@ module.exports = function (mongoose) {
 
     var userSchema = mongoose.Schema({
         username: String,
+        usertype:String,
         password: String,
         firstName: String,
         lastName: String,

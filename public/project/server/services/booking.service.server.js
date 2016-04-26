@@ -33,6 +33,8 @@ module.exports = function(app, bookingModel, uuid) {
     //responds with a single booking whose id property is equal to the id path parameter
     app.get("/api/assignment/booking/:id", findBookingById);
 
+    //responds with all booking whose id property is equal to the id path parameter
+    app.get("/api/assignment/user/:id/booking/", findBookingByUserId);
 
     //responds with a single booking whose id property is equal to the id path parameter
     app.get("/api/assignment/bookingByOwnerId/:id", findBookingByOwnerId);
@@ -264,6 +266,27 @@ module.exports = function(app, bookingModel, uuid) {
                 }
             );
     }
+
+    function findBookingByUserId(req, res) {
+
+        var userId = parseFloat(req.params.id);
+
+        bookingModel.findBookingByUserId(userId)
+
+            .then(
+
+                function (doc) {
+
+                    res.json(doc);
+                },
+
+                function (err) {
+
+                    res.status(400).send(err);
+                }
+            );
+    }
+
 
     function findBookingByOwnerId(req, res) {
 

@@ -95,6 +95,7 @@ module.exports = function(app, userModel, uuid) {
 
                         var names = profile.displayName.split(" ");
                         var username=(names[0]+names[1]).toLowerCase();
+                        var userId= parseInt(profile.id);
 
                         var newFacebookUser = {
                             username:username,
@@ -102,7 +103,7 @@ module.exports = function(app, userModel, uuid) {
                             firstname: names[0],
                             //email:     profile.emails ? profile.emails[0].value:"",
                             roles:["user","admin","manager"],
-                            _id:    profile.id,
+                            _id:   userId,
                             password: token
                         };
                         console.log(newFacebookUser);

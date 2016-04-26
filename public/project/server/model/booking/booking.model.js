@@ -36,9 +36,9 @@ module.exports = function(db, mongoose) {
         return bookingModel.findById(bookingId);
     }
 
-    function findBookingByUserId(bookingId) {
+    function findBookingByUserId(userId) {
 
-        return bookingModel.findById(bookingId);
+        return bookingModel.find({user_id:userId});
     }
 
 

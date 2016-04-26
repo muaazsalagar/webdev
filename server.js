@@ -41,6 +41,25 @@ app.use(passport.session());
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
+// FOR project and other strategies to workout
+
+
+// User models of assignment and project.
+//var userModelAssignment = require("./public/assignment/server/models/user/user.model.js")(db,mongoose);
+//var userModelProject = require("./public/project/server/model/user/user.model.js")(db,mongoose);
+
+// Passport authentication common for assignment and project
+//var securityService = require("./public/security/security.js")(userModelAssignment,userModelProject);
+
+// FOR Assignment app.js
+//require("./public/assignment/server/app.js")(app, db, mongoose,userModelAssignment,securityService);
+
+// FOR Project app.js
+//require("./public/project/server/app.js")(app,db, userModelProject, securityService);
+
+
+
+
 //require("./public/assignment/server/app.js")(app,db,mongoose, uuid);
 require("./public/platform9Assignment/server/app.js")(app, uuid);
 require("./public/project/server/app.js")(app,db,mongoose, uuid);
