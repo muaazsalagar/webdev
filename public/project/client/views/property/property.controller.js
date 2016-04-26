@@ -118,7 +118,6 @@
             // set the a_review field to the selected row
             vm.a_review = {
                 review: a_review.review,
-                _id:a_review._id,
                 user_id:a_review.user_id,
                 property_id:a_review.property_id
 

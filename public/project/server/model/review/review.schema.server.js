@@ -9,8 +9,7 @@ module.exports = function (mongoose) {
 
 
     var reviewSchema = mongoose.Schema({
-
-        _id:Number,
+        
         user_id: Number,
         property_id:Number,
         rating: Number,

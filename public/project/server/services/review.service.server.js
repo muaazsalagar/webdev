@@ -34,7 +34,7 @@ module.exports = function(app, reviewModel, uuid) {
 
         var review = req.body;
 
-        review._id = parseInt(uuid.v4());
+        //review._id = parseInt(uuid.v4());
 
 
         //res.json(reviewModel.createReview(review));
@@ -223,7 +223,7 @@ module.exports = function(app, reviewModel, uuid) {
 
     function deleteReviewById(req, res) {
 
-        var reviewId = parseInt(req.params.id);
+        var reviewId = (req.params.id);
 
        // reviewModel.deleteReviewById(reviewId);
 
