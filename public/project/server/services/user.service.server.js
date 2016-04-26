@@ -3,20 +3,22 @@
  */
 
 "use strict"
-var passport         = require('passport');
+var passport = require('passport');
 //var LocalStrategy    = require('passport-local').Strategy;
-var FacebookStrategy = require('passport-facebook').Strategy;
+//var FacebookStrategy = require('passport-facebook').Strategy;
 var bcrypt = require("bcrypt-nodejs");
 
 
 
 // load the auth variables
-var configAuth = require("../config/auth.js");
+//var configAuth = require("../config/auth.js");
 
-module.exports = function(app, userModel, uuid) {
+module.exports = function(app,userModel,securityService) {
 
     // for passport intercepters
     var auth = authorized;
+    var passport = securityService.getPassport();
+
 
     //Registers a new user embedded in the body of the request, and responds with an array of all users
     app.post("/api/project/register",  register);
@@ -52,8 +54,13 @@ module.exports = function(app, userModel, uuid) {
     //app.post  ('/api/project/login', passport.authenticate('local'), login);
 
 
+    app.post  ('/api/project/login', passport.authenticate('project'), login);
+
+
+
+
     // FB STUFF
-    app.get   ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+ /*   app.get   ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
             successRedirect: '/project/#/profile',
@@ -73,11 +80,11 @@ module.exports = function(app, userModel, uuid) {
     passport.deserializeUser(deserializeUser);
 
 
-
+*/
 
 // all tools for login and basic functions
 
-    function facebookStrategy(token, refreshToken, profile, done) {
+    /*function facebookStrategy(token, refreshToken, profile, done) {
         userModel
             .findUserById(profile.id)
             .then(
@@ -125,47 +132,20 @@ module.exports = function(app, userModel, uuid) {
                 }
             );
     }
+*/
 
     // passportJS user methods
-    function serializeUser(user, done) {
-
-        done(null, user);
-
-    }
-
-    function deserializeUser(user, done) {
-        userModel
-            .findUserById(user._id)
-
-            .then(
-                // if user found set done with user response
-                function(user){
-
-                    done(null, user);
-                },
-
-                function(err){
-
-                    done(err, null);
-                }
-
-            );
-    }
 
     function login(req, res) {
-
         var user = req.user;
         res.json(user);
-
     }
 
     function loggedIn(req, res) {
-
-        res.send(req.isAuthenticated() ? req.user : null);
+        res.send(req.isAuthenticated() && req.user.usertype === "project" ? req.user : '0');
     }
 
     function logout(req, res) {
-
         req.logOut();
         res.send(200);
     }

@@ -58,22 +58,22 @@ var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 //require("./public/project/server/app.js")(app,db, userModelProject, securityService);
 
 
+// User models of assignment and project.
+var userModelAssignment = require("./public/assignment/server/models/user/user.model.js")(db,mongoose);
+var userModelProject = require("./public/project/server/model/user/user.model.js")(db,mongoose);
+
+// Passport authentication common for assignment and project
+var securityService = require("./public/security/security.js")(userModelAssignment,userModelProject);
+// Assignment app.js
+require("./public/assignment/server/app.js")(app, db, mongoose,uuid,userModelAssignment,securityService);
+
+// Project app.js
+require("./public/project/server/app.js")(app,db, mongoose,uuid, userModelProject, securityService);
 
 
 //require("./public/assignment/server/app.js")(app,db,mongoose, uuid);
 require("./public/platform9Assignment/server/app.js")(app, uuid);
-require("./public/project/server/app.js")(app,db,mongoose, uuid);
-
-
-app.get('/hello', function(req, res){
-    res.send('hello world');
-});
-
-app.get('/', function(req, res){
-    res.send('THIS PAGE IS UNDER CONSTRUCTION UPDATES ARE COMING SOON');
-});
-
-// for services
+//require("./public/project/server/app.js")(app,db,mongoose, uuid);
 
 
 

@@ -9,9 +9,9 @@ module.exports = function (mongoose) {
 
 
     var reviewSchema = mongoose.Schema({
-        
-        user_id: Number,
-        property_id:Number,
+
+        user_id: String,
+        property_id:String,
         rating: Number,
         date_posted:Date,
         review: String,

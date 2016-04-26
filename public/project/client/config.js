@@ -13,8 +13,8 @@
                 controller:"HomeController"
             })
             .when("/register", {
-                templateUrl:"client/views/users/loginAndRegister.view.html",
-                controller:"LoginRegisterController",
+                templateUrl:"client/views/users/register.view.html",
+                controller:"RegisterController",
                 controllerAs:"model"
             })
             .when("/login", {
@@ -58,8 +58,6 @@
                 }
 
             })
-
-
 
             .when("/forms", {
                 templateUrl:"views/forms/colors.view.html",

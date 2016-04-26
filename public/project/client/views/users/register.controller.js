@@ -12,31 +12,32 @@
 
         // for the registration of the user
 
-            var vm = this;
+        var vm = this;
 
-            vm.register = register;
+        vm.register = register;
 
-            function register(user) {
+        function register(user) {
 
-                // get emails seperated:
+            // get emails seperated:
+            console.log("In user register ")
 
-                user.emails = user.emails.trim().split(",");
+            user.emails = user.emails.trim().split(",");
 
-                UserService.register(user).then(function(users) {
+            UserService.register(user).then(function(users) {
 
-                    // get by username
-                    UserService.findUserByUsername(user.username).then(function (registeredUser) {
+                // get by username
+                UserService.findUserByUsername(user.username).then(function (registeredUser) {
 
-                        // set session
+                    // set session
 
-                        UserService.setCurrentUser(registeredUser);
+                    UserService.setCurrentUser(registeredUser);
 
-                        // step 2 redirect
+                    // step 2 redirect
 
-                        $location.url("/profile");
-                    });
+                    $location.url("/profile");
                 });
-            }
+            });
+        }
 
     }
 })();

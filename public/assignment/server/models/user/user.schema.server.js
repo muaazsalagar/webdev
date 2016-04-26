@@ -8,13 +8,13 @@ module.exports = function (mongoose) {
 
     var userSchema = mongoose.Schema({
         username: String,
-        usertype:String,
         password: String,
         firstName: String,
         lastName: String,
         emails: [String],
         phones: [String],
-        roles: [String]
+        roles: [String],
+        usertype:{type: String, default:"assignment"}
 
     }, {collection: 'assignment.user'});
 

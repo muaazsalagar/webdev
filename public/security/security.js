@@ -95,7 +95,7 @@ module.exports = function(userModelAssignment,userModelProject) {
                     }
                 );
 
-        } else if (user.usertype === "tradebull") {
+        } else if (user.usertype === "project") {
             userModelProject
                 .findUserByUsername(user.username)
                 .then(

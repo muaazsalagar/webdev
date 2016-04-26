@@ -3,17 +3,20 @@
  */
 
 "use strict"
-var passport         = require('passport');
-var LocalStrategy    = require('passport-local').Strategy;
+var passport = require('passport');
 var bcrypt = require("bcrypt-nodejs");
 
 
 
-module.exports = function(app, userModel, uuid) {
+module.exports = function(app, userModel,securityService) {
 
     // for passport intercepters
     var auth = authorized;
+    var passport = securityService.getPassport();
 
+
+
+    //APIs
     //Registers a new user embedded in the body of the request, and responds with an array of all users
     app.post("/api/assignment/register",  register);
 
@@ -45,94 +48,25 @@ module.exports = function(app, userModel, uuid) {
 
     // for passport implementation
 
-    app.post  ('/api/assignment/login', passport.authenticate('local'), login);
-
-    passport.use(new LocalStrategy(localStrategy));
-    passport.serializeUser(serializeUser);
-    passport.deserializeUser(deserializeUser);
+    app.post  ('/api/assignment/login', passport.authenticate('assignment'), login);
 
 
 
-// all tools for login and basic functions
-
-    function localStrategy(username, password, done) {
-
-        // find user by username
-        console.log()
-        userModel.findUserByUsername(username)
-
-            .then(
-
-                function (user) {
-                    console.log(user);
-
-                    // if user is returned by userName:
-                    if(user && bcrypt.compareSync(password, user.password)) {
-
-                        // return with done with user as response
-
-                        return done(null, user);
-
-                    }else {
-                        // otherwise return false
-                        return done(null, false);
-                    }
-
-                } ,
-                function (err) {
-                    // else set error
-
-                    if (err) { return done(err); }
-                }
-            )
-    }
-
-    // passportJS user methods
-    function serializeUser(user, done) {
-
-        done(null, user);
-
-    }
-
-    function deserializeUser(user, done) {
-        userModel
-            .findUserById(user._id)
-
-            .then(
-                // if user found set done with user response
-                function(user){
-
-                    done(null, user);
-                },
-
-                function(err){
-
-                    done(err, null);
-                }
-
-            );
-    }
-
+    // all tools for login and basic functions
 
     function login(req, res) {
-
         var user = req.user;
         res.json(user);
-
     }
 
     function loggedIn(req, res) {
-
-        res.send(req.isAuthenticated() ? req.user : null);
+        res.send(req.isAuthenticated() && req.user.usertype === "assignment" ? req.user : '0');
     }
 
     function logout(req, res) {
-
         req.logOut();
         res.send(200);
     }
-
-
 
 
     function isUserIsAdmin(user) {
@@ -302,7 +236,7 @@ module.exports = function(app, userModel, uuid) {
 
     function findAllusers (req, res) {
 
-     // change for all passport
+        // change for all passport
 
         if(req.query.username && req.query.password) {
 

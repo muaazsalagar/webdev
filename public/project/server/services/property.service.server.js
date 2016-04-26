@@ -35,8 +35,6 @@ module.exports = function(app, propertyModel, uuid) {
         var property = req.body;
         property.address.city=property.address.city.toLowerCase();
 
-        property._id = parseInt(uuid.v4());
-
         propertyModel.createProperty(property)
             .then(
                 function(doc)
@@ -75,7 +73,7 @@ module.exports = function(app, propertyModel, uuid) {
 
     function findPropertyById(req, res) {
 
-        var propertyId = parseInt(req.params.id);
+        var propertyId = (req.params.id);
 
         //res.json(propertyModel.findPropertyById(propertyId));
 
@@ -150,7 +148,7 @@ module.exports = function(app, propertyModel, uuid) {
 
     function updatePropertyById(req, res) {
 
-        var propertyId = parseInt(req.params.id);
+        var propertyId = (req.params.id);
 
         var property = req.body;
 
@@ -176,7 +174,7 @@ module.exports = function(app, propertyModel, uuid) {
 
     function deletePropertyById(req, res) {
 
-        var propertyId = parseInt(req.params.id);
+        var propertyId = (req.params.id);
 
         //propertyModel.deletePropertyById(propertyId);
 

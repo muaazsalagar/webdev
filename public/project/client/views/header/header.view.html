@@ -29,7 +29,9 @@
 
                 <li ng-class="{'active':$location.url()=='/userdashboard'}" ng-show="currentUser.username"><a href="#/userdashboard"> My Bookings </a></li>
 
-                <li ng-class="{'active':$location.url()=='/login'}" ng-hide="currentUser.username"><a href="#/login"> Login / Register </a></li>
+                <li ng-class="{'active':$location.url()=='/login'}" ng-hide="currentUser.username"><a href="#/login"> Login </a></li>
+
+                <li ng-class="{'active':$location.url()=='/register'}" ng-hide="currentUser.username"><a href="#/register"> Register </a></li>
 
                 <li ng-class="{'active':$location.url()=='/profile'}" ng-show="currentUser.username"><a href="#/profile"> {{currentUser.username}} </a></li>
 

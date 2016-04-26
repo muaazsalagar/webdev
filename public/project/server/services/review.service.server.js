@@ -34,9 +34,6 @@ module.exports = function(app, reviewModel, uuid) {
 
         var review = req.body;
 
-        //review._id = parseInt(uuid.v4());
-
-
         //res.json(reviewModel.createReview(review));
 
         reviewModel.createReview(review)
@@ -94,7 +91,7 @@ module.exports = function(app, reviewModel, uuid) {
 
     function findReviewById(req, res) {
 
-        var reviewId = parseInt(req.params.id);
+        var reviewId = (req.params.id);
 
         //res.json(reviewModel.findReviewById(reviewId));
 
@@ -118,7 +115,7 @@ module.exports = function(app, reviewModel, uuid) {
     function findReviewByPropertyId(req, res) {
 
         console.log("the ")
-        var propertyId = parseInt(req.params.id);
+        var propertyId = (req.params.id);
         //res.json(reviewModel.findReviewByPropertyId(propertyId));
         console.log("the Property iD is ");
         console.log(propertyId);
@@ -144,8 +141,8 @@ module.exports = function(app, reviewModel, uuid) {
     function findReviewByUserId(req, res) {
 
 
-        var userId = parseInt(req.params.id);
-        var propertyId = parseInt(req.params.propertyId);
+        var userId = (req.params.id);
+        var propertyId = (req.params.propertyId);
 
         //res.json(reviewModel.findReviewByPropertyId(propertyId));
         console.log("the Property iD is ");

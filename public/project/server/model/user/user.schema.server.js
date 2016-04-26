@@ -8,8 +8,6 @@ module.exports = function (mongoose) {
 
     var projectuserSchema = mongoose.Schema({
 
-        _id:Number,
-        usertype:String,
         username: String,
         password: String,
         token:String,
@@ -18,7 +16,8 @@ module.exports = function (mongoose) {
         emails: [String],
         fbemail:String,
         phones: [String],
-        roles: [String]
+        roles: [String],
+        usertype:{type: String, default:"project"}
 
     }, {collection: 'project.user'});
 

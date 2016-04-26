@@ -269,7 +269,7 @@ module.exports = function(app, bookingModel, uuid) {
 
     function findBookingByUserId(req, res) {
 
-        var userId = parseFloat(req.params.id);
+        var userId = (req.params.id);
 
         bookingModel.findBookingByUserId(userId)
 
