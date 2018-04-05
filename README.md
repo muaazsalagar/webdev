@@ -3,7 +3,8 @@
 This project is being developed by Muaaz Salagar for the course work of Web Development (CS 5610)
 Under guidance of Prof. Jose Annunziato
 
-Course Content: http://portal-cs5610online.rhcloud.com/portal/index.html#/course/agenda 
+Course Content: https://cs5610.herokuapp.com/portal/index.html#/course/agenda
+
 
 Demo of the app:
 https://www.youtube.com/watch?v=ehd9ADrUoXg 
